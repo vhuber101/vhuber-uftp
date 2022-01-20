@@ -1,5 +1,5 @@
 
-UNICORE File Transfer (UFTP) check
+UNICORE File Transfer (UFTP) test
 ============================
 
 The UFTP contains server and client components for the `UNICORE <https://www.unicore.eu>`_ high-performance file transfer toolkit:
