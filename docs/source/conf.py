@@ -21,9 +21,6 @@ project = 'UNICORE uftp'
 copyright = '2022, UNICORE'
 author = 'UNICORE'
 
-# The full version, including alpha/beta/rc tags
-release = '2.6'
-
 
 # -- General configuration ---------------------------------------------------
 
@@ -52,6 +49,8 @@ exclude_patterns = []
 # a list of builtin themes.
 #
 html_theme = 'furo'                # external
+html_logo = "../images/logo-unicore.png"
+html_title = "UNICORE FTP"
 
 
 # Add any paths that contain custom static files (such as style sheets) here,
