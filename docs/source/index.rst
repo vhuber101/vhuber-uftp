@@ -17,10 +17,10 @@ The UFTP contains server and client components for the `UNICORE <https://www.uni
 
 .. toctree::
    uftpd.md
-   pyuftpd
-   authserver
-   uftp-client
-   datashare
+   pyuftpd.md
+   authserver.md
+   uftp-client.md
+   datashare.md
    :maxdepth: 2
    :caption: Content
     

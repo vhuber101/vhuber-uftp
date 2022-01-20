@@ -1,4 +1,4 @@
-# UFTPD MD file
+# UFTPD Server
 
 ```{include} ../../uftpd/README.md
 :relative-images:
