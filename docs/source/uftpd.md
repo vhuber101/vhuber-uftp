@@ -1,5 +1,3 @@
-# UFTPD Server
-
 ```{include} ../../uftpd/README.md
 :relative-images:
 :relative-docs: ../../uftpd
