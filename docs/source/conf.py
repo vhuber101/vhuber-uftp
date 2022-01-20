@@ -49,6 +49,10 @@ exclude_patterns = []
 # a list of builtin themes.
 #
 html_theme = 'furo'                # external
+html_theme_options = {
+    "navigation_with_keys": True,
+}
+
 html_logo = "../images/logo-unicore.png"
 html_title = "UNICORE FTP"
 
