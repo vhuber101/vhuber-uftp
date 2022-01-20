@@ -6,7 +6,7 @@
 <link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="UFTP client" href="uftp-client.html" /><link rel="prev" title="PyUFTPD" href="pyuftpd.html" />
 
     <meta name="generator" content="sphinx-4.3.2, furo 2022.01.02"/>
-        <title>Auth server - UNICORE uftp 2.6 documentation</title>
+        <title>&lt;no title&gt; - UNICORE uftp 2.6 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=df49af52631e7917044a9c21a57f7b83170a6dd0" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=fade93df149f7c5fedb3ff897f799dc7d283b420" />
@@ -134,7 +134,7 @@
           <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
         </button>
       </div>
-      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
         <div class="visually-hidden">Toggle table of contents sidebar</div>
         <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
       </label>
@@ -155,10 +155,9 @@
 </form>
 <div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
   <p class="caption" role="heading"><span class="caption-text">Content</span></p>
-<ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="uftpd.html">UFTPD server</a></li>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="uftpd.html">UFTPD Server</a></li>
 <li class="toctree-l1"><a class="reference internal" href="pyuftpd.html">PyUFTPD</a></li>
-<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Auth server</a></li>
 <li class="toctree-l1"><a class="reference internal" href="uftp-client.html">UFTP client</a></li>
 <li class="toctree-l1"><a class="reference internal" href="datashare.html">Datashare</a></li>
 </ul>
@@ -181,62 +180,13 @@
               <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
             </button>
           </div>
-          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
             <div class="visually-hidden">Toggle table of contents sidebar</div>
             <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
           </label>
         </div>
         <article role="main">
-          <section class="tex2jax_ignore mathjax_ignore" id="auth-server">
-<h1>Auth server<a class="headerlink" href="#auth-server" title="Permalink to this headline">¶</a></h1>
-<p>The UFTP authentication service (<strong>Auth server</strong>) is a RESTful
-service for authenticating users and initiating UFTP transfers. It is indended to be used with a standalone UFTP client and provides access to one or more UFTPD servers.</p>
-<p>Besides data transfer via UFTP and data management features like <code class="docutils literal notranslate"><span class="pre">ls</span></code>, the Auth server also provides REST APIs for data sharing and accessing shared data sets.</p>
-<p>The Auth server is based on the UNICORE Services Environment, and all of UNICORE’s flexible authentication features and security
-configuration options are available as well. For example, the Auth server can be deployed behind a UNICORE Gateway, or it can be configured to use Unity for authenticating users.</p>
-<section id="update-procedure">
-<h2>Update procedure<a class="headerlink" href="#update-procedure" title="Permalink to this headline">¶</a></h2>
-<p>As a first step and precaution, you should make backups of your
-existing config files and put them in a safe place.</p>
-<p>In the following, LIB refers to the directory containing the jar files for the component, and CONF to the config directory of the existing installation.</p>
-<p>It is assumed that you have unpacked the tar.gz file somewhere,
-e.g. to <code class="docutils literal notranslate"><span class="pre">/tmp/</span></code></p>
-<p>In the following, this location will be denoted as “<code class="docutils literal notranslate"><span class="pre">$NEW</span></code>”:</p>
-<p><code class="docutils literal notranslate"><span class="pre">export</span> <span class="pre">NEW=/tmp/unicore-authserver-2.5.0</span></code></p>
-<ul>
-<li><p>Stop the server. If not yet done, make a backup of the config files.</p></li>
-<li><p>Update the jar files:</p>
-<p><code class="docutils literal notranslate"><span class="pre">rm</span> <span class="pre">-rf</span> <span class="pre">LIB/*</span></code>
-<code class="docutils literal notranslate"><span class="pre">cp</span> <span class="pre">$NEW/lib/*.jar</span> <span class="pre">LIB/</span></code></p>
-</li>
-<li><p>Start the server.</p></li>
-<li><p>Check the logs for any ERROR or WARN messages and if necessary correct them.</p></li>
-</ul>
-</section>
-<section id="building-packages">
-<h2>Building packages<a class="headerlink" href="#building-packages" title="Permalink to this headline">¶</a></h2>
-<p>You need Java 8 and Apache Maven.</p>
-<p>The java code is then built and tested using</p>
-<p><code class="docutils literal notranslate"><span class="pre">mvn</span> <span class="pre">install</span></code></p>
-<section id="creating-distribution-packages">
-<h3>Creating distribution packages<a class="headerlink" href="#creating-distribution-packages" title="Permalink to this headline">¶</a></h3>
-<p>The following commands create the distribution packages
-in tgz, deb and rpm formats</p>
-<section id="tgz">
-<h4>tgz<a class="headerlink" href="#tgz" title="Permalink to this headline">¶</a></h4>
-<p><code class="docutils literal notranslate"><span class="pre">mvn</span> <span class="pre">package</span> <span class="pre">-DskipTests</span> <span class="pre">-Ppackman</span> <span class="pre">-Dpackage.type=bin.tar.gz</span></code></p>
-</section>
-<section id="deb">
-<h4>deb<a class="headerlink" href="#deb" title="Permalink to this headline">¶</a></h4>
-<p><code class="docutils literal notranslate"><span class="pre">mvn</span> <span class="pre">package</span> <span class="pre">-DskipTests</span> <span class="pre">-Ppackman</span> <span class="pre">-Dpackage.type=deb</span> <span class="pre">-Ddistribution=Debian</span></code></p>
-</section>
-<section id="rpm">
-<h4>rpm<a class="headerlink" href="#rpm" title="Permalink to this headline">¶</a></h4>
-<p><code class="docutils literal notranslate"><span class="pre">mvn</span> <span class="pre">package</span> <span class="pre">-DskipTests</span> <span class="pre">-Ppackman</span> <span class="pre">-Dpackage.type=rpm</span> <span class="pre">-Ddistribution=RedHat</span></code></p>
-</section>
-</section>
-</section>
-</section>
+          <p># Auth server</p>
 
         </article>
       </div>
@@ -269,7 +219,7 @@ in tgz, deb and rpm formats</p>
               Copyright &#169; 2022, UNICORE |
           Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
           <a href="https://github.com/pradyunsg/furo">Furo theme</a>.
-            | <a class="muted-link" href="_sources/authserver.md.txt"
+            | <a class="muted-link" href="_sources/authserver.rst.txt"
                rel="nofollow">
               Show Source
             </a>
@@ -277,36 +227,8 @@ in tgz, deb and rpm formats</p>
         
       </footer>
     </div>
-    <aside class="toc-drawer">
+    <aside class="toc-drawer no-toc">
       
-      
-      <div class="toc-sticky toc-scroll">
-        <div class="toc-title-container">
-          <span class="toc-title">
-            Contents
-          </span>
-        </div>
-        <div class="toc-tree-container">
-          <div class="toc-tree">
-            <ul>
-<li><a class="reference internal" href="#">Auth server</a><ul>
-<li><a class="reference internal" href="#update-procedure">Update procedure</a></li>
-<li><a class="reference internal" href="#building-packages">Building packages</a><ul>
-<li><a class="reference internal" href="#creating-distribution-packages">Creating distribution packages</a><ul>
-<li><a class="reference internal" href="#tgz">tgz</a></li>
-<li><a class="reference internal" href="#deb">deb</a></li>
-<li><a class="reference internal" href="#rpm">rpm</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-
-          </div>
-        </div>
-      </div>
       
       
     </aside>
