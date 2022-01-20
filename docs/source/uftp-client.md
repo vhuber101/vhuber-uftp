@@ -1,5 +1,7 @@
 
-```{include} ../../uftp-client\README.md
+# UFTP client
+
+```{include} ../../uftp-client/README.md
 :relative-images:
 :relative-docs: ../../uftp-client
 ```

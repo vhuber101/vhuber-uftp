@@ -1,6 +1,6 @@
 # PyUFTPD server
 
-```{include} ../../pyuftpd\README.md
+```{include} ../../pyuftpd/README.md
 :relative-images:
 :relative-docs: ../../pyuftpd
 ```
