@@ -53,6 +53,11 @@ html_theme_options = {
     "navigation_with_keys": True,
 }
 
+html_sidebars = {
+   '**': ['globaltoc.html', 'sourcelink.html', 'searchbox.html'],
+   'using/windows': ['windowssidebar.html', 'searchbox.html'],
+}
+
 html_logo = "../images/logo-unicore.png"
 html_title = "UNICORE FTP"
 
