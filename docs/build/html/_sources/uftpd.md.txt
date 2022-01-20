@@ -1,11 +1,11 @@
 # UFTPD MD file
 
-```{include} ..\..\uftpd\README.md
+```{include} ../../uftpd/README.md
 :relative-images:
-:relative-docs: ..\..\uftpd
+:relative-docs: ../../uftpd
 ```
 
-```{include} ..\..\uftpd\README-building.md
+```{include} ../../uftpd/README-building.md
 :relative-images:
-:relative-docs: ..\..\uftpd
+:relative-docs: ../../uftpd
 ```
