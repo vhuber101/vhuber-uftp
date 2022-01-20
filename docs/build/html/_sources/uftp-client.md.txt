@@ -1,6 +1,4 @@
 
-# UFTP client
-
 ```{include} ../../uftp-client/README.md
 :relative-images:
 :relative-docs: ../../uftp-client
