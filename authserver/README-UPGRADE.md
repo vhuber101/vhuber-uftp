@@ -11,14 +11,18 @@ e.g. to `/tmp/`
 
 In the following, this location will be denoted as "`$NEW`":
 
-`export NEW=/tmp/unicore-authserver-2.5.0`
+```
+export NEW=/tmp/unicore-authserver-2.5.0
+```
 
  - Stop the server. If not yet done, make a backup of the config files.
 
  - Update the jar files:
  
-   `rm -rf LIB/*`
-   `cp $NEW/lib/*.jar LIB/`
+   ```
+   rm -rf LIB/*
+   cp $NEW/lib/*.jar LIB/
+   ```
 
  - Start the server.
 

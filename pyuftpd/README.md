@@ -3,7 +3,8 @@ PyUFTPD
 
 Python implementation of UFTPD.
 
-> *Work in progress!*
+.. important::
+	*Work in progress!*
 
 The Python version will "take over" from the Java implementation of
 the server with version *3.0*

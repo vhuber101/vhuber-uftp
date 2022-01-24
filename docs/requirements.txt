@@ -1,4 +1,4 @@
-myst-parser==0.16.1
-#furo==2022.1.2
-cloud-sptheme=1.10.1
-m2r2=0.3.2
+python
+sphinx>=4.0.2
+m2r2
+sphinx_rtd_theme

@@ -1,0 +1,1 @@
+.. mdinclude:: ../../pyuftpd/README.md

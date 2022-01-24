@@ -17,27 +17,29 @@ Prerequisites
 
  * Java 8 (OpenJDK, Oracle, IBM)
 
- * Access to a [UFTP authentication service](./authserver.md) and the corresponding [UFTPD server](./uftpd.md). To use the client, you need to know the address of the authentication service.
+ * Access to a [UFTP authentication service](./authserver.html) and the corresponding [UFTPD server](./uftpd.html). To use the client, you need to know the address of the authentication service.
 
 
 Installation
 ------------
 
 Unzip the archive in a location of your choice. Add the `bin`
-directory to your path. (Alternatively, you can copy `bin/uftp` script to a directory that is already on your path, in this case
+directory to your path. (Alternatively, you can copy ```bin/uftp``` script to a directory that is already on your path, in this case
 edit the script and setup the required directories.)
 
 Usage
 -----
 
-Invoking `uftp` will list the available commands.
+Invoking ```uftp``` will list the available commands.
 
-Invoking `uftp <command> -h` will show help for a command
+Invoking ```uftp <command> -h``` will show help for a command
 
 For password authentication, use the "`-P`" option. The password can
 be written into the URL, for example:
 
- `uftp ls -u demo:password https://localhost:9000/rest/auth/TEST:/home/demo/`
+```
+uftp ls -u demo:password https://localhost:9000/rest/auth/TEST:/home/demo/
+```
 
 If not given on the command line, the password will be queried interactively.
 

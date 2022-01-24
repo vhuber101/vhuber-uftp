@@ -1,144 +1,187 @@
-
-
-
 <!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-<html>
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
-    <title>&lt;no title&gt; &#8212; UNICORE FTP</title>
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/cloud.css" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&amp;display=swap" type="text/css" />
-    
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/doctools.js"></script>
-
-    
-    
-     
-        <script src="_static/jquery.cookie.js"></script>
-    
-
-    
-     
-        <script src="_static/cloud.base.js"></script>
-    
-
-    
-     
-        <script src="_static/cloud.js"></script>
-    
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UFTP client &mdash; UNICORE UFTP  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="&lt;no title&gt;" href="datashare.html" />
-    <link rel="prev" title="Auth server" href="authserver2.html" /> 
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-  </head><body>
-    <div class="relbar-top">
-        
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="datashare.html" title="&lt;no title&gt;"
-             accesskey="N">next</a> &nbsp; &nbsp;</li>
-        <li class="right" >
-          <a href="authserver2.html" title="Auth server"
-             accesskey="P">previous</a> &nbsp; &nbsp;</li>
-    <li><a href="index.html">UNICORE FTP</a> &#187;</li>
+    <link rel="next" title="Datashare" href="datashare.html" />
+    <link rel="prev" title="Auth server" href="authserver.html" /> 
+</head>
 
-        <li class="nav-item nav-item-this"><a href="">&lt;no title&gt;</a></li> 
-      </ul>
-    </div>
-    </div>
-  
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> UNICORE UFTP
+            <img src="_static/logo-unicore.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">UNICORE FTP</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="uftpd.html">UFTPD server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pyuftpd.html">PyUFTPD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="authserver.html">Auth server</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">UFTP client</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#prerequisites">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#usage">Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#building-packages">Building packages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#creating-distribution-packages">Creating distribution packages</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#tgz">tgz</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#deb">deb</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rpm-redhat">rpm redhat</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="datashare.html">Datashare</a></li>
+</ul>
 
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body" role="main">
-            
-  <p><a href="#id1"><span class="problematic" id="id2">``</span></a><a href="#id3"><span class="problematic" id="id4">`</span></a>{include} ../../uftp-client/README.md
-:relative-images:
-:relative-docs: ../../uftp-client</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>```{include} ../../uftp-client/README-building.md
-:relative-images:
-:relative-docs: ../../uftp-client
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">UNICORE UFTP</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>UFTP client</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/uftp-client.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="uftp-client">
+<h1>UFTP client<a class="headerlink" href="#uftp-client" title="Permalink to this headline"></a></h1>
+<p>This is a Java-based client for UFTP. It allows to</p>
+<ul class="simple">
+<li><p>list remote directories</p></li>
+<li><p>upload/download files</p></li>
+<li><p>sync files</p></li>
+<li><p>make remote directories</p></li>
+<li><p>delete remote files or directories</p></li>
+<li><p>manage shares and access shared data</p></li>
+</ul>
+<p>It supports username/password authentication, token authentication, and ssh-key (on Linux) authentication to a UFTP Authentication Server or UNICORE/X server.</p>
+<section id="prerequisites">
+<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Java 8 (OpenJDK, Oracle, IBM)</p></li>
+<li><p>Access to a <a class="reference external" href="./authserver.html">UFTP authentication service</a> and the corresponding <a class="reference external" href="./uftpd.html">UFTPD server</a>. To use the client, you need to know the address of the authentication service.</p></li>
+</ul>
+</section>
+<section id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline"></a></h2>
+<p>Unzip the archive in a location of your choice. Add the <code class="docutils literal notranslate"><span class="pre">bin</span></code>
+directory to your path. (Alternatively, you can copy <code class="docutils literal notranslate"><span class="pre">bin/uftp</span></code> script to a directory that is already on your path, in this case
+edit the script and setup the required directories.)</p>
+</section>
+<section id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this headline"></a></h2>
+<p>Invoking <code class="docutils literal notranslate"><span class="pre">uftp</span></code> will list the available commands.</p>
+<p>Invoking <code class="docutils literal notranslate"><span class="pre">uftp</span> <span class="pre">&lt;command&gt;</span> <span class="pre">-h</span></code> will show help for a command</p>
+<p>For password authentication, use the “<code class="docutils literal notranslate"><span class="pre">-P</span></code>” option. The password can
+be written into the URL, for example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">uftp</span> <span class="n">ls</span> <span class="o">-</span><span class="n">u</span> <span class="n">demo</span><span class="p">:</span><span class="n">password</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">localhost</span><span class="p">:</span><span class="mi">9000</span><span class="o">/</span><span class="n">rest</span><span class="o">/</span><span class="n">auth</span><span class="o">/</span><span class="n">TEST</span><span class="p">:</span><span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">demo</span><span class="o">/</span>
 </pre></div>
 </div>
-
-
-            <div class="clearer"></div>
-          </div>
-        </div>
-      </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-        <p class="logo"><a href="index.html" title="index">
-          <img class="logo" src="_static/logo-unicore.png" alt="Logo"/>
-        </a></p>
-<div class="sphinx-toc sphinxglobaltoc">
-<h3><a href="index.html">Table of Contents</a></h3>
-<p class="caption" role="heading"><span class="caption-text">UNICORE FTP</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="authserver2.html">Auth server</a></li>
-</ul>
+<p>If not given on the command line, the password will be queried interactively.</p>
+<p>For detailed usage instructions and examples, refer to the
+manual available in the doc directory or online.</p>
+</section>
+<section id="building-packages">
+<h2>Building packages<a class="headerlink" href="#building-packages" title="Permalink to this headline"></a></h2>
+<p>You need Java and Apache Maven.
+Check the versions given in the <code class="docutils literal notranslate"><span class="pre">pom.xml</span></code> file.</p>
+<section id="creating-distribution-packages">
+<h3>Creating distribution packages<a class="headerlink" href="#creating-distribution-packages" title="Permalink to this headline"></a></h3>
+<p>The following commands create the distribution packages
+in tgz, deb and rpm formats. The versions are taken from the <code class="docutils literal notranslate"><span class="pre">pom.xml</span></code></p>
+<section id="tgz">
+<h4>tgz<a class="headerlink" href="#tgz" title="Permalink to this headline"></a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mvn</span> <span class="n">package</span> <span class="o">-</span><span class="n">DskipTests</span> <span class="o">-</span><span class="n">Ppackman</span> <span class="o">-</span><span class="n">Dpackage</span><span class="o">.</span><span class="n">type</span><span class="o">=</span><span class="nb">bin</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
+</pre></div>
 </div>
+</section>
+<section id="deb">
+<h4>deb<a class="headerlink" href="#deb" title="Permalink to this headline"></a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mvn</span> <span class="n">package</span> <span class="o">-</span><span class="n">DskipTests</span> <span class="o">-</span><span class="n">Ppackman</span> <span class="o">-</span><span class="n">Dpackage</span><span class="o">.</span><span class="n">type</span><span class="o">=</span><span class="n">deb</span> <span class="o">-</span><span class="n">Ddistribution</span><span class="o">=</span><span class="n">Debian</span>
+</pre></div>
+</div>
+</section>
+<section id="rpm-redhat">
+<h4>rpm redhat<a class="headerlink" href="#rpm-redhat" title="Permalink to this headline"></a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mvn</span> <span class="n">package</span> <span class="o">-</span><span class="n">DskipTests</span> <span class="o">-</span><span class="n">Ppackman</span> <span class="o">-</span><span class="n">Dpackage</span><span class="o">.</span><span class="n">type</span><span class="o">=</span><span class="n">rpm</span> <span class="o">-</span><span class="n">Ddistribution</span><span class="o">=</span><span class="n">RedHat</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="authserver.html" class="btn btn-neutral float-left" title="Auth server" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="datashare.html" class="btn btn-neutral float-right" title="Datashare" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, UNICORE.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
         </div>
       </div>
-    
-    
-        <div class="sidebar-toggle-group no-js">
-            
-            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
-                 «
-                <span class="show-for-small">hide menu</span>
-                
-            </button>
-            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
-                
-                <span class="show-for-small">menu</span>
-                <span class="hide-for-small">sidebar</span>
-                 »
-            </button>
-        </div>
-    
-      <div class="clearer"></div>
-    </div>
-    <div class="relbar-bottom">
-        
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="datashare.html" title="&lt;no title&gt;"
-             >next</a> &nbsp; &nbsp;</li>
-        <li class="right" >
-          <a href="authserver2.html" title="Auth server"
-             >previous</a> &nbsp; &nbsp;</li>
-    <li><a href="index.html">UNICORE FTP</a> &#187;</li>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
 
-        <li class="nav-item nav-item-this"><a href="">&lt;no title&gt;</a></li> 
-      </ul>
-    </div>
-    </div>
-
-    <div class="footer" role="contentinfo">
-        &#169; Copyright 2022, UNICORE.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.3.2.
-    </div>
-    <!-- cloud_sptheme 1.4 -->
-  </body>
+</body>
 </html>

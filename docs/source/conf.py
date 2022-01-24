@@ -10,14 +10,14 @@
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 #
-# import os
-# import sys
-# sys.path.insert(0, os.path.abspath('.'))
+import os
+import sys
+sys.path.insert(0, os.path.abspath('.'))
 
 
 # -- Project information -----------------------------------------------------
 
-project = 'UNICORE uftp'
+project = 'UNICORE UFTP'
 copyright = '2022, UNICORE'
 author = 'UNICORE'
 
@@ -34,6 +34,7 @@ extensions = [
     'm2r2',
 ]
 
+
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
 
@@ -48,10 +49,9 @@ exclude_patterns = []
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
-html_theme = 'cloud'                # external
+html_theme = 'sphinx_rtd_theme'                # external
 html_theme_options = {
     "navigation_with_keys": True,
-    "sidebar_localtoc_title": "",
 }
 
 
@@ -60,11 +60,9 @@ html_sidebars = {
 }
 
 html_logo = "../images/logo-unicore.png"
-html_title = "UNICORE FTP"
 
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ['_static']
-
