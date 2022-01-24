@@ -31,7 +31,7 @@ extensions = [
     'sphinx.ext.duration',
     'sphinx.ext.doctest',
     'sphinx.ext.autodoc',
-    'myst_parser'
+    'm2r2',
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -48,9 +48,15 @@ exclude_patterns = []
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
-html_theme = 'furo'                # external
+html_theme = 'cloud'                # external
 html_theme_options = {
     "navigation_with_keys": True,
+    "sidebar_localtoc_title": "",
+}
+
+
+html_sidebars = {
+   '**': ['globaltoc.html'],
 }
 
 html_logo = "../images/logo-unicore.png"
