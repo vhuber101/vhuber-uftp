@@ -3,6 +3,8 @@
 
 .. mdinclude:: ../../uftp-client/README-building.md
 
+.. mdinclude:: ../../uftp-client/src/main/doc/uftpclient-manual.md
+
 .. mdinclude:: ../../uftp-client/CHANGES.md
 
 License
