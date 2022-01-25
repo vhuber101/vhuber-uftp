@@ -26,4 +26,4 @@ export NEW=/tmp/unicore-authserver-2.5.0
 
  - Start the server.
 
- - Check the logs for any ERROR or WARN messages and if necessary correct them.
+ - Check the logs for any **ERROR** or **WARN* messages and if necessary correct them.

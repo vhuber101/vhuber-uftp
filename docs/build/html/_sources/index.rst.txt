@@ -12,17 +12,27 @@ The UFTP contains server and client components for the `UNICORE <https://www.uni
 
 
 .. toctree::
+   :maxdepth: 2
+   :caption: UFTP Documentation
+
    uftpd
    pyuftpd
    authserver
    uftp-client
-   datashare.md
+   datashare
+   license
+
+.. raw:: html
+
+   <hr>
+
+.. toctree::
    :maxdepth: 3
-   :caption: UNICORE FTP
-    
 
-
-
+   uftpd-manual
+   
+	
+   
 Indices and tables
 ==================
 
