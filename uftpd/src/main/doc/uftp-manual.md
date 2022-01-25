@@ -1,5 +1,5 @@
 UFTPD User Manual
-=================
+-----------------
 
 UNICORE Team <unicore-support@lists.sourceforge.net>
 
@@ -17,8 +17,9 @@ Developer's list: unicore-devel@lists.sf.net
 
 UFTP issue tracker: https://sourceforge.net/p/unicore/uftp-issues
 
-UNICORE UFTP
-------------
+
+### UNICORE UFTP
+
 
 UFTP is a data streaming library and file transfer tool. 
 
@@ -41,7 +42,7 @@ A full UFTP server installation consists of two parts
 This manual covers the UFTP file server "uftpd".
 
 
-### UFTP features
+#### UFTP features
 
  - dynamic firewall port opening using a pseudo FTP connection.
    UFTPD requires only a single open port.
@@ -75,7 +76,7 @@ This manual covers the UFTP file server "uftpd".
  - written in Java
 
 
-### How does UFTP work
+#### How does UFTP work
 
 
 The UFTP file server, called 'uftpd', listens on two ports (which may be on
@@ -124,10 +125,10 @@ A UFTP file transfer works as follows:
 	Make sure to read and understand the section below on protecting the command socket. Otherwise, users logged on to the UFTPD machine can possibly read and write other user's files.
 
 
-Installation and use
---------------------
+### Installation and use
 
-### Prerequisites
+
+#### Prerequisites
 
   - Java 8 (or later) runtime is required
 
@@ -169,7 +170,7 @@ LIB=INST/lib
 These variables (`CONF`, `SBIN`, `BIN` and `LOG`) are used throughout the rest of this manual.
 
 
-### C library for switching user ID
+#### C library for switching user ID
 
 It may be required to re-compile the `libuftp-unix.so` library on your
 system.  This library uses the Java Native Interface (`JNI`). The
@@ -189,7 +190,7 @@ If any problems occur during this procedure, please contact UNICORE
 support or open a ticket.
 
 
-### Starting and stopping the UFTPD server
+#### Starting and stopping the UFTPD server
 
 In the SBIN directory, start/stop and status scripts are provided:
 
@@ -206,7 +207,7 @@ needs to be started as root. This is necessary to be able to
 set the correct file permissions.
 
 
-### Configuration parameters
+#### Configuration parameters
 
 
 The following variables can be defined in the configuration file (`uftpd.conf`):
@@ -265,25 +266,25 @@ network interfaces.
 If possible, use an "internal" interface for the Command socket. If that
 is not possible, make sure the Command socket is protected by a firewall!
 
-We STRONGLY recommend enabling SSL for the Command socket. Please refer to the 
+We **STRONGLY recommend** enabling SSL for the Command socket. Please refer to the 
 next section.
 
 
-### Protecting the Command socket
+#### Protecting the Command socket
 
 
 Using SSL for the Command port ensures that only trusted parties
 (i.e. trusted UNICORE servers) can issue commands to the UFTPD
 server.  To further limit the set of trusted users, an access control
-list (ACL) file is used. In production settings where users can log in to the UFTPD server
-machine, SSL MUST be enabled to prevent unauthorized data access!
+list (`ACL`) file is used. In production settings where users can log in to the UFTPD server
+machine, **SSL MUST** be enabled to prevent unauthorized data access!
 
 .. important:: **IMPORTANT SECURITY NOTE**
 
 	Without SSL enabled, users logged in to the UFTPD server can easily create exploits to read or write files with arbitrary user privileges (except `root`).
 
 
-### SSL setup
+#### SSL setup
 
 To setup SSL, you need a keystore containing the UFTPD server's
 credential, and a truststore containing certificate authorities that
@@ -298,14 +299,13 @@ The following properties can be set in the `CONF/uftpd-ssl.conf` file.
 If the `credential.path` property is NOT set, SSL will be **disabled**.
 
 
-.. note::
-	**Backwards compatibility to previous versions**
+.. note:: **Backwards compatibility to previous versions**
 
 	Existing configuration files with the ``javax.net.ssl.*`` properties used in UFTPD < 2.6 are still supported.
 
 
 
-### ACL setup
+#### ACL setup
 
 
 The access control list contains the distinguished names of those certificates that
@@ -321,7 +321,7 @@ The default ACL contains the certificate DN of the UNICORE/X server from the UNI
 core server bundle. In production, you need to replace this by the actual DNs of 
 your UNICORE/X server(s) and UFTP Authentication server(s).
 
-The ACL entries are expected in RFC2253 format. To get the name 
+The ACL entries are expected in **RFC2253** format. To get the name 
 from a certificate in the correct format using openssl, you can use the 
 following OpenSSL command:
 ```
@@ -330,7 +330,8 @@ openssl x509 -in your_server.pem -noout -subject -nameopt RFC2253
 
 The ACL file can be updated at runtime.
 
-### Firewall configuration
+
+#### Firewall configuration
 
 
 .. note::
@@ -359,7 +360,7 @@ modprobe nf_conntrack_ftp ports=$SERVER_PORT
 ```
 
 
-### Logging
+#### Logging
 
 
 UFTPD uses `log4j`, the same logging system as other UNICORE components.
@@ -420,7 +421,7 @@ Here is a table of logger categories
 	Please take care **to not set** the global level to ``TRACE`` or ``DEBUG`` for long times, as this may produce a lot of output.
 
 
-#### Usage logging
+##### Usage logging
 
 Often it is desirable to keep track of the usage of your UFTPD server.
 The server has a special logger category which logs information about finished 
@@ -432,8 +433,8 @@ log4j.logger.uftp.server.USAGE=INFO
 
 
 
-UNICORE Integration
--------------------
+### UNICORE Integration
+
 
 In UNICORE, UFTP can be used for uploading/downloading data from a server,
 as well as server-to-server transfers, where one UNICORE/X instance
@@ -442,7 +443,7 @@ acts as UFTP client.
 To enable a UNICORE/X server for the UFTP filetransfer the following settings
 have to be made.
 
-### Configuring the UFTP service
+#### Configuring the UFTP service
 
 
 The UNICORE/X server needs to know the UFTPD server settings
@@ -488,7 +489,7 @@ coreServices.uftp.streams=1
 coreServices.uftp.streamsLimit=4
 ```
 
-### UFTPD servers with multiple interfaces
+#### UFTPD servers with multiple interfaces
 
 If your UFTPD server is on a machine with multiple network interfaces, you can
 give a comma-separated list of host names, like so:
@@ -501,7 +502,7 @@ The UFTP client in this case will try to connect to the hosts in the
 specified order, and will use the first "working" one.
 
 
-#### Enabling data encryption
+##### Enabling data encryption
 
 If you wish to encrypt the data sent/received by UFTPD (in data
 staging or server-to-server transfers), the following property can be
@@ -518,7 +519,7 @@ CPU load. Encryption only works in single-stream mode.  Users can
 override this setting.
 
 
-### Limiting bandwidth per transfer
+#### Limiting bandwidth per transfer
 
 It is possible to limit the bandwidth that is consumed by a single
 UFTP transfer.  It is given in bytes per second.
@@ -529,7 +530,7 @@ coreServices.uftp.rateLimit=10000000000
 ```
 
 
-### Disabling SSL on the command port
+#### Disabling SSL on the command port
 
 
 While not recommended, it may be sometimes useful to disable SSL for
@@ -558,8 +559,7 @@ coreServices.uftp.client.local=true
 
 
 
-Testing the UFTPD server
-------------------------
+### Testing the UFTPD server
 
 Testing as described in this section works only if SSL is not enabled.
 Therefore, you should run these tests as a non-root user. Enable SSL
@@ -601,8 +601,7 @@ to the commands above, where "`key`" is a sequence of 12
 characters (really a base64-encoded 64 bit key).
  
 
-Performance measurement hints
------------------------------
+### Performance measurement hints
 
 You should use the 'uftp' client to run performance tests, which contains
 many options such as the number of concurrent FTP connections, and can

@@ -20,16 +20,13 @@ The UFTP contains server and client components for the `UNICORE <https://www.uni
    authserver
    uftp-client
    datashare
-   license
-
 .. raw:: html
 
-   <hr>
+   	<hr>
 
 .. toctree::
-   :maxdepth: 3
 
-   uftpd-manual
+   license
    
 	
    

@@ -4,8 +4,6 @@ Changelog
 The UFTP issue tracker is at
 https://sourceforge.net/p/unicore/uftp-issues
 
-.. note::
-
 See [Update procedure](#update-procedure) for how to update to the latest version.
 
 
@@ -33,14 +31,14 @@ See [Update procedure](#update-procedure) for how to update to the latest versio
 ### Auth Server 2.4.0 (released Mar 5, 2021)
 
  - update to UNICORE 8.1 base libs
- - update to ```log4j2```
- - fix: debian package now depends on "default-jre-headless"
+ - update to `log4j2`
+ - fix: debian package now depends on `default-jre-headless`
 
 ### Auth Server 2.3.0 (released Sep 21, 2020)
 
  - fix: less harsh timeouts when checking connection
    and sending requests to uftpd
- - fix: typo in log4j setup in default conf/startup.properties
+ - fix: typo in log4j setup in default `conf/startup.properties`
  - new feature: support creating "persistent" UFTP sessions
    that allow re-using the login secret multiple times
  - fix: support ECDSA keys
@@ -65,7 +63,7 @@ See [Update procedure](#update-procedure) for how to update to the latest versio
    WARNING if you use data sharing in production, your existing shares
    need to be converted/transferred or they will be lost.
    Please contact us!
- - allow uftp access to anonymous shares via "uftp get-share"
+ - allow uftp access to anonymous shares via `uftp get-share`
  - improved error responses
 
 ### Auth Server 2.0.0 (released Jan 20, 2020)
@@ -84,7 +82,7 @@ See [Update procedure](#update-procedure) for how to update to the latest versio
 
  - update to UNICORE 7.10 base libs
  - new feature: data sharing service included in authserver (#33)
- - new feature: SSHKey authentication can use ```~/.ssh/authorized_keys``` (#47)
+ - new feature: SSHKey authentication can use `~/.ssh/authorized_keys` (#47)
  - fix: SSHKey authentication does not work when SSHKey is
    the first authenticator in the chain (#37)
 
@@ -94,7 +92,7 @@ See [Update procedure](#update-procedure) for how to update to the latest versio
  - provide rmp and deb packages
  - new feature: handle user's groups correctly: pass the
    preferred group to UFTPD and report the available groups via
-   the 'info' reply (https://sourceforge.net/p/unicore/uftp-issues/31)
+   the `info` reply (https://sourceforge.net/p/unicore/uftp-issues/31)
 
 ### Auth Server 1.2.0 (released June 3, 2016)
 
@@ -107,7 +105,7 @@ See [Update procedure](#update-procedure) for how to update to the latest versio
  - fix: real client IP from Gateway was not forwarded
    to UFTPD
  - fix: disable SSLv3 ("poodle" vulnerability) 
- - fix: typos in manual and example userdb.txt file
+ - fix: typos in manual and example `userdb.txt` file
 
 ### Auth Server 1.1.0 (released Nov 3, 2014)
 
