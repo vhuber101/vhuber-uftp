@@ -44,4 +44,4 @@ uftp ls -u demo:password https://localhost:9000/rest/auth/TEST:/home/demo/
 If not given on the command line, the password will be queried interactively.
 
 For detailed usage instructions and examples, refer to the
-manual available in the doc directory or online.
+manual available in the `doc` directory or [online](#uftp-client-user-manual).
