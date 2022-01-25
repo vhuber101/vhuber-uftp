@@ -158,7 +158,7 @@ If installing using distribution-specific package the following paths are used:
 	LOG=/var/log/unicore/uftpd
 	LIB=/usr/share/unicore/uftpd/lib
 ```		
-If installing using the portable bundle, all UFTPD files are installed under a single directory. Path prefixes are as follows, where INST is the directory where UFTPD was installed:
+If installing using the portable bundle, all UFTPD files are installed under a single directory. Path prefixes are as follows, where `INST` is the directory where UFTPD was installed:
 ```	
 CONF=INST/conf
 SBIN=INST/bin
@@ -172,18 +172,18 @@ These variables (`CONF`, `SBIN`, `BIN` and `LOG`) are used throughout the rest o
 ### C library for switching user ID
 
 It may be required to re-compile the `libuftp-unix.so` library on your
-system.  This library uses the Java Native Interface (JNI). The
+system.  This library uses the Java Native Interface (`JNI`). The
 version supplied with the distribution has been compiled on a 64bit
 Linux system. The folder `LIB/native` contains the required headers and
 C source files, as well as an exemplary makefile. Please edit the
 makefile, the following information is required:
  
- * the base directory of your Java installation (JAVA_HOME)
+ * the base directory of your Java installation (`JAVA_HOME`)
  * the location of platform-specific include files
  * the location of the `uftp-<version>.jar` file (LIB)
 
 Then, run `make install` to build the library, which will compile the code 
-and install the library into the LIB folder.
+and install the library into the `LIB` folder.
 
 If any problems occur during this procedure, please contact UNICORE
 support or open a ticket.
@@ -218,7 +218,7 @@ SERVER_PORT
 	the port where the server listens for client data connections
                     
 ADVERTISE_HOST
-	Advertise this server as having the following IP in the control connection. This is useful if the server is behind a NAT firewall and the public address is different from SERVER_HOST.
+	Advertise this server as having the following IP in the control connection. This is useful if the server is behind a NAT firewall and the public address is different from `SERVER_HOST`.
 
 CMD_HOST
 	the interface where the server listens for control commands
@@ -246,16 +246,15 @@ BUFFER_SIZE
 	the size of the buffer (in kilobytes) for reading/writing local files
 
 PORT_RANGE
-	(optional) server-side port range in the form 'lower:upper' that will be used for data connections. 
-	By default, any free ports will be used.
-     *Example: set to '50000:50500' to limit the port range.*
+	(optional) server-side port range in the form \'lower:upper\' that will be used for data connections. By default, any free ports will be used.
+	*Example:* set to \'50000:50500\' to limit the port range.
 	**Note**: ports in this range **must not** be used by other services!
 
 DISABLE_IP_CHECK
 	(optional) in some situations, the client IP can be different from the one that was sent to the UFTPD server. This will lead to rejected transfers. Setting this variable to a non-zero value will disable the IP check. Only the one-time password will be checked.
 
 UFTP_KEYFILES
-	(optional) list of files (relative to current user's $HOME) where uftpd will read public keys for authentication. 	List is separated by ":". This defaults to `.ssh/authorized_keys`
+	(optional) list of files (relative to current user\'s `$HOME`) where uftpd will read public keys for authentication. 	List is separated by ":". This defaults to `.ssh/authorized_keys`
 
 UFTP_NO_WRITE
 	(optional) ":"-separated list of file name patters that uftpd should not write to.
@@ -276,14 +275,12 @@ next section.
 Using SSL for the Command port ensures that only trusted parties
 (i.e. trusted UNICORE servers) can issue commands to the UFTPD
 server.  To further limit the set of trusted users, an access control
-list (ACL) file is used.
-
-In production settings where users can log in to the UFTPD server
+list (ACL) file is used. In production settings where users can log in to the UFTPD server
 machine, SSL MUST be enabled to prevent unauthorized data access!
 
 .. important:: **IMPORTANT SECURITY NOTE**
 
-	Without SSL enabled, users logged in to the UFTPD server can easily create exploits to read or write files with arbitrary user privileges (except 'root').
+	Without SSL enabled, users logged in to the UFTPD server can easily create exploits to read or write files with arbitrary user privileges (except `root`).
 
 
 ### SSL setup
@@ -295,20 +292,16 @@ should be trusted.  Keystore and truststore can be the same file.
 
 The following properties can be set in the `CONF/uftpd-ssl.conf` file.
 
-.Credential properties
-.. include:: credProperties.txt[]
-
-.Truststore properties
-.. include:: trustProperties.txt[]
+.. mdinclude:: uftpd-ssl.conf
 
 
-If the `credential.path` property is NOT set, SSL will be disabled.
+If the `credential.path` property is NOT set, SSL will be **disabled**.
 
 
 .. note::
 	**Backwards compatibility to previous versions**
 
-	Existing configuration files with the `javax.net.ssl.\*` properties used in UFTPD < 2.6 are still supported.
+	Existing configuration files with the ``javax.net.ssl.*`` properties used in UFTPD < 2.6 are still supported.
 
 
 
@@ -318,7 +311,7 @@ If the `credential.path` property is NOT set, SSL will be disabled.
 The access control list contains the distinguished names of those certificates that
 should be allowed access.
 
-The "`ACL`" setting in `CONF/uftpd.conf` is used to specify the location of the ACL file
+The `ACL` setting in `CONF/uftpd.conf` is used to specify the location of the ACL file
 
 ```
 export ACL=conf/uftpd.acl
@@ -332,7 +325,7 @@ The ACL entries are expected in RFC2253 format. To get the name
 from a certificate in the correct format using openssl, you can use the 
 following OpenSSL command:
 ```
-   $> openssl x509 -in your_server.pem -noout -subject -nameopt RFC2253
+openssl x509 -in your_server.pem -noout -subject -nameopt RFC2253
 ```
 
 The ACL file can be updated at runtime.
@@ -369,11 +362,11 @@ modprobe nf_conntrack_ftp ports=$SERVER_PORT
 ### Logging
 
 
-UFTPD uses log4j, the same logging system as other UNICORE components.
+UFTPD uses `log4j`, the same logging system as other UNICORE components.
 Logging is configured in the `CONF/logging.properties` file.
 
 .. note::
-	You can change the logging configuration at runtime by editing the `logging.properties` file.
+	You can change the logging configuration at runtime by editing the ``logging.properties`` file.
 	The new configuration will take effect a few seconds after the file has been modified.
 
 
@@ -389,7 +382,7 @@ For more info on controlling the logging we refer to the log4j documentation:
   - [DailyRollingFileAppender](http://logging.apache.org/log4j/1.2/apidocs/org/apache/log4j/DailyRollingFileAppender.html)
   
  
-`Log4j` supports a very wide range of logging options, such as date
+Log4j supports a very wide range of logging options, such as date
 based or size based file rollover, logging different things to
 different files and much more. For full information on Log4j we refer
 to the publicly available documentation, for example the
@@ -424,7 +417,7 @@ Here is a table of logger categories
 
 .. note::
 
-	Please take care to not set the global level to `TRACE` or `DEBUG` for long times, as this may produce a lot of output.
+	Please take care **to not set** the global level to ``TRACE`` or ``DEBUG`` for long times, as this may produce a lot of output.
 
 
 #### Usage logging

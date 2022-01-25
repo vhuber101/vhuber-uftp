@@ -351,7 +351,7 @@ Depending on the installation package, the paths to various files are different.
 <span class="n">LIB</span><span class="o">=/</span><span class="n">usr</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="n">unicore</span><span class="o">/</span><span class="n">uftpd</span><span class="o">/</span><span class="n">lib</span>
 </pre></div>
 </div>
-<p>If installing using the portable bundle, all UFTPD files are installed under a single directory. Path prefixes are as follows, where INST is the directory where UFTPD was installed:</p>
+<p>If installing using the portable bundle, all UFTPD files are installed under a single directory. Path prefixes are as follows, where <code class="docutils literal notranslate"><span class="pre">INST</span></code> is the directory where UFTPD was installed:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CONF</span><span class="o">=</span><span class="n">INST</span><span class="o">/</span><span class="n">conf</span>
 <span class="n">SBIN</span><span class="o">=</span><span class="n">INST</span><span class="o">/</span><span class="nb">bin</span>
 <span class="n">BIN</span><span class="o">=</span><span class="n">INST</span><span class="o">/</span><span class="nb">bin</span>
@@ -364,18 +364,18 @@ Depending on the installation package, the paths to various files are different.
 <section id="c-library-for-switching-user-id">
 <h3>C library for switching user ID<a class="headerlink" href="#c-library-for-switching-user-id" title="Permalink to this headline"></a></h3>
 <p>It may be required to re-compile the <code class="docutils literal notranslate"><span class="pre">libuftp-unix.so</span></code> library on your
-system.  This library uses the Java Native Interface (JNI). The
+system.  This library uses the Java Native Interface (<code class="docutils literal notranslate"><span class="pre">JNI</span></code>). The
 version supplied with the distribution has been compiled on a 64bit
 Linux system. The folder <code class="docutils literal notranslate"><span class="pre">LIB/native</span></code> contains the required headers and
 C source files, as well as an exemplary makefile. Please edit the
 makefile, the following information is required:</p>
 <ul class="simple">
-<li><p>the base directory of your Java installation (JAVA_HOME)</p></li>
+<li><p>the base directory of your Java installation (<code class="docutils literal notranslate"><span class="pre">JAVA_HOME</span></code>)</p></li>
 <li><p>the location of platform-specific include files</p></li>
 <li><p>the location of the <code class="docutils literal notranslate"><span class="pre">uftp-&lt;version&gt;.jar</span></code> file (LIB)</p></li>
 </ul>
 <p>Then, run <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">install</span></code> to build the library, which will compile the code
-and install the library into the LIB folder.</p>
+and install the library into the <code class="docutils literal notranslate"><span class="pre">LIB</span></code> folder.</p>
 <p>If any problems occur during this procedure, please contact UNICORE
 support or open a ticket.</p>
 </section>
@@ -396,12 +396,12 @@ set the correct file permissions.</p>
 <section id="configuration-parameters">
 <h3>Configuration parameters<a class="headerlink" href="#configuration-parameters" title="Permalink to this headline"></a></h3>
 <p>The following variables can be defined in the configuration file (<code class="docutils literal notranslate"><span class="pre">uftpd.conf</span></code>):</p>
-<dl>
+<dl class="simple">
 <dt>SERVER_HOST<span class="raw-html-m2r"><br></span></dt><dd><p>the interface where the server listens for client data connections</p>
 </dd>
 <dt>SERVER_PORT</dt><dd><p>the port where the server listens for client data connections</p>
 </dd>
-<dt>ADVERTISE_HOST</dt><dd><p>Advertise this server as having the following IP in the control connection. This is useful if the server is behind a NAT firewall and the public address is different from SERVER_HOST.</p>
+<dt>ADVERTISE_HOST</dt><dd><p>Advertise this server as having the following IP in the control connection. This is useful if the server is behind a NAT firewall and the public address is different from <code class="docutils literal notranslate"><span class="pre">SERVER_HOST</span></code>.</p>
 </dd>
 <dt>CMD_HOST</dt><dd><p>the interface where the server listens for control commands</p>
 </dd>
@@ -420,16 +420,13 @@ access to the command port</p>
 </dd>
 <dt>BUFFER_SIZE</dt><dd><p>the size of the buffer (in kilobytes) for reading/writing local files</p>
 </dd>
-<dt>PORT_RANGE</dt><dd><p>(optional) server-side port range in the form ‘lower:upper’ that will be used for data connections.
-By default, any free ports will be used.</p>
-<blockquote>
-<div><p><em>Example: set to ‘50000:50500’ to limit the port range.</em></p>
-</div></blockquote>
-<p><strong>Note</strong>: ports in this range <strong>must not</strong> be used by other services!</p>
+<dt>PORT_RANGE</dt><dd><p>(optional) server-side port range in the form 'lower:upper' that will be used for data connections. By default, any free ports will be used.
+<em>Example:</em> set to '50000:50500' to limit the port range.
+<strong>Note</strong>: ports in this range <strong>must not</strong> be used by other services!</p>
 </dd>
 <dt>DISABLE_IP_CHECK</dt><dd><p>(optional) in some situations, the client IP can be different from the one that was sent to the UFTPD server. This will lead to rejected transfers. Setting this variable to a non-zero value will disable the IP check. Only the one-time password will be checked.</p>
 </dd>
-<dt>UFTP_KEYFILES</dt><dd><p>(optional) list of files (relative to current user’s $HOME) where uftpd will read public keys for authentication.   List is separated by “:”. This defaults to <code class="docutils literal notranslate"><span class="pre">.ssh/authorized_keys</span></code></p>
+<dt>UFTP_KEYFILES</dt><dd><p>(optional) list of files (relative to current user's <code class="docutils literal notranslate"><span class="pre">$HOME</span></code>) where uftpd will read public keys for authentication.    List is separated by “:”. This defaults to <code class="docutils literal notranslate"><span class="pre">.ssh/authorized_keys</span></code></p>
 </dd>
 <dt>UFTP_NO_WRITE</dt><dd><p>(optional) “:”-separated list of file name patters that uftpd should not write to.</p>
 </dd>
@@ -446,13 +443,12 @@ next section.</p>
 <p>Using SSL for the Command port ensures that only trusted parties
 (i.e. trusted UNICORE servers) can issue commands to the UFTPD
 server.  To further limit the set of trusted users, an access control
-list (ACL) file is used.</p>
-<p>In production settings where users can log in to the UFTPD server
+list (ACL) file is used. In production settings where users can log in to the UFTPD server
 machine, SSL MUST be enabled to prevent unauthorized data access!</p>
 <div class="admonition important">
 <p class="admonition-title">Important</p>
 <p><strong>IMPORTANT SECURITY NOTE</strong></p>
-<p>Without SSL enabled, users logged in to the UFTPD server can easily create exploits to read or write files with arbitrary user privileges (except ‘root’).</p>
+<p>Without SSL enabled, users logged in to the UFTPD server can easily create exploits to read or write files with arbitrary user privileges (except <cite>root</cite>).</p>
 </div>
 </section>
 <section id="ssl-setup">
@@ -461,22 +457,42 @@ machine, SSL MUST be enabled to prevent unauthorized data access!</p>
 credential, and a truststore containing certificate authorities that
 should be trusted.  Keystore and truststore can be the same file.</p>
 <p>The following properties can be set in the <code class="docutils literal notranslate"><span class="pre">CONF/uftpd-ssl.conf</span></code> file.</p>
-<p>.Credential properties
-.. include:: credProperties.txt[]</p>
-<p>.Truststore properties
-.. include:: trustProperties.txt[]</p>
-<p>If the <code class="docutils literal notranslate"><span class="pre">credential.path</span></code> property is NOT set, SSL will be disabled.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#</span>
+<span class="c1"># SSL settings</span>
+<span class="c1">#</span>
+
+<span class="c1">#</span>
+<span class="c1"># the keystore must contain the UFTPD service&#39;s key</span>
+<span class="c1">#</span>
+<span class="n">credential</span><span class="o">.</span><span class="n">path</span><span class="o">=</span><span class="nd">@credentialPath</span><span class="o">@</span>
+<span class="n">credential</span><span class="o">.</span><span class="n">password</span><span class="o">=</span><span class="nd">@credentialPassword</span><span class="o">@</span>
+
+<span class="c1">#</span>
+<span class="c1"># the trust store must contain CA certs of the</span>
+<span class="c1"># UNICORE/X and/or Auth servers that shall be able</span>
+<span class="c1"># to initiate transfers</span>
+<span class="c1">#</span>
+<span class="n">truststore</span><span class="o">.</span><span class="n">type</span><span class="o">=</span><span class="n">directory</span>
+<span class="n">truststore</span><span class="o">.</span><span class="n">directoryLocations</span><span class="mf">.1</span><span class="o">=</span><span class="nd">@truststorePath</span><span class="o">@/*.</span><span class="n">pem</span>
+
+<span class="c1"># if you want to use a JKS file instead, set</span>
+<span class="c1">#truststore.type=keystore</span>
+<span class="c1">#truststore.keystorePath=@truststorePath@</span>
+<span class="c1">#truststore.keystorePassword=@truststorePassword@</span>
+</pre></div>
+</div>
+<p>If the <code class="docutils literal notranslate"><span class="pre">credential.path</span></code> property is NOT set, SSL will be <strong>disabled</strong>.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p><strong>Backwards compatibility to previous versions</strong></p>
-<p>Existing configuration files with the <cite>javax.net.ssl.*</cite> properties used in UFTPD &lt; 2.6 are still supported.</p>
+<p>Existing configuration files with the <code class="docutils literal notranslate"><span class="pre">javax.net.ssl.*</span></code> properties used in UFTPD &lt; 2.6 are still supported.</p>
 </div>
 </section>
 <section id="acl-setup">
 <h3>ACL setup<a class="headerlink" href="#acl-setup" title="Permalink to this headline"></a></h3>
 <p>The access control list contains the distinguished names of those certificates that
 should be allowed access.</p>
-<p>The “<code class="docutils literal notranslate"><span class="pre">ACL</span></code>” setting in <code class="docutils literal notranslate"><span class="pre">CONF/uftpd.conf</span></code> is used to specify the location of the ACL file</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">ACL</span></code> setting in <code class="docutils literal notranslate"><span class="pre">CONF/uftpd.conf</span></code> is used to specify the location of the ACL file</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">export</span> <span class="n">ACL</span><span class="o">=</span><span class="n">conf</span><span class="o">/</span><span class="n">uftpd</span><span class="o">.</span><span class="n">acl</span>
 </pre></div>
 </div>
@@ -486,7 +502,7 @@ your UNICORE/X server(s) and UFTP Authentication server(s).</p>
 <p>The ACL entries are expected in RFC2253 format. To get the name
 from a certificate in the correct format using openssl, you can use the
 following OpenSSL command:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$&gt; openssl x509 -in your_server.pem -noout -subject -nameopt RFC2253
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">openssl</span> <span class="n">x509</span> <span class="o">-</span><span class="ow">in</span> <span class="n">your_server</span><span class="o">.</span><span class="n">pem</span> <span class="o">-</span><span class="n">noout</span> <span class="o">-</span><span class="n">subject</span> <span class="o">-</span><span class="n">nameopt</span> <span class="n">RFC2253</span>
 </pre></div>
 </div>
 <p>The ACL file can be updated at runtime.</p>
@@ -515,11 +531,11 @@ modprobe nf_conntrack_ftp ports=$SERVER_PORT
 </section>
 <section id="logging">
 <h3>Logging<a class="headerlink" href="#logging" title="Permalink to this headline"></a></h3>
-<p>UFTPD uses log4j, the same logging system as other UNICORE components.
+<p>UFTPD uses <code class="docutils literal notranslate"><span class="pre">log4j</span></code>, the same logging system as other UNICORE components.
 Logging is configured in the <code class="docutils literal notranslate"><span class="pre">CONF/logging.properties</span></code> file.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>You can change the logging configuration at runtime by editing the <cite>logging.properties</cite> file.
+<p>You can change the logging configuration at runtime by editing the <code class="docutils literal notranslate"><span class="pre">logging.properties</span></code> file.
 The new configuration will take effect a few seconds after the file has been modified.</p>
 </div>
 <p>By default, log files are written to the the <code class="docutils literal notranslate"><span class="pre">LOG</span></code> directory.</p>
@@ -529,7 +545,7 @@ The new configuration will take effect a few seconds after the file has been mod
 <li><p><a class="reference external" href="http://logging.apache.org/log4j/1.2/apidocs/org/apache/log4j/RollingFileAppender.html">RollingFileAppender</a></p></li>
 <li><p><a class="reference external" href="http://logging.apache.org/log4j/1.2/apidocs/org/apache/log4j/DailyRollingFileAppender.html">DailyRollingFileAppender</a></p></li>
 </ul>
-<p><code class="docutils literal notranslate"><span class="pre">Log4j</span></code> supports a very wide range of logging options, such as date
+<p>Log4j supports a very wide range of logging options, such as date
 based or size based file rollover, logging different things to
 different files and much more. For full information on Log4j we refer
 to the publicly available documentation, for example the
@@ -574,7 +590,7 @@ detail, you can set</p>
 </table>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Please take care to not set the global level to <cite>TRACE</cite> or <cite>DEBUG</cite> for long times, as this may produce a lot of output.</p>
+<p>Please take care <strong>to not set</strong> the global level to <code class="docutils literal notranslate"><span class="pre">TRACE</span></code> or <code class="docutils literal notranslate"><span class="pre">DEBUG</span></code> for long times, as this may produce a lot of output.</p>
 </div>
 </section>
 <section id="usage-logging">
