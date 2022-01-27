@@ -1,5 +1,5 @@
 UFTP standalone client
-======================
+**********************
 
 This is a Java-based client for UFTP. It allows to 
 

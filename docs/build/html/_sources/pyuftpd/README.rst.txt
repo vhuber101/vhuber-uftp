@@ -1,5 +1,5 @@
 PyUFTPD
-=======
+*******
 
 Python implementation of UFTPD.
 

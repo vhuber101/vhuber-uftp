@@ -1,20 +1,20 @@
 .. _uftp-client-building:
 
 Building packages for the 'uftp' client
----------------------------------------
+=======================================
 
 You need Java and Apache Maven. 
 Check the versions given in the pom.xml file. 
 
 Creating distribution packages
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+------------------------------
 
 The following commands create the distribution packages
 in tgz, deb and rpm formats. The versions are taken from the pom.xml
 
 
 tgz
-+++
+~~~
 
 .. code:: bash
 
@@ -22,7 +22,7 @@ tgz
 
 
 deb
-+++
+~~~
 
 .. code:: bash
 
@@ -30,7 +30,7 @@ deb
 
 
 rpm redhat
-++++++++++
+~~~~~~~~~~
 
 .. code:: bash
 
