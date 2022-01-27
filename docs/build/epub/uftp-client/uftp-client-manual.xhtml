@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>UFTP Client User Manual</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/epub.css" /> 
+  </head><body>
+
+    <div class="document">
+      <div class="documentwrapper">
+          <div class="body" role="main">
+            
+  <section id="uftp-client-user-manual">
+<span id="uftp-client-manual"></span><h1>UFTP Client User Manual</h1>
+<p>UNICORE Team &lt;<a class="reference external" href="mailto:unicore-support&#37;&#52;&#48;lists&#46;sourceforge&#46;net">unicore-support<span>&#64;</span>lists<span>&#46;</span>sourceforge<span>&#46;</span>net</a>&gt;</p>
+<dl class="field-list simple">
+<dt class="field-odd">Version</dt>
+<dd class="field-odd"><p>1.0.0</p>
+</dd>
+</dl>
+<p>This is a commandline client for UFTP. It allows to</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>list remote directories</p></li>
+<li><p>upload/download files</p></li>
+<li><p>sync files</p></li>
+<li><p>make remote directories</p></li>
+<li><p>delete remote files or directories</p></li>
+<li><p>manage shares and access shared data</p></li>
+<li><p>perform authentication to help integrate
+UFTP with other tools</p></li>
+</ul>
+</div></blockquote>
+<p>The ‘uftp’ client will connect to an authentication server (either a
+UNICORE/X server or the UFTP Auth server) to authenticate and then to
+the ‘uftpd’ server for transferring data or making a file operation.</p>
+<p>The ‘uftp’ client supports username/password authentication, OIDC
+token authentication and ssh-key authentication.</p>
+<p>The ‘uftp’ client supports multiple concurrent FTP connections for
+highly efficient data transfers in high-performance environments.</p>
+<section id="prerequisites">
+<h2>Prerequisites</h2>
+<blockquote>
+<div><ul class="simple">
+<li><p>Java 8 or later (OpenJDK preferred)</p></li>
+<li><p>Access to a UFTP authentication service and the corresponding UFTPD
+server. To use the client, you need to know the address of the
+authentication service.</p></li>
+<li><p>You need valid credentials for the UFTP authentication service</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="installation">
+<h2>Installation</h2>
+<p>If using the zip or tar archive, unpack it in a location of your
+choice. Add the <cite>bin</cite> directory to your path. (Alternatively, you can
+link or copy the <cite>bin/uft</cite> script to a directory that is already on
+your path, in this case edit the script and setup the required
+directories.)</p>
+<p>If you use the rpm or deb package, install it using the package
+manager of your Linux distribution.</p>
+</section>
+<section id="basic-usage">
+<h2>Basic Usage</h2>
+<p>In this manual, we use the following format to indicate commands
+that you can type on the command line:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$&gt; some_command
+</pre></div>
+</div>
+<p>and assume that the bin directory of the UFTP client is on your path.</p>
+<p>Invoking uftp without any arguments,</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$&gt; uftp
+</pre></div>
+</div>
+<p>will list the available commands.</p>
+<p>Invoking</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$&gt; uftp &lt;command&gt; -h
+</pre></div>
+</div>
+<p>will show help for a particular command</p>
+<p>Invoking</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$&gt; uftp -version
+</pre></div>
+</div>
+<p>will show version information.</p>
+</section>
+<section id="authentication">
+<h2>Authentication</h2>
+<p>By default, the ‘uftp’ client will use the current username (<cite>$USER</cite>)
+with SSH key authentication to authenticate to the Auth server.</p>
+<p>You can set a different default username via the <cite>UFTP_USER</cite> environment
+variable. This is useful if your remote username is not the same
+as your local username.</p>
+<p>The ‘uftp’ client supports various means of authentication. Depending
+on the server you want to access, you can choose from</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>user name with SSH key (default)</p></li>
+<li><p>user name with password</p></li>
+<li><p>oidc-agent (see <a class="reference external" href="https://github.com/indigo-dc/oidc-agent">https://github.com/indigo-dc/oidc-agent</a> )</p></li>
+<li><p>manual specification of the HTTP Authorization header value</p></li>
+</ul>
+</div></blockquote>
+<p>To explicitely specify the remote username, use the “<cite>-u &lt;username&gt;</cite>” option, e.g.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$&gt; uftp ls -u username https://localhost:9000/rest/auth/TEST:/home/demo/
+</pre></div>
+</div>
+<p>The credentials can be given in multiple ways.</p>
+<ul class="simple">
+<li><p>On the command line <code class="docutils literal notranslate"><span class="pre">-u</span> <span class="pre">username:password</span></code></p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$&gt; uftp ls -u username:password ...
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>You can tell the uftp client to query the password interactively by giving the “<cite>-P</cite>” option, e.g.</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$&gt; uftp ls -u username -P ...
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>If no password is given, the client will attempt to use an SSH key for
+authentication, this has to be configured on the authentication server
+accordingly. If you have multiple keys, use the “<cite>-i</cite>” option to select one.
+Otherwise, the client will check <cite>~/.uftp/</cite> and <cite>~/.ssh/</cite> for useable keys.
+The SSH agent is supported, too.</p></li>
+<li><p>The very useful <cite>oidc-agent</cite> tool is also directly supported via <cite>-O &lt;account_name&gt;</cite>.
+In this case no username is required.</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$&gt; uftp ls -O hbp ...
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Last not least you can directly specify a value for the HTTP <cite>Authorization</cite> header with
+the “<cite>-A</cite>” option. This allows to use an OIDC bearer token for authorization, e.g.
+<cite>-A “Bearer &lt;oidc_token&gt;”</cite>. In this case no username is required.</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$&gt; uftp ls -A <span class="s2">&quot;Bearer &lt;oidc_token&gt;&quot;</span> ...
+</pre></div>
+</div>
+</section>
+<section id="usage">
+<h2>Usage</h2>
+<p>In the following usage examples, the authentication service is located
+at <cite>localhost:9000/rest/auth/</cite> and the user name is ‘username’.
+Replace these values by the correct ones for your installation.</p>
+<section id="listing-a-directory-the-ls-command">
+<h3>Listing a directory: the <cite>ls</cite> command</h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$&gt; uftp ls https://localhost:9000/rest/auth/TEST:/home/demo/
+</pre></div>
+</div>
+<p>will list the <cite>/home/demo</cite> directory.</p>
+</section>
+<section id="copying-data-the-cp-command">
+<h3>Copying data: the <cite>cp</cite> command</h3>
+<p>The <cite>cp</cite> command is used to copy local data to a remote server or vice
+versa. Remote locations are indicated by the <cite>https://</cite> prefix, and you
+need your user name, and the URL of the authentication server.</p>
+<p>It has a number of features, which will be shown in the following.</p>
+<section id="id1">
+<h4>Basic usage</h4>
+<p>Downloading a single file:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$&gt; uftp cp https://localhost:9000/rest/auth/TEST:/home/demo/test.data .
+</pre></div>
+</div>
+<p>will download the <cite>/home/demo/test.data</cite> file to the current directory</p>
+<p>Download files using wildcards:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$&gt; uftp cp https://localhost:9000/rest/auth/TEST:/home/demo/data/* .
+</pre></div>
+</div>
+<p>will download all files in the <cite>/home/demo/test</cite> directory to the
+current directory</p>
+<p>Similar commands work for upload.</p>
+<p>Uploading files using wildcards:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$&gt; uftp cp <span class="s2">&quot;/data/*&quot;</span> https://localhost:9000/rest/auth/TEST:/home/demo/data/ .
+</pre></div>
+</div>
+<p>Note that wildcards should be escaped to avoid the shell doing the
+expansion, which will also work, but generally be slower.</p>
+<p>The recurse flag, ‘<cite>-r</cite>’, tells uftp to also copy subdirectories.</p>
+</section>
+<section id="piping-data">
+<h4>Piping data</h4>
+<p>The <cite>cp</cite> command can read/write from the console streams, which is
+great for integrating uftp into Unix pipes. The “<cite>-</cite>” is used as a
+special “file name” to indicate that data should be read/written using
+the console.</p>
+</section>
+<section id="transferring-with-tar-and-zip">
+<h4>Transferring with tar and zip</h4>
+<p>For example to tar the contents of a directory and upload the tar file
+using uftp:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$&gt; tar cz dir/* <span class="p">|</span> uftp cp - https://localhost:9000/rest/auth/TEST:/archive.tgz
+</pre></div>
+</div>
+<p>The UFTPD server can also unpack tar and zip streams, this is very
+useful to efficiently transfer many small files. To enable this, add
+the “<cite>-a</cite>” option, and DO NOT compress the tar stream.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$&gt; tar c dir/* <span class="p">|</span> uftp cp -a - https://localhost:9000/rest/auth/TEST:/target_location/
+</pre></div>
+</div>
+<p>or, using zip</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$&gt; zip -r - dir/* <span class="p">|</span> uftp cp -a - https://localhost:9000/rest/auth/TEST:/target_location/
+</pre></div>
+</div>
+<p><strong>Note</strong> that zip will compress data, so might be slower or faster than
+tar, depending on network bandwith and processing speed.</p>
+<p>Similarly, “<cite>-</cite>” can be used to write data to standard output.
+As an example, consider this:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$&gt; uftp cp https://localhost:9000/rest/auth/TEST:/archive.tgz - <span class="p">|</span> tar tz
+</pre></div>
+</div>
+<p>Or use uftp to cat a remote file:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$&gt; uftp cp https://localhost:9000/rest/auth/TEST:/foo.txt -
+</pre></div>
+</div>
+</section>
+<section id="using-multiple-ftp-connections">
+<h4>Using multiple FTP connections</h4>
+<p>When transferring large files (or many files) over a high-performance network, performance
+can be vastly improved by using multiple FTP connections. (NOTE this is different from
+the multiple TCP streams as set via the “<cite>-n</cite>” option).</p>
+<p>Use the “<cite>-t</cite>” option to set the desired number of streams. Note that the server may have
+a limit on the allowed number of concurrent connections, if in doubt, ask your server
+administrator.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$&gt; uftp cp -t <span class="m">2</span> https://localhost:9000/rest/auth/TEST:/home/demo/* .
+</pre></div>
+</div>
+<p>Files larger than a certain size will be transferred concurrently
+using more than one stream. This threshold size is 512MB, but you can set it to a
+different value using the “<cite>-T</cite>” option. For example, to split files larger than 1MB</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$&gt; uftp cp -t <span class="m">2</span> -T 1M https://localhost:9000/rest/auth/TEST:/home/demo/* .
+</pre></div>
+</div>
+</section>
+<section id="byte-ranges">
+<h4>Byte ranges</h4>
+<p>To copy just part of a file, a byte range can be given with the “<cite>-B</cite>”
+option. Counting starts at “zero”. For example to download only the
+first 1024 bytes of file (i.e. the byte range 0 - 1023), you would do</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$&gt; uftp cp -B <span class="m">0</span>-1023 https://localhost:9000/rest/auth/TEST:/home/demo/test.data .
+</pre></div>
+</div>
+<p>As an additional feature, you can use the additional “<cite>-p</cite>” flag, which
+will write also only the given range. For example</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$&gt; uftp cp -B <span class="m">1024</span>-2047-p https://localhost:9000/rest/auth/TEST:/home/demo/test.data .
+</pre></div>
+</div>
+<p>will write bytes 1024-2047 of the remote file to the local file,
+starting at offset 1024. The local file will have length 2048.</p>
+<p>The same thing works for remote files!</p>
+</section>
+<section id="number-of-bytes-to-transfer">
+<h4>Number of bytes to transfer</h4>
+<p>A simplified version of the byte range specification is to just give
+the amount of data to transfer (implying the start of the range is at
+byte <strong>0</strong>)</p>
+<p>This is handy for quick performance tests:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$&gt; uftp cp -B 10G https://localhost:9000/rest/auth/TEST:/dev/zero /dev/null
+</pre></div>
+</div>
+</section>
+<section id="encryption-and-compression">
+<h4>Encryption and compression</h4>
+<p>The cp command supports the “<cite>-E</cite>” and “<cite>-C</cite>” options, which enable data
+encryption and compression (during transfer) respectively.</p>
+<p>Data encryption uses a symmetric algorithm, which nonetheless
+drastically lowers the performance.</p>
+<p>Data compression uses the gzip algorithm.</p>
+<p>Compression and encryption can be combined.</p>
+</section>
+<section id="resuming-a-failed-transfer">
+<h4>Resuming a failed transfer</h4>
+<p>If a copy command was terminated prematurely, it can be resumed using
+the “<cite>-R</cite>” option.  If the “-R” option is present, the UFTP client will
+check if the target file exists, and will append only the missing
+data.</p>
+<p>So if your inital copy operation</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$&gt; uftp cp -u username https://localhost:9000/rest/auth/TEST:/home/demo/test.data .
+</pre></div>
+</div>
+<p>did not finish correctly, you can resume it with</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$&gt; uftp cp -R https://localhost:9000/rest/auth/TEST:/home/demo/test.data .
+</pre></div>
+</div>
+</section>
+<section id="performance-testing">
+<h4>Performance testing</h4>
+<p>For performance testing, you can use <cite>/dev/zero</cite> and <cite>/dev/null</cite> as data source <cite>/</cite> sink.
+For example to transfer 10 gigabytes of zeros from the remote server:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$&gt; uftp cp -B <span class="m">0</span>-10G https://localhost:9000/rest/auth/TEST:/dev/zero /dev/null
+</pre></div>
+</div>
+<p>This can also be combined with the multi-connection option “<cite>-t</cite>”. To use two connections
+each transferring 5 gigabytes</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$&gt; uftp cp -B <span class="m">0</span>-10G -t <span class="m">2</span> https://localhost:9000/rest/auth/TEST:/dev/zero /dev/null
+</pre></div>
+</div>
+</section>
+</section>
+<section id="computing-checksums-for-remote-files">
+<h3>Computing checksums for remote files</h3>
+<p>To compute a checksum for a remote file, use the checksum command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$&gt; uftp checksum https://localhost:9000/rest/auth/TEST:/data/*.dat
+</pre></div>
+</div>
+<p>A number of different hashing algorithms are available, which can be selected
+using the “<cite>-a</cite>” option (MD5, SHA-1, SHA-256, SHA-256). For example</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$&gt; uftp checksum -a SHA-256 https://localhost:9000/rest/auth/TEST:/data/*.dat
+</pre></div>
+</div>
+</section>
+<section id="synchronizing-a-file-the-sync-command">
+<h3>Synchronizing a file: the “sync” command</h3>
+<p>Currently, sync only supports single files, i.e. no directories or wildcards!
+The syntax is</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$&gt; uftp sync &lt;master&gt; &lt;slave&gt;
+</pre></div>
+</div>
+<p>For example, to synchronize a local file with a remote “master” file:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$&gt; uftp sync https://localhost:9000/rest/auth/TEST:/master.file local.file
+</pre></div>
+</div>
+<p>To synchronize a remote file with a local “master” file:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$&gt; uftp sync master.file https://localhost:9000/rest/auth/TEST:/remote.file
+</pre></div>
+</div>
+</section>
+<section id="data-sharing">
+<h3>Data sharing</h3>
+<p>Data sharing enables users to create access to their datasets for
+other users via UFTP, even if those users do not have Unix-level
+access to the data.</p>
+<p>Data sharing works as follows:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>when you share a file (or directory), the Auth server will store information about the path, the owner and the Unix user ID used to access the file in a database</p></li>
+<li><p>the targetted user can now access this file via the Auth server, and the Auth server will use the owner’s Unix user ID to access the file.</p></li>
+</ul>
+</div></blockquote>
+<p>By default, files will be shared for <em>anonymous</em> access. This will
+allow anyone who knows the sharing link to access the file using
+normal HTTP tools like <cite>wget</cite> or <cite>curl</cite>.</p>
+<p>Shares can also be limited to certain users.</p>
+<p>Depending on the type of share, access to the files is possible with
+the UFTP protocol or plain HTTPs.</p>
+<p>Shares can be deleted by their owner, i.e. the user who created them.</p>
+<section id="server-url">
+<h4>Server URL</h4>
+<p>If not given via the <cite>–server</cite> argument, the URL of the Auth server will be taken from
+the environment variable <cite>UFTP_SHARE_URL</cite></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$&gt; <span class="nb">export</span> <span class="nv">UFTP_SHARE_URL</span><span class="o">=</span>https://localhost:9000/rest/share/TEST
+$&gt; uftp share --list
+</pre></div>
+</div>
+</section>
+<section id="listing-shares">
+<h4>Listing shares</h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$&gt; uftp share --list --server https://localhost:9000/rest/share/TEST
+</pre></div>
+</div>
+<p>The output will show both the files you have shared, as well as files that other
+users have shared with you.</p>
+</section>
+<section id="creating-or-updating-a-share">
+<h4>Creating or updating a share</h4>
+<p>A share consists of a server-side path, (optional) write permissions
+and (optional) target user.</p>
+<p>To share a file,</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$&gt; uftp share  <span class="se">\</span>
+        --server https://localhost:9000/rest/share/TEST  <span class="se">\</span>
+        /data/public/somefile.pdf
+</pre></div>
+</div>
+<p>If you use a relative path, <cite>uftp</cite> will make it absolute.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$&gt; <span class="nb">pwd</span>
+/data/public/
+$&gt; uftp share somefile.pdf
+</pre></div>
+</div>
+<p>will share the path <cite>/data/public/somefile.pdf</cite>.</p>
+<p>You can use the following options to modify the defaults:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><cite>–access &lt;user-identifier&gt;</cite> to limit access to the specified user(s)</p></li>
+<li><p><cite>–write</cite> for write acces</p></li>
+<li><p><cite>–delete</cite> to delete a share</p></li>
+</ul>
+</div></blockquote>
+<p>For example to share “/data/public/somefile.pdf” with the user “CN=User”</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$&gt; uftp share  <span class="se">\</span>
+        --server https://localhost:9000/rest/share/TEST  <span class="se">\</span>
+        --access <span class="s2">&quot;CN=User&quot;</span>  <span class="se">\</span>
+        /data/public/somefile.pdf
+</pre></div>
+</div>
+</section>
+<section id="deleting-shares">
+<h4>Deleting shares</h4>
+<p>To delete you need the path and the target user, which you can get via the
+<cite>uftp share –list</cite> command.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$&gt; uftp share  <span class="se">\</span>
+        --delete  <span class="se">\</span>
+        --server https://localhost:9000/rest/share/TEST  <span class="se">\</span>
+        --access <span class="s2">&quot;CN=User&quot;</span>  <span class="se">\</span>
+        /data/public/somefile.pdf
+</pre></div>
+</div>
+</section>
+<section id="anonymous-http-access">
+<h4>Anonymous (http) access</h4>
+<p>For anonymous access via HTTP you need to use the correct URL. If you create (or list) shares,
+the ‘uftp’ client will show the required links. You can download the file e.g. using <cite>wget</cite>.</p>
+</section>
+<section id="downloading-uploading-using-the-uftp-protocol">
+<h4>Downloading/uploading using the UFTP protocol</h4>
+<p>To download a file that is shared with you, use the <cite>get-share</cite>
+command and the correct URL</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$&gt; uftp get-share https://localhost:9000/rest/share/TEST/auth:/data/public/somefile.pdf
+</pre></div>
+</div>
+<p>Currently this command does not support wildcards.</p>
+<p>To upload a file to a location (file or directory) that has been
+shared with you, use the <cite>put-share</cite> command</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$&gt; uftp put-share data/*.pdf https://localhost:9000/rest/share/TEST/auth:/data/public/
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+<section id="using-a-proxy-server-experimental">
+<h2>Using a proxy server (<em>EXPERIMENTAL</em>)</h2>
+<p>The uftp client has support for some types of FTP and HTTPs proxies.</p>
+<p>This is configured via enviroment settings. I.e. in your shell you can define</p>
+<p>FTP proxy</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span> <span class="nv">UFTP_PROXY</span><span class="o">=</span>proxy.yourorg.edu
+<span class="nb">export</span> <span class="nv">UFTP_PROXY_PORT</span><span class="o">=</span><span class="m">21</span>
+</pre></div>
+</div>
+<p>HTTP proxy</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span> <span class="nv">UFTP_HTTP_PROXY</span><span class="o">=</span>proxy.yourorg.edu
+<span class="nb">export</span> <span class="nv">UFTP_HTTP_PROXY_PORT</span><span class="o">=</span><span class="m">80</span>
+</pre></div>
+</div>
+<p>FTP proxying was tested with the <strong>DeleGate/9.9.13</strong> and <strong>frox</strong> proxies
+and requires UFTPD server version 2.8.1 or later to work.</p>
+<p>If this does not work for you, or if you require support for a
+different type of proxy, please contact us via a support ticket or via
+email.</p>
+</section>
+<section id="troubleshooting">
+<h2>Troubleshooting</h2>
+<ul>
+<li><p><strong>How can I get more detailed logging?</strong></p>
+<blockquote>
+<div><p>In the client's <cite>conf</cite> directory you'll find a <cite>logging.properties</cite> file that allows you to increase the log levels.</p>
+</div></blockquote>
+</li>
+<li><p><strong>I get “Invalid server response 500” and “Exception…. Authentication failure”</strong></p>
+<blockquote>
+<div><p>Probably you gave a wrong username or password. Contact your site administrator if in doubt! If using a password, make sure you give the “<cite>-P</cite>” flag.</p>
+</div></blockquote>
+</li>
+<li><p><strong>I get “Invalid server response 405 Unable to connect to server for listing”</strong></p>
+<blockquote>
+<div><p>Check the remote URL that you use. Maybe you have a typo in the <cite>/rest/auth/&lt;servername&gt;</cite> part.</p>
+</div></blockquote>
+</li>
+</ul>
+</section>
+<section id="getting-support">
+<h2>Getting support</h2>
+<p>UNICORE Website: <a class="reference external" href="https://www.unicore.eu">https://www.unicore.eu</a></p>
+<p>Support list: <a class="reference external" href="mailto:unicore-support&#37;&#52;&#48;lists&#46;sf&#46;net">unicore-support<span>&#64;</span>lists<span>&#46;</span>sf<span>&#46;</span>net</a></p>
+<p>Developer’s list: <a class="reference external" href="mailto:unicore-devel&#37;&#52;&#48;lists&#46;sf&#46;net">unicore-devel<span>&#64;</span>lists<span>&#46;</span>sf<span>&#46;</span>net</a></p>
+<p>Issue Tracker: <a class="reference external" href="https://sourceforge.net/p/unicore/uftp-issues">https://sourceforge.net/p/unicore/uftp-issues</a></p>
+<p>Source code: <a class="reference external" href="https://github.com/UNICORE-EU/uftp">https://github.com/UNICORE-EU/uftp</a></p>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  </body>
+</html>

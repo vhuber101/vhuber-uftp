@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package xmlns="http://www.idpf.org/2007/opf" version="3.0" xml:lang="en"
+ unique-identifier="unknown"
+ prefix="ibooks: http://vocabulary.itunes.apple.com/rdf/ibooks/vocabulary-extensions-1.0/">
+  <metadata xmlns:opf="http://www.idpf.org/2007/opf"
+        xmlns:dc="http://purl.org/dc/elements/1.1/">
+    <dc:language>en</dc:language>
+    <dc:title>UNICORE UFTP</dc:title>
+    <dc:description>unknown</dc:description>
+    <dc:creator>UNICORE</dc:creator>
+    <dc:contributor>unknown</dc:contributor>
+    <dc:publisher>UNICORE</dc:publisher>
+    <dc:rights>2022, UNICORE</dc:rights>
+    <dc:identifier id="unknown">unknown</dc:identifier>
+    <dc:date>2022-01-27T14:25:51Z</dc:date>
+    <meta property="dcterms:modified">2022-01-27T14:25:51Z</meta>
+    <meta property="ibooks:version">1.0.0</meta>
+    <meta property="ibooks:specified-fonts">true</meta>
+    <meta property="ibooks:binding">true</meta>
+    <meta property="ibooks:scroll-axis">vertical</meta>
+  </metadata>
+  <manifest>
+    <item id="ncx" href="toc.ncx" media-type="application/x-dtbncx+xml" />
+    <item id="nav" href="nav.xhtml" media-type="application/xhtml+xml" properties="nav"/>
+    <item id="epub-0" href="genindex.xhtml" media-type="application/xhtml+xml" />
+    <item id="epub-1" href="index.xhtml" media-type="application/xhtml+xml" />
+    <item id="epub-2" href="license.xhtml" media-type="application/xhtml+xml" />
+    <item id="epub-3" href="_static/basic.css" media-type="text/css" />
+    <item id="epub-4" href="_static/epub.css" media-type="text/css" />
+    <item id="epub-5" href="_static/file.png" media-type="image/png" />
+    <item id="epub-6" href="_static/logo-unicore.png" media-type="image/png" />
+    <item id="epub-7" href="_static/minus.png" media-type="image/png" />
+    <item id="epub-8" href="_static/plus.png" media-type="image/png" />
+    <item id="epub-9" href="_static/pygments.css" media-type="text/css" />
+    <item id="epub-10" href="authserver/CHANGES.xhtml" media-type="application/xhtml+xml" />
+    <item id="epub-11" href="authserver/README-UPGRADE.xhtml" media-type="application/xhtml+xml" />
+    <item id="epub-12" href="authserver/README-building.xhtml" media-type="application/xhtml+xml" />
+    <item id="epub-13" href="authserver/README.xhtml" media-type="application/xhtml+xml" />
+    <item id="epub-14" href="authserver/authserver-main.xhtml" media-type="application/xhtml+xml" />
+    <item id="epub-15" href="authserver/authserver-manual.xhtml" media-type="application/xhtml+xml" />
+    <item id="epub-16" href="datashare/README.xhtml" media-type="application/xhtml+xml" />
+    <item id="epub-17" href="datashare/datashare-main.xhtml" media-type="application/xhtml+xml" />
+    <item id="epub-18" href="pyuftpd/CHANGES.xhtml" media-type="application/xhtml+xml" />
+    <item id="epub-19" href="pyuftpd/README.xhtml" media-type="application/xhtml+xml" />
+    <item id="epub-20" href="pyuftpd/pyuftpd-main.xhtml" media-type="application/xhtml+xml" />
+    <item id="epub-21" href="pyuftpd/pyuftpd-manual.xhtml" media-type="application/xhtml+xml" />
+    <item id="epub-22" href="uftp-client/CHANGES.xhtml" media-type="application/xhtml+xml" />
+    <item id="epub-23" href="uftp-client/README-building.xhtml" media-type="application/xhtml+xml" />
+    <item id="epub-24" href="uftp-client/README.xhtml" media-type="application/xhtml+xml" />
+    <item id="epub-25" href="uftp-client/uftp-client-main.xhtml" media-type="application/xhtml+xml" />
+    <item id="epub-26" href="uftp-client/uftp-client-manual.xhtml" media-type="application/xhtml+xml" />
+    <item id="epub-27" href="uftpd/CHANGES.xhtml" media-type="application/xhtml+xml" />
+    <item id="epub-28" href="uftpd/README-building.xhtml" media-type="application/xhtml+xml" />
+    <item id="epub-29" href="uftpd/README.xhtml" media-type="application/xhtml+xml" />
+    <item id="epub-30" href="uftpd/uftpd-main.xhtml" media-type="application/xhtml+xml" />
+    <item id="epub-31" href="uftpd/uftpd-manual.xhtml" media-type="application/xhtml+xml" />
+  </manifest>
+  <spine toc="ncx" page-progression-direction="ltr">
+    <itemref idref="epub-1" />
+    <itemref idref="epub-30" />
+    <itemref idref="epub-28" />
+    <itemref idref="epub-31" />
+    <itemref idref="epub-27" />
+    <itemref idref="epub-20" />
+    <itemref idref="epub-21" />
+    <itemref idref="epub-18" />
+    <itemref idref="epub-14" />
+    <itemref idref="epub-11" />
+    <itemref idref="epub-12" />
+    <itemref idref="epub-15" />
+    <itemref idref="epub-10" />
+    <itemref idref="epub-25" />
+    <itemref idref="epub-23" />
+    <itemref idref="epub-26" />
+    <itemref idref="epub-22" />
+    <itemref idref="epub-17" />
+    <itemref idref="epub-2" />
+    <itemref idref="epub-0" />
+    <itemref idref="epub-13" linear="no" />
+    <itemref idref="epub-16" linear="no" />
+    <itemref idref="epub-19" linear="no" />
+    <itemref idref="epub-24" linear="no" />
+    <itemref idref="epub-29" linear="no" />
+  </spine>
+  <guide>
+    <reference type="toc" title="Table of Contents" href="index.xhtml" />
+  </guide>
+</package>
