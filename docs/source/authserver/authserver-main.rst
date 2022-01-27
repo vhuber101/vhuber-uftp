@@ -1,7 +1,7 @@
 .. _authserver:
 
-Auth Server
-===========
+Auth Server 1
+=============
 
 .. include:: README.rst
 
