@@ -1,7 +1,7 @@
 .. _auth-server-readme:
 
-Auth Server
-***********
+Auth Server 2
+*************
 
 The UFTP authentication service (**Auth server**) is a RESTful
 service for authenticating users and initiating UFTP transfers. It is indended to be used with a standalone UFTP client and provides access to one or more UFTPD servers.
