@@ -4,13 +4,13 @@ Building packages for the 'uftp' client
 =======================================
 
 You need Java and Apache Maven. 
-Check the versions given in the pom.xml file. 
+Check the versions given in the ``pom.xml`` file. 
 
 Creating distribution packages
 ------------------------------
 
 The following commands create the distribution packages
-in tgz, deb and rpm formats. The versions are taken from the pom.xml
+in tgz, deb and rpm formats. The versions are taken from the ``pom.xml``.
 
 
 tgz

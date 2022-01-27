@@ -28,7 +28,7 @@ UNICORE UFTP
 
 UFTP is a data streaming library and file transfer tool. 
 
-UFTP is best used using the 'uftp' client-side application (available
+UFTP is best used using the :ref:`'uftp' client-side application <uftp-client>` (available
 from https://sourceforge.net/projects/unicore/files/Clients/UFTP-Client),
 but is easily integrated into custom applications due to its FTP
 compliance.
@@ -41,8 +41,7 @@ A full UFTP server installation consists of two parts:
 
  - the "uftpd" file server
 
- - either a UNICORE/X server, or a standalone authentication 
-   service.
+ - either a UNICORE/X server, or a :ref:`standalone authentication service <authserver>`.
 
 This manual covers the UFTP file server "uftpd" version 3.0 and higher, 
 written in Python.

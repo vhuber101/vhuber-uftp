@@ -289,11 +289,11 @@
   <section id="building-packages-for-the-uftp-client">
 <span id="uftp-client-building"></span><h1>Building packages for the ‘uftp’ client<a class="headerlink" href="#building-packages-for-the-uftp-client" title="Permalink to this headline"></a></h1>
 <p>You need Java and Apache Maven.
-Check the versions given in the pom.xml file.</p>
+Check the versions given in the <code class="docutils literal notranslate"><span class="pre">pom.xml</span></code> file.</p>
 <section id="creating-distribution-packages">
 <h2>Creating distribution packages<a class="headerlink" href="#creating-distribution-packages" title="Permalink to this headline"></a></h2>
 <p>The following commands create the distribution packages
-in tgz, deb and rpm formats. The versions are taken from the pom.xml</p>
+in tgz, deb and rpm formats. The versions are taken from the <code class="docutils literal notranslate"><span class="pre">pom.xml</span></code>.</p>
 <section id="tgz">
 <h3>tgz<a class="headerlink" href="#tgz" title="Permalink to this headline"></a></h3>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mvn</span> <span class="n">package</span> <span class="o">-</span><span class="n">DskipTests</span> <span class="o">-</span><span class="n">Ppackman</span> <span class="o">-</span><span class="n">Dpackage</span><span class="o">.</span><span class="n">type</span><span class="o">=</span><span class="nb">bin</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>

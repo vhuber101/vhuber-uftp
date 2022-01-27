@@ -8,8 +8,8 @@ existing config files and put them in a safe place.
 
 In the following, LIB refers to the directory containing the jar files for the component, and CONF to the config directory of the existing installation.
 
-It is assumed that you have unpacked the tar.gz file somewhere, 
-e.g. to `/tmp/`
+It is assumed that you have unpacked the **tar.gz** file somewhere, 
+e.g. to ``/tmp/``
 
 In the following, this location will be denoted as "`$NEW`"::
 

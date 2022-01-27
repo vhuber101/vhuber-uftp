@@ -26,8 +26,8 @@ or UNICORE/X server.
 
 .. topic:: Installation
 
-	Unzip the archive in a location of your choice. Add the 	'bin'
-	directory to your path. (Alternatively, you can copy 	'bin/uftp' script
+	Unzip the archive in a location of your choice. Add the 	``bin``
+	directory to your path. (Alternatively, you can copy 	``bin/uftp`` script
 	to a directory that is already on your path, in this case
 	edit the script and setup the required directories.)
 
@@ -38,7 +38,7 @@ or UNICORE/X server.
 
 	Invoking ``uftp <command> -h`` will show help for a command
 
-	For password authentication, use the "-P" option. The password can be written into the URL, for example::
+	For password authentication, use the ``-P`` option. The password can be written into the URL, for example::
 
 		$> uftp ls -u demo:password
 		https://localhost:9000/rest/auth/TEST:/home/demo/
