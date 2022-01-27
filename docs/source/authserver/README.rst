@@ -1,5 +1,3 @@
-.. _auth-server-readme:
-
 Auth Server 2
 *************
 
