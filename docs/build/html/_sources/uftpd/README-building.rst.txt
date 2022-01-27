@@ -17,11 +17,11 @@ Updating the native library
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The UFTPD server uses a native library, which is expected in the
-```src/main/package/distributions/Default/src/usr/share/unicore/uftpd/lib```
+``src/main/package/distributions/Default/src/usr/share/unicore/uftpd/lib``
 directory. A version compiled on a recent Linux is already provided.
 If the existing version needs to be rebuilt for some reason,
-the Makefile and C code is provided in ```src/main/native``` folder.
-To use the Makefile, it is required to run ```mvn install``` first.
+the Makefile and C code is provided in ``src/main/native`` folder.
+To use the Makefile, it is required to run ``mvn install`` first.
 Then the Makefile needs to be edited and the correct paths 
 need to be provided. Finally a ```make install``` will build the new
 version of the native lib. It should be placed into the directory 
@@ -37,7 +37,7 @@ in tgz, deb and rpm formats
 tgz
 +++
 
-.. code:: bash
+::
 
 	mvn package -DskipTests -Ppackman -Dpackage.type=bin.tar.gz
 
@@ -45,7 +45,7 @@ tgz
 deb
 +++
 
-.. code:: bash
+::
 
 	mvn package -DskipTests -Ppackman -Dpackage.type=deb -Ddistribution=Debian
 
@@ -53,7 +53,7 @@ deb
 rpm
 +++
 
-.. code:: bash
+::
 
 	mvn package -DskipTests -Ppackman -Dpackage.type=rpm -Ddistribution=RedHat
 

@@ -7,6 +7,7 @@
   <title>UFTPD User Manual &mdash; UNICORE UFTP</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -31,7 +32,7 @@
             <img src="../_static/logo-unicore.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                1.0.0
+                2.x
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -43,7 +44,7 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">UFTP Documentation</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="uftpd-main.html">UFTPD server</a><ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="uftpd.html">UFTPD server</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="README-building.html">Building</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="README-building.html#updating-the-native-library">Updating the native library</a></li>
 <li class="toctree-l3"><a class="reference internal" href="README-building.html#creating-distribution-packages">Creating distribution packages</a><ul>
@@ -115,7 +116,7 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../pyuftpd/pyuftpd-main.html">PyUFTPD</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="../pyuftpd/pyuftpd.html">PyUFTPD</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../pyuftpd/pyuftpd-manual.html">PyUFTPD User Manual</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../pyuftpd/pyuftpd-manual.html#unicore-uftp">UNICORE UFTP</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../pyuftpd/pyuftpd-manual.html#uftp-features">UFTP features</a></li>
@@ -148,7 +149,7 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../authserver/authserver-main.html">Auth Server</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="../authserver/authserver.html">Auth Server</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../authserver/README-UPGRADE.html">Update procedure</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../authserver/README-building.html">Building packages</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../authserver/README-building.html#creating-distribution-packages">Creating distribution packages</a><ul>
@@ -201,7 +202,7 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../uftp-client/uftp-client-main.html">UFTP standalone client</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="../uftp-client/uftp-client.html">UFTP standalone client</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../uftp-client/README-building.html">Building packages for the ‘uftp’ client</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../uftp-client/README-building.html#creating-distribution-packages">Creating distribution packages</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../uftp-client/README-building.html#tgz">tgz</a></li>
@@ -224,7 +225,7 @@
 <li class="toctree-l4"><a class="reference internal" href="../uftp-client/uftp-client-manual.html#data-sharing">Data sharing</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../uftp-client/uftp-client-manual.html#using-a-proxy-server-experimental">Using a proxy server (<em>EXPERIMENTAL</em>)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../uftp-client/uftp-client-manual.html#using-a-proxy-server-experimental">Using a proxy server (EXPERIMENTAL)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../uftp-client/uftp-client-manual.html#troubleshooting">Troubleshooting</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../uftp-client/uftp-client-manual.html#getting-support">Getting support</a></li>
 </ul>
@@ -254,10 +255,10 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../datashare/datashare-main.html">Datashare</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../datashare/datashare.html">Datashare</a></li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../LICENSE.html">License</a></li>
 </ul>
 
         </div>
@@ -274,7 +275,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="uftpd-main.html">UFTPD server</a> &raquo;</li>
+          <li><a href="uftpd.html">UFTPD server</a> &raquo;</li>
       <li>UFTPD User Manual</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/uftpd/uftpd-manual.rst.txt" rel="nofollow"> View page source</a>
@@ -289,8 +290,8 @@
 <span id="uftpd-manual"></span><h1>UFTPD User Manual<a class="headerlink" href="#uftpd-user-manual" title="Permalink to this headline"></a></h1>
 <p>UNICORE Team &lt;<a class="reference external" href="mailto:unicore-support&#37;&#52;&#48;lists&#46;sourceforge&#46;net">unicore-support<span>&#64;</span>lists<span>&#46;</span>sourceforge<span>&#46;</span>net</a>&gt;</p>
 <dl class="field-list simple">
-<dt class="field-odd">Version</dt>
-<dd class="field-odd"><p>1.0.0</p>
+<dt class="field-odd">version</dt>
+<dd class="field-odd"><p>2.12.0</p>
 </dd>
 </dl>
 <p>This is the UFTPD user manual providing information on running and
@@ -310,7 +311,7 @@ compliance.</p>
 <p>It can be also integrated into UNICORE, allowing to transfer data from
 client to server (and vice versa), as well as providing data staging
 and third-party transfer between UFTP-enabled UNICORE sites.</p>
-<p>A full UFTP server installation consists of two parts</p>
+<p>A full UFTP server installation consists of two parts:</p>
 <blockquote>
 <div><ul class="simple">
 <li><p>the “uftpd” file server</p></li>
@@ -339,7 +340,7 @@ using the rsync algorithm</p></li>
 <li><p>integrated with UNICORE servers for fast data staging and
 server-to-server file transfers</p></li>
 <li><p>standalone (non-UNICORE) client available</p></li>
-<li><p>data upload/download with <cite>curl</cite> or <cite>ftp</cite> possible in conjunction with
+<li><p>data upload/download with <code class="docutils literal notranslate"><span class="pre">curl</span></code> or <code class="docutils literal notranslate"><span class="pre">ftp</span></code> possible in conjunction with
 the auth server</p></li>
 <li><p>written in Java</p></li>
 </ul>
@@ -527,9 +528,9 @@ set the correct file permissions.</p>
 </dl>
 <p>As usual if you set the SERVER_HOST to be <cite>0.0.0.0</cite>, the server will bind to all the available
 network interfaces.</p>
-<p>If possible, use an “internal” interface for the Command socket. If that
+<p>👉 If possible, use an “internal” interface for the Command socket. If that
 is not possible, make sure the Command socket is protected by a firewall!</p>
-<p>We <strong>STRONGLY recommend</strong> enabling SSL for the Command socket. Please refer to the
+<p>👉 We <strong>STRONGLY recommend</strong> enabling SSL for the Command socket. Please refer to the
 next section.</p>
 </section>
 <section id="protecting-the-command-socket">
@@ -586,7 +587,7 @@ should be trusted.  Keystore and truststore can be the same file.</p>
 <p>The access control list contains the distinguished names of those certificates that
 should be allowed access.</p>
 <p>The <cite>ACL</cite> setting in <cite>CONF/uftpd.conf</cite> is used to specify the location of the ACL file</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span> <span class="nv">ACL</span><span class="o">=</span>conf/uftpd.acl
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">export</span> <span class="n">ACL</span><span class="o">=</span><span class="n">conf</span><span class="o">/</span><span class="n">uftpd</span><span class="o">.</span><span class="n">acl</span>
 </pre></div>
 </div>
 <p>The default ACL contains the certificate DN of the UNICORE/X server from the UNICORE
@@ -595,7 +596,7 @@ your UNICORE/X server(s) and UFTP Authentication server(s).</p>
 <p>The ACL entries are expected in <strong>RFC2253</strong> format. To get the name
 from a certificate in the correct format using openssl, you can use the
 following OpenSSL command:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>openssl x509 -in your_server.pem -noout -subject -nameopt RFC2253
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">openssl</span> <span class="n">x509</span> <span class="o">-</span><span class="ow">in</span> <span class="n">your_server</span><span class="o">.</span><span class="n">pem</span> <span class="o">-</span><span class="n">noout</span> <span class="o">-</span><span class="n">subject</span> <span class="o">-</span><span class="n">nameopt</span> <span class="n">RFC2253</span>
 </pre></div>
 </div>
 <p>The ACL file can be updated at runtime.</p>
@@ -608,8 +609,8 @@ following OpenSSL command:</p>
 <p>Please consult the firewall documentation on how to enable an “FTP” service on your firewall (or operating system).</p>
 </div>
 <p>With Linux iptables, you may use rules similar to the following:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>iptables -A INPUT -p tcp -m tcp --dport <span class="nv">$SERVER_PORT</span> -j ACCEPT
-iptables -A INPUT -p tcp -m helper --helper ftp-<span class="nv">$SERVER_PORT</span> -j ACCEPT
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>iptables -A INPUT -p tcp -m tcp --dport $SERVER_PORT -j ACCEPT
+iptables -A INPUT -p tcp -m helper --helper ftp-$SERVER_PORT -j ACCEPT
 </pre></div>
 </div>
 <p>where <cite>$SERVER_PORT</cite> is the SERVER_PORT defined in <cite>uftpd.conf</cite>. The first
@@ -618,8 +619,8 @@ activates the iptables connection tracking FTP module on port
 $SERVER_PORT.</p>
 <p>On some operating systems it may be required to load additional kernel modules to
 enable connection tracking, for example on CentOS:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>modprobe nf_conntrack_ipv4
-modprobe nf_conntrack_ftp <span class="nv">ports</span><span class="o">=</span><span class="nv">$SERVER_PORT</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>modprobe nf_conntrack_ipv4
+modprobe nf_conntrack_ftp ports=$SERVER_PORT
 </pre></div>
 </div>
 </section>
@@ -653,8 +654,7 @@ to which the Java class name is appended.</p>
 <p>The logging output produced can be controlled in a fine-grained
 manner.  Log levels in Log4j are (in increasing level of severity)
 TRACE, DEBUG, INFO, WARN, ERROR, amd FATAL.</p>
-<p>For example, to track the UFTPD server’s communication with clients in
-detail, you can set</p>
+<p>For example, to track the UFTPD server’s communication with clients in detail, you can set</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">log4j</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">uftp</span><span class="o">.</span><span class="n">server</span><span class="o">=</span><span class="n">DEBUG</span>
 </pre></div>
 </div>
@@ -761,16 +761,14 @@ specified order, and will use the first “working” one.</p>
 <section id="enabling-data-encryption">
 <h3>Enabling data encryption<a class="headerlink" href="#enabling-data-encryption" title="Permalink to this headline"></a></h3>
 <p>If you wish to encrypt the data sent/received by UFTPD (in data
-staging or server-to-server transfers), the following property can be
-used:</p>
+staging or server-to-server transfers), the following property can be used:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># enable data encryption</span>
 <span class="n">coreServices</span><span class="o">.</span><span class="n">uftp</span><span class="o">.</span><span class="n">encryption</span><span class="o">=</span><span class="n">true</span>
 </pre></div>
 </div>
 <p>This will by default encrypt data with a symmetric key using the
 Blowfish algorithm. This costs some performance due to the additional
-CPU load. Encryption only works in single-stream mode.  Users can
-override this setting.</p>
+CPU load. Encryption only works in single-stream mode.  Users can override this setting.</p>
 </section>
 <section id="limiting-bandwidth-per-transfer">
 <h3>Limiting bandwidth per transfer<a class="headerlink" href="#limiting-bandwidth-per-transfer" title="Permalink to this headline"></a></h3>
@@ -822,15 +820,15 @@ clients. Making a data transfer involves two steps:</p>
 <p>Note, in case you installed from an RPM or DEB package, these files are located in <cite>/usr/bin</cite>.</p>
 <p>The following shell commands “transfer” the file <cite>.bashrc</cite> to the /tmp directory.</p>
 <p>Assuming you installed from RPM/DEB:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>. /etc/unicore/uftpd/uftpd.conf
-uftp-job.sh -c localhost -f ~/.bashrc -s <span class="nb">true</span> -x my_secret -n <span class="m">2</span> -u unicore -g unicore
-uftp.sh -r -f /tmp/test -L <span class="nv">$SERVER_PORT</span> -l <span class="nv">$SERVER_HOST</span> -x my_secret -n <span class="m">2</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>. /etc/unicore/uftpd/uftpd.conf
+uftp-job.sh -c localhost -f ~/.bashrc -s true -x my_secret -n 2 -u unicore -g unicore
+uftp.sh -r -f /tmp/test -L $SERVER_PORT -l $SERVER_HOST -x my_secret -n 2
 </pre></div>
 </div>
 <p>This should create a file <cite>/tmp/test</cite> identical to <cite>~/.bashrc</cite>. Check the console output and
 the UFTPD log file <cite>LOG/uftpd.log</cite> in case of errors.</p>
 <p>After the transfer finished, check that indeed</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>md5sum /tmp/test ~/.bashrc
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">md5sum</span> <span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">test</span> <span class="o">~/.</span><span class="n">bashrc</span>
 </pre></div>
 </div>
 <p>gives the correct checksum for the newly created file.</p>

@@ -1,6 +1,8 @@
 UFTP standalone client
 **********************
 
+:version: 1.4.3
+
 This is a Java-based client for UFTP. It allows to 
 
  * list remote directories
@@ -36,14 +38,14 @@ or UNICORE/X server.
 
 	Invoking ``uftp <command> -h`` will show help for a command
 
-	For password authentication, use the "-P" option. The password can be written into the URL, for example:
-
-	.. code:: bash
+	For password authentication, use the "-P" option. The password can be written into the URL, for example::
 
 		$> uftp ls -u demo:password
 		https://localhost:9000/rest/auth/TEST:/home/demo/
 
 	If not given on the command line, the password will be queried interactively.
+
+.. seealso::
 
 	For detailed usage instructions and examples, refer to the :ref:`uftp-client-manual` available in the doc directory or online.
 

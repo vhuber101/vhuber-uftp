@@ -6,7 +6,7 @@ PyUFTPD User Manual
 
 UNICORE Team <unicore-support@lists.sourceforge.net>
 
-:Version: 1.0.0
+:version: 3.1.2
 
 This is the UFTPD user manual providing information on running and 
 using the UNICORE UFTP server 'uftpd'. Please note also the 
@@ -37,7 +37,7 @@ It can be also integrated into UNICORE, allowing to transfer data from
 client to server (and vice versa), as well as providing data staging
 and third-party transfer between UFTP-enabled UNICORE sites.
 
-A full UFTP server installation consists of two parts
+A full UFTP server installation consists of two parts:
 
  - the "uftpd" file server
 
@@ -56,7 +56,7 @@ UFTP features
 
  - standalone command line client available
 
- - supports third-party FTP clients such as 'curl' or 'ftp', 
+ - supports third-party FTP clients such as ``curl`` or ``ftp``, 
    after getting a one-time password via the Auth server (RESTful API)
    or a UNICORE/X storage endpoint
 
@@ -144,34 +144,31 @@ Prerequisites
     declaring it an "FTP" port (FTP connection tracking). Alternatively a fixed
     range of open ports can be configured and used
     
-  - the server\'s command port needs to be accessible from the Auth server(s)
+  - the server's command port needs to be accessible from the Auth server(s)
 
   - the UFTPD server needs access to the target file systems
 
-  - a server certificate for the UFTPD server is a MUST for production use 
+  - a server certificate for the UFTPD server is a **MUST** for production use 
     in a multi-user environment (see the section on SSL below)
-
 
 A functional UFTP installation requires either an Auth server or a full UNICORE/X server.
 
-
-.. note:: NOTE ON PATHS
+.. note:: **NOTE ON PATHS**
 
 	The UNICORE UFTPD server is distributed either as a platform independent and portable tar.gz or zip bundle, or as an installable, platform dependent package such as RPM.
 
 	Depending on the installation package, the paths to various files are different. 
 
+
 If installing using distribution-specific package 
-the following paths are used:
-::
+the following paths are used::
 
 	CONF=/etc/unicore/uftpd
 	BIN=/usr/share/unicore/uftpd/bin
 	LIB=/usr/share/unicore/uftpd/lib
 
 If installing using the portable bundle, all UFTPD files are installed
-under a single directory. Path prefixes are as follows, where `INST` is the directory where UFTPD was installed:
-::
+under a single directory. Path prefixes are as follows, where `INST` is the directory where UFTPD was installed::
 
 	CONF=INST/conf
 	BIN=INST/bin
@@ -179,24 +176,23 @@ under a single directory. Path prefixes are as follows, where `INST` is the dire
 
 These variables (`CONF`, `BIN` and `LOG`) are used throughout the rest of this manual.
 
-
 .. note:: 
-	Note that after installation UFTPD is NOT automatically enabled as a systemd service, since you will need to edit the configuration and provide a server certificate.
+	Note that after installation UFTPD is **NOT** automatically enabled as a systemd service, since you will need to edit the configuration and provide a server certificate.
 
 
 Starting and stopping the UFTPD server
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  
 If using the Linux packages, uftpd is integrated as a service via systemd, and
-you can stop/start it via `systemctl`. Also, logging is (by default) done via 
-systemd, and you can look at the logs via `journalctl`
+you can stop/start it via ``systemctl``. Also, logging is (by default) done via 
+systemd, and you can look at the logs via ``journalctl``
 
 To do things manually, you can use the start/stop and status scripts that are
 provided in the BIN directory.
 
- - `unicore-uftpd-start.sh` starts the server
- - `unicore-uftpd-stop.sh` stops the server
- - `unicore-uftpd-status.sh` checks the server status
+ - ``unicore-uftpd-start.sh`` starts the server
+ - ``unicore-uftpd-stop.sh`` stops the server
+ - ``unicore-uftpd-status.sh`` checks the server status
 
 The parameters such as server host/port, control host/port, and others are
 configured in the `CONF/uftpd.conf` file
@@ -207,9 +203,7 @@ access files as the correct user/group and set correct file permissions.
 
 
 To enable UFTPD as a systemd service (after configuring and adding a server 
-certificate), you can use `systemctl` :
-
-.. code:: bash
+certificate), you can use ``systemctl``::
 
 	sudo systemctl add-wants multi-user.target unicore-uftpd
 
@@ -217,7 +211,7 @@ certificate), you can use `systemctl` :
 Configuration parameters
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-The following variables can be defined in the configuration file (`uftpd.conf`):
+The following variables can be defined in the configuration file (``uftpd.conf``):
 
 
 :CMD_HOST: the interface where the server listens for control commands
@@ -228,7 +222,7 @@ The following variables can be defined in the configuration file (`uftpd.conf`):
 
 :SERVER_PORT: the port where the server listens for client data connections
                     
-:ADVERTISE_HOST:(optional) (Only used in the PASV implementation)Advertise this server as having the following IPv4 address in the control connection. This is useful if the server is behind a NAT firewall and the public address is different from the address(es) the server has bound to
+:ADVERTISE_HOST: (optional) (*Only used in the PASV implementation*) Advertise this server as having the following IPv4 address in the control connection. This is useful if the server is behind a NAT firewall and the public address is different from the address(es) the server has bound to
 
 :SSL_CONF: File containing SSL settings for the command port
 
@@ -248,7 +242,7 @@ The following variables can be defined in the configuration file (`uftpd.conf`):
 
 :LOG_VERBOSE: set to `true` to get (much) more detailed logging
 
-: LOG_SYSLOG: set to `false` to print logging output to stdout
+:LOG_SYSLOG: set to `false` to print logging output to stdout
 
 As usual if you set the SERVER_HOST to be `0.0.0.0`, the server will bind to all the available 
 network interfaces.
@@ -256,7 +250,7 @@ network interfaces.
 If possible, use an "internal" interface for the Command socket. If that
 is not possible, make sure the Command socket is protected by a firewall!
 
-We **VERY STRONGLY** recommend enabling SSL for the Command socket.
+|:point_right:| We **VERY STRONGLY** recommend enabling SSL for the Command socket.
 Please refer to the next section.
 
 
@@ -271,7 +265,6 @@ list (`ACL`) file is used.
 In production settings where users can log in to the UFTPD server
 machine, **SSL MUST** be enabled to prevent unauthorized data access!
 
-
 .. important:: **IMPORTANT SECURITY NOTE**
 
 	Without SSL enabled, users logged in to the UFTPD server can easily create exploits to read or write files with arbitrary user privileges (except `root`).
@@ -281,8 +274,7 @@ SSL setup
 ^^^^^^^^^
 
 To setup SSL, you need a PEM file containing the UFTPD server's
-credential, and a PEM file containing certificate authorities that
-should be trusted.
+credential, and a PEM file containing certificate authorities that should be trusted.
 
 The following properties can be set in the `CONF/uftpd-ssl.conf` file.
 ::
@@ -301,16 +293,13 @@ You can also use separate PEM files for key and certificate:
 	
 	truststore=path/to/ca-cert-file.pem
 
-The credential.password is only needed and used if the key is encrypted.
-
+The ``credential.password`` is only needed and used if the key is encrypted.
 
 .. note:: **Backwards (in)compatibility to previous versions**
 
 	UFTPD 2.x SSL config is **NOT supported**
 
-	If you already have a p12 keystore for UFTPD 2.x, you can use ``openssl`` to convert it to `PEM` format
-
-
+	|:bulb:| If you already have a p12 keystore for UFTPD 2.x, you can use ``openssl`` to convert it to `PEM` format
 
 
 ACL setup
@@ -319,8 +308,7 @@ ACL setup
 The access control list contains the distinguished names of those certificates that
 should be allowed access.
 
-The "ACL" setting in `CONF/uftpd.conf` is used to specify the location of the ACL file
-::
+The "ACL" setting in `CONF/uftpd.conf` is used to specify the location of the ACL file::
 
 	export ACL=conf/uftpd.acl
 
@@ -329,9 +317,7 @@ core server bundle. In production, you need to replace this by the actual DNs of
 your UNICORE/X server(s) and UFTP Authentication server(s).
 
 The ACL entries are expected in **RFC2253** format. To get the name 
-from a certificate in the correct format using `openssl`, you can use the following OpenSSL command:
-
-.. code:: bash
+from a certificate in the correct format using ``openssl``, you can use the following OpenSSL command::
 
 	openssl x509 -in your_server.pem -noout -subject -nameopt RFC2253
 
@@ -351,38 +337,31 @@ you can use a dedicated port range and permanently open those in the firewall.
 .. note::
 	Please consult the firewall documentation on how to enable an "FTP" service on your firewall (or operating system).
 
-With Linux iptables, you may use rules similar to the following:
-
-.. code:: bash
+With Linux iptables, you may use rules similar to the following::
 
 	iptables -A INPUT -p tcp -m tcp --dport $SERVER_PORT -j ACCEPT
 	iptables -A INPUT -p tcp -m helper --helper ftp-$SERVER_PORT -j ACCEPT
 
-where `$SERVER_PORT` is the SERVER_PORT defined in `uftpd.conf`. The first
-rule allows anyone to access port `$SERVER_PORT`. The second rule
+where ``$SERVER_PORT`` is the SERVER_PORT defined in ``uftpd.conf``. The first
+rule allows anyone to access port $SERVER_PORT. The second rule
 activates the iptables connection tracking FTP module on port $SERVER_PORT.
 
 On some operating systems it may be required to load additional kernel modules to
-enable connection tracking, for example on CentOS:
-
-.. code:: bash
+enable connection tracking, for example on CentOS::
 
 	modprobe nf_conntrack_ipv4
 	modprobe nf_conntrack_ftp ports=$SERVER_PORT
 
-
 If you cannot use connection tracking, you will need to open a port range, and configure
 UFTPD accordingly.
 
-For example, in `uftpd.conf`:
-
-.. code:: bash
+For example, in ``uftpd.conf``
+::
 
 	export PORT_RANGE=21000:21010
 
 and the iptables rule
-
-.. code:: bash
+::
 
 	iptables -A INPUT -p tcp -m tcp --dport 21000:21010 -j ACCEPT
 
@@ -395,9 +374,9 @@ A fairly small range (e.g. 10 ports) is usually enough, since these are server p
 Logging
 ~~~~~~~
 
-By default, UFTPD writes to syslog, and you can use `journalctl` to read log messages.
+By default, UFTPD writes to syslog, and you can use ``journalctl`` to read log messages.
 
-To print logging output to stdout, set `export LOG_SYSLOG=false` in the `uftpd.conf` file.
+To print logging output to stdout, set ``export LOG_SYSLOG=false`` in the ``uftpd.conf`` file.
 
 
 UNICORE integration
@@ -410,6 +389,6 @@ UFTP based data access and data transfer.
 Testing the UFTPD server
 ------------------------
 
-You should use the `uftp` client to run tests, which contains
+You should use the ``uftp`` client to run tests, which contains
 many options such as the number of concurrent FTP connections, and can
-use `/dev/null` and `/dev/zero` as data source/sink.
+use ``/dev/null`` and ``/dev/zero`` as data source/sink.

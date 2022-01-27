@@ -16,7 +16,7 @@ in tgz, deb and rpm formats. The versions are taken from the pom.xml
 tgz
 ~~~
 
-.. code:: bash
+::
 
 	mvn package -DskipTests -Ppackman -Dpackage.type=bin.tar.gz
 
@@ -24,7 +24,7 @@ tgz
 deb
 ~~~
 
-.. code:: bash
+::
 
 	mvn package -DskipTests -Ppackman -Dpackage.type=deb -Ddistribution=Debian
 
@@ -32,7 +32,7 @@ deb
 rpm redhat
 ~~~~~~~~~~
 
-.. code:: bash
+::
 
 	mvn package -DskipTests -Ppackman -Dpackage.type=rpm -Ddistribution=RedHat
 

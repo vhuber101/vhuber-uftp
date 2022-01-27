@@ -2,6 +2,7 @@
 
 UNICORE File Transfer (UFTP)
 ****************************
+Last change: |today|
 
 The UFTP contains server and client components for the `UNICORE <https://www.unicore.eu>`_ high-performance file transfer toolkit:
 
@@ -17,11 +18,11 @@ The UFTP contains server and client components for the `UNICORE <https://www.uni
    :maxdepth: 2
    :caption: UFTP Documentation
 
-   uftpd/uftpd-main
-   pyuftpd/pyuftpd-main
-   authserver/authserver-main
-   uftp-client/uftp-client-main
-   datashare/datashare-main
+   uftpd/uftpd
+   pyuftpd/pyuftpd
+   authserver/authserver
+   uftp-client/uftp-client
+   datashare/datashare
    
 .. raw:: html
 
@@ -29,7 +30,7 @@ The UFTP contains server and client components for the `UNICORE <https://www.uni
 
 .. toctree::
 
-   license
+   LICENSE
    
 	
    

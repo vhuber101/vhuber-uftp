@@ -4,9 +4,10 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Datashare &mdash; UNICORE UFTP</title>
+  <title>UFTP standalone client &mdash; UNICORE UFTP</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -18,8 +19,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="License" href="../license.html" />
-    <link rel="prev" title="Changelog" href="../uftp-client/CHANGES.html" /> 
+    <link rel="next" title="Building packages for the ‘uftp’ client" href="README-building.html" />
+    <link rel="prev" title="Changelog" href="../authserver/CHANGES.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -31,7 +32,7 @@
             <img src="../_static/logo-unicore.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                1.0.0
+                2.x
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -43,7 +44,7 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">UFTP Documentation</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../uftpd/uftpd-main.html">UFTPD server</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="../uftpd/uftpd.html">UFTPD server</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../uftpd/README-building.html">Building</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../uftpd/README-building.html#updating-the-native-library">Updating the native library</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../uftpd/README-building.html#creating-distribution-packages">Creating distribution packages</a><ul>
@@ -115,7 +116,7 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../pyuftpd/pyuftpd-main.html">PyUFTPD</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="../pyuftpd/pyuftpd.html">PyUFTPD</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../pyuftpd/pyuftpd-manual.html">PyUFTPD User Manual</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../pyuftpd/pyuftpd-manual.html#unicore-uftp">UNICORE UFTP</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../pyuftpd/pyuftpd-manual.html#uftp-features">UFTP features</a></li>
@@ -148,7 +149,7 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../authserver/authserver-main.html">Auth Server</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="../authserver/authserver.html">Auth Server</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../authserver/README-UPGRADE.html">Update procedure</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../authserver/README-building.html">Building packages</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../authserver/README-building.html#creating-distribution-packages">Creating distribution packages</a><ul>
@@ -201,63 +202,63 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../uftp-client/uftp-client-main.html">UFTP standalone client</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../uftp-client/README-building.html">Building packages for the ‘uftp’ client</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../uftp-client/README-building.html#creating-distribution-packages">Creating distribution packages</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../uftp-client/README-building.html#tgz">tgz</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../uftp-client/README-building.html#deb">deb</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../uftp-client/README-building.html#rpm-redhat">rpm redhat</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">UFTP standalone client</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="README-building.html">Building packages for the ‘uftp’ client</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="README-building.html#creating-distribution-packages">Creating distribution packages</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="README-building.html#tgz">tgz</a></li>
+<li class="toctree-l4"><a class="reference internal" href="README-building.html#deb">deb</a></li>
+<li class="toctree-l4"><a class="reference internal" href="README-building.html#rpm-redhat">rpm redhat</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../uftp-client/uftp-client-manual.html">UFTP Client User Manual</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../uftp-client/uftp-client-manual.html#prerequisites">Prerequisites</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../uftp-client/uftp-client-manual.html#installation">Installation</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../uftp-client/uftp-client-manual.html#basic-usage">Basic Usage</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../uftp-client/uftp-client-manual.html#authentication">Authentication</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../uftp-client/uftp-client-manual.html#usage">Usage</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../uftp-client/uftp-client-manual.html#listing-a-directory-the-ls-command">Listing a directory: the <cite>ls</cite> command</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../uftp-client/uftp-client-manual.html#copying-data-the-cp-command">Copying data: the <cite>cp</cite> command</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../uftp-client/uftp-client-manual.html#computing-checksums-for-remote-files">Computing checksums for remote files</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../uftp-client/uftp-client-manual.html#synchronizing-a-file-the-sync-command">Synchronizing a file: the “sync” command</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../uftp-client/uftp-client-manual.html#data-sharing">Data sharing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uftp-client-manual.html">UFTP Client User Manual</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="uftp-client-manual.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l3"><a class="reference internal" href="uftp-client-manual.html#installation">Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="uftp-client-manual.html#basic-usage">Basic Usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="uftp-client-manual.html#authentication">Authentication</a></li>
+<li class="toctree-l3"><a class="reference internal" href="uftp-client-manual.html#usage">Usage</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="uftp-client-manual.html#listing-a-directory-the-ls-command">Listing a directory: the <cite>ls</cite> command</a></li>
+<li class="toctree-l4"><a class="reference internal" href="uftp-client-manual.html#copying-data-the-cp-command">Copying data: the <cite>cp</cite> command</a></li>
+<li class="toctree-l4"><a class="reference internal" href="uftp-client-manual.html#computing-checksums-for-remote-files">Computing checksums for remote files</a></li>
+<li class="toctree-l4"><a class="reference internal" href="uftp-client-manual.html#synchronizing-a-file-the-sync-command">Synchronizing a file: the “sync” command</a></li>
+<li class="toctree-l4"><a class="reference internal" href="uftp-client-manual.html#data-sharing">Data sharing</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../uftp-client/uftp-client-manual.html#using-a-proxy-server-experimental">Using a proxy server (<em>EXPERIMENTAL</em>)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../uftp-client/uftp-client-manual.html#troubleshooting">Troubleshooting</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../uftp-client/uftp-client-manual.html#getting-support">Getting support</a></li>
+<li class="toctree-l3"><a class="reference internal" href="uftp-client-manual.html#using-a-proxy-server-experimental">Using a proxy server (EXPERIMENTAL)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="uftp-client-manual.html#troubleshooting">Troubleshooting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="uftp-client-manual.html#getting-support">Getting support</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../uftp-client/CHANGES.html">Changelog</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../uftp-client/CHANGES.html#uftp-client-1-4-3-released-dec-15-2021">UFTP Client 1.4.3 (released Dec 15, 2021)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../uftp-client/CHANGES.html#uftp-client-1-4-2-released-aug-19-2021">UFTP Client 1.4.2 (released Aug 19, 2021)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../uftp-client/CHANGES.html#uftp-client-1-4-1-released-apr-8-2021">UFTP Client 1.4.1 (released Apr 8, 2021)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../uftp-client/CHANGES.html#uftp-client-1-4-0-released-mar-5-2021">UFTP Client 1.4.0 (released Mar 5, 2021)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../uftp-client/CHANGES.html#uftp-client-1-3-2-released-sep-18-2020">UFTP Client 1.3.2 (released Sep 18, 2020)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../uftp-client/CHANGES.html#uftp-client-1-3-1-released-jul-21-2020">UFTP Client 1.3.1 (released Jul 21, 2020)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../uftp-client/CHANGES.html#uftp-client-1-3-0-released-jun-17-2020">UFTP Client 1.3.0 (released Jun 17, 2020)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../uftp-client/CHANGES.html#uftp-client-1-2-0-released-apr-16-2020">UFTP Client 1.2.0 (released Apr 16, 2020)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../uftp-client/CHANGES.html#uftp-client-1-1-0-released-feb-13-2020">UFTP Client 1.1.0 (released Feb 13, 2020)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../uftp-client/CHANGES.html#uftp-client-1-0-0-released-sep-30-2019">UFTP Client 1.0.0 (released Sep 30, 2019)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../uftp-client/CHANGES.html#uftp-client-0-9-1-released-aug-27-2019">UFTP Client 0.9.1 (released Aug 27, 2019)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../uftp-client/CHANGES.html#uftp-client-0-9-0-released-may-28-2019">UFTP Client 0.9.0 (released May 28, 2019)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../uftp-client/CHANGES.html#uftp-client-0-8-0-released-feb-4-2019">UFTP Client 0.8.0 (released Feb 4, 2019)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../uftp-client/CHANGES.html#uftp-client-0-7-0-released-jul-19-2017">UFTP Client 0.7.0 (released  Jul 19, 2017)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../uftp-client/CHANGES.html#uftp-client-0-6-0-released-nov-25-2016">UFTP Client 0.6.0 (released  Nov 25, 2016)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../uftp-client/CHANGES.html#uftp-client-0-5-0-released-june-14-2016">UFTP Client 0.5.0 (released June 14, 2016)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../uftp-client/CHANGES.html#uftp-client-0-4-0-released-jan-26-2015">UFTP Client 0.4.0 (released Jan 26, 2015)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../uftp-client/CHANGES.html#uftp-client-0-3-0-released-nov-6-2014">UFTP Client 0.3.0 (released Nov 6, 2014)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../uftp-client/CHANGES.html#uftp-client-0-2-0-released-oct-2-2014">UFTP Client 0.2.0 (released Oct 2, 2014)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../uftp-client/CHANGES.html#uftp-client-0-1-0-released-sept-19-2014">UFTP Client 0.1.0 (released Sept 19, 2014)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CHANGES.html">Changelog</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="CHANGES.html#uftp-client-1-4-3-released-dec-15-2021">UFTP Client 1.4.3 (released Dec 15, 2021)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="CHANGES.html#uftp-client-1-4-2-released-aug-19-2021">UFTP Client 1.4.2 (released Aug 19, 2021)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="CHANGES.html#uftp-client-1-4-1-released-apr-8-2021">UFTP Client 1.4.1 (released Apr 8, 2021)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="CHANGES.html#uftp-client-1-4-0-released-mar-5-2021">UFTP Client 1.4.0 (released Mar 5, 2021)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="CHANGES.html#uftp-client-1-3-2-released-sep-18-2020">UFTP Client 1.3.2 (released Sep 18, 2020)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="CHANGES.html#uftp-client-1-3-1-released-jul-21-2020">UFTP Client 1.3.1 (released Jul 21, 2020)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="CHANGES.html#uftp-client-1-3-0-released-jun-17-2020">UFTP Client 1.3.0 (released Jun 17, 2020)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="CHANGES.html#uftp-client-1-2-0-released-apr-16-2020">UFTP Client 1.2.0 (released Apr 16, 2020)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="CHANGES.html#uftp-client-1-1-0-released-feb-13-2020">UFTP Client 1.1.0 (released Feb 13, 2020)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="CHANGES.html#uftp-client-1-0-0-released-sep-30-2019">UFTP Client 1.0.0 (released Sep 30, 2019)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="CHANGES.html#uftp-client-0-9-1-released-aug-27-2019">UFTP Client 0.9.1 (released Aug 27, 2019)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="CHANGES.html#uftp-client-0-9-0-released-may-28-2019">UFTP Client 0.9.0 (released May 28, 2019)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="CHANGES.html#uftp-client-0-8-0-released-feb-4-2019">UFTP Client 0.8.0 (released Feb 4, 2019)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="CHANGES.html#uftp-client-0-7-0-released-jul-19-2017">UFTP Client 0.7.0 (released  Jul 19, 2017)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="CHANGES.html#uftp-client-0-6-0-released-nov-25-2016">UFTP Client 0.6.0 (released  Nov 25, 2016)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="CHANGES.html#uftp-client-0-5-0-released-june-14-2016">UFTP Client 0.5.0 (released June 14, 2016)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="CHANGES.html#uftp-client-0-4-0-released-jan-26-2015">UFTP Client 0.4.0 (released Jan 26, 2015)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="CHANGES.html#uftp-client-0-3-0-released-nov-6-2014">UFTP Client 0.3.0 (released Nov 6, 2014)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="CHANGES.html#uftp-client-0-2-0-released-oct-2-2014">UFTP Client 0.2.0 (released Oct 2, 2014)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="CHANGES.html#uftp-client-0-1-0-released-sept-19-2014">UFTP Client 0.1.0 (released Sept 19, 2014)</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Datashare</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../datashare/datashare.html">Datashare</a></li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../LICENSE.html">License</a></li>
 </ul>
 
         </div>
@@ -274,9 +275,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Datashare</li>
+      <li>UFTP standalone client</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/datashare/datashare-main.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/uftp-client/uftp-client.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -284,17 +285,101 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="datashare">
-<span id="id1"></span><h1>Datashare<a class="headerlink" href="#datashare" title="Permalink to this headline"></a></h1>
-<p>The datashare library contains the support code for the <a class="reference internal" href="../index.html#uftp"><span class="std std-ref">UNICORE File Transfer (UFTP) V2</span></a> data sharing feature.</p>
+  <section id="uftp-standalone-client">
+<span id="uftp-client"></span><h1>UFTP standalone client<a class="headerlink" href="#uftp-standalone-client" title="Permalink to this headline"></a></h1>
+<dl class="field-list simple">
+<dt class="field-odd">version</dt>
+<dd class="field-odd"><p>1.4.3</p>
+</dd>
+</dl>
+<p>This is a Java-based client for UFTP. It allows to</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>list remote directories</p></li>
+<li><p>upload/download files</p></li>
+<li><p>sync files</p></li>
+<li><p>make remote directories</p></li>
+<li><p>delete remote files or directories</p></li>
+<li><p>manage shares and access shared data</p></li>
+</ul>
+</div></blockquote>
+<p>It supports username/password authentication, token authentication,
+and ssh-key (on Linux) authentication to a UFTP Authentication Server
+or UNICORE/X server.</p>
+<div class="topic">
+<p class="topic-title">Prerequisites</p>
+<ul class="simple">
+<li><p>Java 8 (OpenJDK, Oracle, IBM)</p></li>
+<li><p>Access to a UFTP authentication service and the corresponding UFTPD server. To use the client, you need to know the address of the authentication service.</p></li>
+</ul>
+</div>
+<div class="topic">
+<p class="topic-title">Installation</p>
+<p>Unzip the archive in a location of your choice. Add the         ‘bin’
+directory to your path. (Alternatively, you can copy    ‘bin/uftp’ script
+to a directory that is already on your path, in this case
+edit the script and setup the required directories.)</p>
+</div>
+<div class="topic">
+<p class="topic-title">Usage</p>
+<p>Invoking <code class="docutils literal notranslate"><span class="pre">uftp</span></code> will list the available commands.</p>
+<p>Invoking <code class="docutils literal notranslate"><span class="pre">uftp</span> <span class="pre">&lt;command&gt;</span> <span class="pre">-h</span></code> will show help for a command</p>
+<p>For password authentication, use the “-P” option. The password can be written into the URL, for example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$&gt; uftp ls -u demo:password
+https://localhost:9000/rest/auth/TEST:/home/demo/
+</pre></div>
+</div>
+<p>If not given on the command line, the password will be queried interactively.</p>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>For detailed usage instructions and examples, refer to the <a class="reference internal" href="uftp-client-manual.html#uftp-client-manual"><span class="std std-ref">UFTP Client User Manual</span></a> available in the doc directory or online.</p>
+</div>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">UFTP Client Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="README-building.html">Building packages for the ‘uftp’ client</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="README-building.html#creating-distribution-packages">Creating distribution packages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="README-building.html#tgz">tgz</a></li>
+<li class="toctree-l3"><a class="reference internal" href="README-building.html#deb">deb</a></li>
+<li class="toctree-l3"><a class="reference internal" href="README-building.html#rpm-redhat">rpm redhat</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="uftp-client-manual.html">UFTP Client User Manual</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="uftp-client-manual.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uftp-client-manual.html#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uftp-client-manual.html#basic-usage">Basic Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uftp-client-manual.html#authentication">Authentication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uftp-client-manual.html#usage">Usage</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="uftp-client-manual.html#listing-a-directory-the-ls-command">Listing a directory: the <cite>ls</cite> command</a></li>
+<li class="toctree-l3"><a class="reference internal" href="uftp-client-manual.html#copying-data-the-cp-command">Copying data: the <cite>cp</cite> command</a></li>
+<li class="toctree-l3"><a class="reference internal" href="uftp-client-manual.html#computing-checksums-for-remote-files">Computing checksums for remote files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="uftp-client-manual.html#synchronizing-a-file-the-sync-command">Synchronizing a file: the “sync” command</a></li>
+<li class="toctree-l3"><a class="reference internal" href="uftp-client-manual.html#data-sharing">Data sharing</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="uftp-client-manual.html#using-a-proxy-server-experimental">Using a proxy server (EXPERIMENTAL)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uftp-client-manual.html#troubleshooting">Troubleshooting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uftp-client-manual.html#getting-support">Getting support</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="CHANGES.html">Changelog</a></li>
+</ul>
+</div>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../uftp-client/CHANGES.html" class="btn btn-neutral float-left" title="Changelog" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="../license.html" class="btn btn-neutral float-right" title="License" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../authserver/CHANGES.html" class="btn btn-neutral float-left" title="Changelog" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="README-building.html" class="btn btn-neutral float-right" title="Building packages for the ‘uftp’ client" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

@@ -7,6 +7,7 @@
   <title>Building &mdash; UNICORE UFTP</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -19,7 +20,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="UFTPD User Manual" href="uftpd-manual.html" />
-    <link rel="prev" title="UFTPD server" href="uftpd-main.html" /> 
+    <link rel="prev" title="UFTPD server" href="uftpd.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -31,7 +32,7 @@
             <img src="../_static/logo-unicore.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                1.0.0
+                2.x
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -43,7 +44,7 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">UFTP Documentation</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="uftpd-main.html">UFTPD server</a><ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="uftpd.html">UFTPD server</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Building</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#updating-the-native-library">Updating the native library</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#creating-distribution-packages">Creating distribution packages</a><ul>
@@ -115,7 +116,7 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../pyuftpd/pyuftpd-main.html">PyUFTPD</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="../pyuftpd/pyuftpd.html">PyUFTPD</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../pyuftpd/pyuftpd-manual.html">PyUFTPD User Manual</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../pyuftpd/pyuftpd-manual.html#unicore-uftp">UNICORE UFTP</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../pyuftpd/pyuftpd-manual.html#uftp-features">UFTP features</a></li>
@@ -148,7 +149,7 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../authserver/authserver-main.html">Auth Server</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="../authserver/authserver.html">Auth Server</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../authserver/README-UPGRADE.html">Update procedure</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../authserver/README-building.html">Building packages</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../authserver/README-building.html#creating-distribution-packages">Creating distribution packages</a><ul>
@@ -201,7 +202,7 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../uftp-client/uftp-client-main.html">UFTP standalone client</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="../uftp-client/uftp-client.html">UFTP standalone client</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../uftp-client/README-building.html">Building packages for the ‘uftp’ client</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../uftp-client/README-building.html#creating-distribution-packages">Creating distribution packages</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../uftp-client/README-building.html#tgz">tgz</a></li>
@@ -224,7 +225,7 @@
 <li class="toctree-l4"><a class="reference internal" href="../uftp-client/uftp-client-manual.html#data-sharing">Data sharing</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../uftp-client/uftp-client-manual.html#using-a-proxy-server-experimental">Using a proxy server (<em>EXPERIMENTAL</em>)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../uftp-client/uftp-client-manual.html#using-a-proxy-server-experimental">Using a proxy server (EXPERIMENTAL)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../uftp-client/uftp-client-manual.html#troubleshooting">Troubleshooting</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../uftp-client/uftp-client-manual.html#getting-support">Getting support</a></li>
 </ul>
@@ -254,10 +255,10 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../datashare/datashare-main.html">Datashare</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../datashare/datashare.html">Datashare</a></li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../LICENSE.html">License</a></li>
 </ul>
 
         </div>
@@ -274,7 +275,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="uftpd-main.html">UFTPD server</a> &raquo;</li>
+          <li><a href="uftpd.html">UFTPD server</a> &raquo;</li>
       <li>Building</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/uftpd/README-building.rst.txt" rel="nofollow"> View page source</a>
@@ -295,11 +296,11 @@
 <section id="updating-the-native-library">
 <h2>Updating the native library<a class="headerlink" href="#updating-the-native-library" title="Permalink to this headline"></a></h2>
 <p>The UFTPD server uses a native library, which is expected in the
-<code class="docutils literal notranslate"><span class="pre">`src/main/package/distributions/Default/src/usr/share/unicore/uftpd/lib`</span></code>
+<code class="docutils literal notranslate"><span class="pre">src/main/package/distributions/Default/src/usr/share/unicore/uftpd/lib</span></code>
 directory. A version compiled on a recent Linux is already provided.
 If the existing version needs to be rebuilt for some reason,
-the Makefile and C code is provided in <code class="docutils literal notranslate"><span class="pre">`src/main/native`</span></code> folder.
-To use the Makefile, it is required to run <code class="docutils literal notranslate"><span class="pre">`mvn</span> <span class="pre">install`</span></code> first.
+the Makefile and C code is provided in <code class="docutils literal notranslate"><span class="pre">src/main/native</span></code> folder.
+To use the Makefile, it is required to run <code class="docutils literal notranslate"><span class="pre">mvn</span> <span class="pre">install</span></code> first.
 Then the Makefile needs to be edited and the correct paths
 need to be provided. Finally a <code class="docutils literal notranslate"><span class="pre">`make</span> <span class="pre">install`</span></code> will build the new
 version of the native lib. It should be placed into the directory
@@ -311,19 +312,19 @@ above and committed to SVN.</p>
 in tgz, deb and rpm formats</p>
 <section id="tgz">
 <h3>tgz<a class="headerlink" href="#tgz" title="Permalink to this headline"></a></h3>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mvn package -DskipTests -Ppackman -Dpackage.type<span class="o">=</span>bin.tar.gz
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mvn</span> <span class="n">package</span> <span class="o">-</span><span class="n">DskipTests</span> <span class="o">-</span><span class="n">Ppackman</span> <span class="o">-</span><span class="n">Dpackage</span><span class="o">.</span><span class="n">type</span><span class="o">=</span><span class="nb">bin</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
 </pre></div>
 </div>
 </section>
 <section id="deb">
 <h3>deb<a class="headerlink" href="#deb" title="Permalink to this headline"></a></h3>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mvn package -DskipTests -Ppackman -Dpackage.type<span class="o">=</span>deb -Ddistribution<span class="o">=</span>Debian
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mvn</span> <span class="n">package</span> <span class="o">-</span><span class="n">DskipTests</span> <span class="o">-</span><span class="n">Ppackman</span> <span class="o">-</span><span class="n">Dpackage</span><span class="o">.</span><span class="n">type</span><span class="o">=</span><span class="n">deb</span> <span class="o">-</span><span class="n">Ddistribution</span><span class="o">=</span><span class="n">Debian</span>
 </pre></div>
 </div>
 </section>
 <section id="rpm">
 <h3>rpm<a class="headerlink" href="#rpm" title="Permalink to this headline"></a></h3>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mvn package -DskipTests -Ppackman -Dpackage.type<span class="o">=</span>rpm -Ddistribution<span class="o">=</span>RedHat
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mvn</span> <span class="n">package</span> <span class="o">-</span><span class="n">DskipTests</span> <span class="o">-</span><span class="n">Ppackman</span> <span class="o">-</span><span class="n">Dpackage</span><span class="o">.</span><span class="n">type</span><span class="o">=</span><span class="n">rpm</span> <span class="o">-</span><span class="n">Ddistribution</span><span class="o">=</span><span class="n">RedHat</span>
 </pre></div>
 </div>
 </section>
@@ -334,7 +335,7 @@ in tgz, deb and rpm formats</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="uftpd-main.html" class="btn btn-neutral float-left" title="UFTPD server" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="uftpd.html" class="btn btn-neutral float-left" title="UFTPD server" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="uftpd-manual.html" class="btn btn-neutral float-right" title="UFTPD User Manual" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

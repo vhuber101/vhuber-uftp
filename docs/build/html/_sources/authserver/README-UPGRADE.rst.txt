@@ -11,22 +11,17 @@ In the following, LIB refers to the directory containing the jar files for the c
 It is assumed that you have unpacked the tar.gz file somewhere, 
 e.g. to `/tmp/`
 
-In the following, this location will be denoted as "`$NEW`":
-
-.. code:bash
+In the following, this location will be denoted as "`$NEW`"::
 
 	export NEW=/tmp/unicore-authserver-2.5.0
 
+#. Stop the server. If not yet done, make a backup of the config files.
 
- - Stop the server. If not yet done, make a backup of the config files.
-
- - Update the jar files:
- 
-   .. code:bash
+#. Update the jar files::
 
    	rm -rf LIB/*
    	cp $NEW/lib/*.jar LIB
 
- - Start the server.
+#. Start the server.
 
- - Check the logs for any **ERROR** or **WARN** messages and if necessary correct them.
+#. Check the logs for any **ERROR** or **WARN** messages and if necessary correct them.

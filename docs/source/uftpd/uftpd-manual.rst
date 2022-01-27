@@ -5,7 +5,7 @@ UFTPD User Manual
 
 UNICORE Team <unicore-support@lists.sourceforge.net>
 
-:Version: 1.0.0
+:version: 2.12.0
 
 This is the UFTPD user manual providing information on running and 
 using the UNICORE UFTP server 'uftpd'. Please note also the 
@@ -34,7 +34,7 @@ It can be also integrated into UNICORE, allowing to transfer data from
 client to server (and vice versa), as well as providing data staging
 and third-party transfer between UFTP-enabled UNICORE sites.
 
-A full UFTP server installation consists of two parts
+A full UFTP server installation consists of two parts:
 
  - the "uftpd" file server
 
@@ -73,7 +73,7 @@ UFTP features
 
  - standalone (non-UNICORE) client available
 
- - data upload/download with `curl` or `ftp` possible in conjunction with
+ - data upload/download with ``curl`` or ``ftp`` possible in conjunction with
    the auth server
  
  - written in Java
@@ -151,7 +151,6 @@ A functional UFTP installation requires either a full UNICORE/X server or the
 
 
 .. note:: 
-
 	The UNICORE UFTPD server is distributed either as a platform independent and portable tar.gz or zip bundle, or as an installable, platform dependent package such as RPM.
 	Depending on the installation package, the paths to various files are different. 
 
@@ -208,7 +207,6 @@ In the SBIN directory, start/stop and status scripts are provided:
  - ``unicore-uftpd-stop.sh`` stops the server
  - ``unicore-uftpd-status.sh`` checks the server status
  
-
 The parameters such as server host/port, control host/port, and others are
 configured in the `CONF/uftpd.conf` file
 
@@ -257,10 +255,10 @@ The following variables can be defined in the configuration file (`uftpd.conf`):
 As usual if you set the SERVER_HOST to be `0.0.0.0`, the server will bind to all the available 
 network interfaces.
 
-If possible, use an "internal" interface for the Command socket. If that
+|:point_right:| If possible, use an "internal" interface for the Command socket. If that
 is not possible, make sure the Command socket is protected by a firewall!
 
-We **STRONGLY recommend** enabling SSL for the Command socket. Please refer to the 
+|:point_right:| We **STRONGLY recommend** enabling SSL for the Command socket. Please refer to the 
 next section.
 
 
@@ -285,20 +283,15 @@ To setup SSL, you need a keystore containing the UFTPD server's
 credential, and a truststore containing certificate authorities that
 should be trusted.  Keystore and truststore can be the same file.
 
-
 The following properties can be set in the `CONF/uftpd-ssl.conf` file.
-
 
 .. literalinclude:: uftpd-ssl.conf
 
-
 If the `credential.path` property is NOT set, SSL will be **disabled**.
-
 
 .. note:: **Backwards compatibility to previous versions**
 
 	Existing configuration files with the ``javax.net.ssl.*`` properties used in UFTPD < 2.6 are still supported.
-
 
 
 ACL setup
@@ -308,8 +301,7 @@ The access control list contains the distinguished names of those certificates t
 should be allowed access.
 
 The `ACL` setting in `CONF/uftpd.conf` is used to specify the location of the ACL file
-
-.. code:: bash
+::
 
 	export ACL=conf/uftpd.acl
 
@@ -319,9 +311,7 @@ your UNICORE/X server(s) and UFTP Authentication server(s).
 
 The ACL entries are expected in **RFC2253** format. To get the name 
 from a certificate in the correct format using openssl, you can use the 
-following OpenSSL command:
-
-.. code:: bash
+following OpenSSL command::
 
 	openssl x509 -in your_server.pem -noout -subject -nameopt RFC2253
 
@@ -332,13 +322,10 @@ Firewall configuration
 ~~~~~~~~~~~~~~~~~~~~~~
 
 .. note::
-
 	Please consult the firewall documentation on how to enable an "FTP" service on your firewall (or operating system).
 
 
-With Linux iptables, you may use rules similar to the following:
-
-.. code:: bash
+With Linux iptables, you may use rules similar to the following::
 
 	iptables -A INPUT -p tcp -m tcp --dport $SERVER_PORT -j ACCEPT
 	iptables -A INPUT -p tcp -m helper --helper ftp-$SERVER_PORT -j ACCEPT
@@ -349,9 +336,7 @@ activates the iptables connection tracking FTP module on port
 $SERVER_PORT.
 
 On some operating systems it may be required to load additional kernel modules to
-enable connection tracking, for example on CentOS:
-
-.. code:: bash
+enable connection tracking, for example on CentOS::
 
 	modprobe nf_conntrack_ipv4
 	modprobe nf_conntrack_ftp ports=$SERVER_PORT
@@ -367,9 +352,7 @@ Logging is configured in the `CONF/logging.properties` file.
 	You can change the logging configuration at runtime by editing the ``logging.properties`` file.
 	The new configuration will take effect a few seconds after the file has been modified.
 
-
 By default, log files are written to the the `LOG` directory. 
-
 
 For more info on controlling the logging we refer to the log4j documentation:
   
@@ -397,8 +380,7 @@ The logging output produced can be controlled in a fine-grained
 manner.  Log levels in Log4j are (in increasing level of severity)
 TRACE, DEBUG, INFO, WARN, ERROR, amd FATAL.
 
-For example, to track the UFTPD server's communication with clients in
-detail, you can set
+For example, to track the UFTPD server's communication with clients in detail, you can set
 ::
 
 	log4j.logger.uftp.server=DEBUG
@@ -419,7 +401,6 @@ Here is a table of logger categories
 
 
 .. note::
-
 	Please take care **to not set** the global level to ``TRACE`` or ``DEBUG`` for long times, as this may produce a lot of output.
 
 
@@ -428,8 +409,7 @@ Usage logging
 
 Often it is desirable to keep track of the usage of your UFTPD server.
 The server has a special logger category which logs information about finished 
-jobs at INFO level. If you wish to enable this, set the level to INFO or higher:
-::
+jobs at INFO level. If you wish to enable this, set the level to INFO or higher::
 
 	log4j.logger.uftp.server.USAGE=INFO
 
@@ -455,8 +435,7 @@ socket). If the `coreServices.uftp.server.host` property is set, UFTP
 will be enabled and advertised to clients.
 
 In the `uas.config` file, the following properties are mandatory for
-UFTP:
-::
+UFTP::
 
 	#
 	# REQUIRED parameters
@@ -477,8 +456,7 @@ UFTP:
 	coreServices.uftp.client.executable=...
 
 
-There are further configuration options to tune how UFTP behaves:
-::
+There are further configuration options to tune how UFTP behaves::
 
 	#
 	# Optional parameters
@@ -495,8 +473,7 @@ UFTPD servers with multiple interfaces
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 If your UFTPD server is on a machine with multiple network interfaces, you can
-give a comma-separated list of host names, like so:
-::
+give a comma-separated list of host names, like so::
 
 	coreServices.uftp.server.host=net1.domain.org,net2.domain.org
 
@@ -508,17 +485,14 @@ Enabling data encryption
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
 If you wish to encrypt the data sent/received by UFTPD (in data
-staging or server-to-server transfers), the following property can be
-used:
-::
+staging or server-to-server transfers), the following property can be used::
 
 	# enable data encryption
 	coreServices.uftp.encryption=true
 
 This will by default encrypt data with a symmetric key using the
 Blowfish algorithm. This costs some performance due to the additional
-CPU load. Encryption only works in single-stream mode.  Users can
-override this setting.
+CPU load. Encryption only works in single-stream mode.  Users can override this setting.
 
 
 Limiting bandwidth per transfer
@@ -577,9 +551,7 @@ Note, in case you installed from an RPM or DEB package, these files are located 
 
 The following shell commands "transfer" the file `.bashrc` to the /tmp directory.
 
-Assuming you installed from RPM/DEB:
-
-.. code:: bash
+Assuming you installed from RPM/DEB::
 
 	. /etc/unicore/uftpd/uftpd.conf
 	uftp-job.sh -c localhost -f ~/.bashrc -s true -x my_secret -n 2 -u unicore -g unicore
@@ -589,8 +561,7 @@ This should create a file `/tmp/test` identical to `~/.bashrc`. Check the consol
 the UFTPD log file `LOG/uftpd.log` in case of errors.
 
 After the transfer finished, check that indeed 
-
-.. code:: bash
+::
 
 	md5sum /tmp/test ~/.bashrc
 

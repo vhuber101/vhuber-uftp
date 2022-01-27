@@ -6,7 +6,7 @@ UFTP Client User Manual
 
 UNICORE Team <unicore-support@lists.sourceforge.net>
 
-:Version: 1.0.0
+:version: 1.4.3
 
 This is a commandline client for UFTP. It allows to 
 
@@ -44,53 +44,41 @@ Prerequisites
 Installation
 ------------
 
-If using the zip or tar archive, unpack it in a location of your
-choice. Add the `bin` directory to your path. (Alternatively, you can
-link or copy the `bin/uft` script to a directory that is already on
-your path, in this case edit the script and setup the required
-directories.)
+If using the zip or tar archive, unpack it in a location of your choice. Add the ``bin`` directory to your path. (Alternatively, you can
+link or copy the ``bin/uft`` script to a directory that is already on
+your path, in this case edit the script and setup the required directories.)
 
-If you use the rpm or deb package, install it using the package
-manager of your Linux distribution.
+If you use the rpm or deb package, install it using the package manager of your Linux distribution.
 
 Basic Usage
 -----------
 
 In this manual, we use the following format to indicate commands
-that you can type on the command line:
-
-.. code:: bash
+that you can type on the command line::
 
 	$> some_command
 
 and assume that the bin directory of the UFTP client is on your path.
 
 Invoking uftp without any arguments,
-
-.. code:: bash
+::
 
 	$> uftp
 
 will list the available commands.
 
 .. .note::
-
-	On Windows, the script is called `uftp.bat`
-
-
+	On Windows, the script is called ``uftp.bat``
 
 Invoking 
-
-.. code:: bash
+::
 
 	$> uftp <command> -h
 
 will show help for a particular command
 
-
 Invoking 
-
-.. code:: bash
+::
 
 	$> uftp -version
 
@@ -100,7 +88,7 @@ will show version information.
 Authentication
 --------------
 
-By default, the 'uftp' client will use the current username (`$USER`)
+By default, the 'uftp' client will use the current username (``$USER``)
 with SSH key authentication to authenticate to the Auth server.
 
 You can set a different default username via the `UFTP_USER` environment
@@ -115,14 +103,13 @@ on the server you want to access, you can choose from
 
  * user name with password
  
- * oidc-agent (see https://github.com/indigo-dc/oidc-agent )
+ * oidc-agent (see https://github.com/indigo-dc/oidc-agent)
 
  * manual specification of the HTTP Authorization header value
 
 
-To explicitely specify the remote username, use the "`-u <username>`" option, e.g.
-
-.. code:: bash
+To explicitely specify the remote username, use the ``-u <username>`` option, e.g.
+::
 
 	$> uftp ls -u username https://localhost:9000/rest/auth/TEST:/home/demo/
 
@@ -130,54 +117,48 @@ To explicitely specify the remote username, use the "`-u <username>`" option, e.
 The credentials can be given in multiple ways.
 
 * On the command line ``-u username:password``
+  ::
 
-.. code:: bash
+    $> uftp ls -u username:password ...
 
-  $> uftp ls -u username:password ...
+* You can tell the uftp client to query the password interactively by giving the ``-P`` option, e.g.
+  ::
 
-* You can tell the uftp client to query the password interactively by giving the "`-P`" option, e.g.
+	 $> uftp ls -u username -P ...
 
-.. code:: bash
-
-	$> uftp ls -u username -P ...
-
-* If no password is given, the client will attempt to use an SSH key for
-  authentication, this has to be configured on the authentication server 
-  accordingly. If you have multiple keys, use the "`-i`" option to select one.
-  Otherwise, the client will check `~/.uftp/` and `~/.ssh/` for useable keys.
+* If no password is given, the client will attempt to use an SSH key for authentication, this has to be configured on the authentication server 
+  accordingly. If you have multiple keys, use the ``-i`` option to select one.
+  Otherwise, the client will check ``~/.uftp/`` and ``~/.ssh/`` for useable keys.
   The SSH agent is supported, too.
 
-* The very useful `oidc-agent` tool is also directly supported via `-O <account_name>`.
+* The very useful ``oidc-agent`` tool is also directly supported via ``-O <account_name>``.
   In this case no username is required.
+  ::
 
-.. code:: bash
-
-  $> uftp ls -O hbp ...
+    $> uftp ls -O hbp ...
 
 * Last not least you can directly specify a value for the HTTP `Authorization` header with
-  the "`-A`" option. This allows to use an OIDC bearer token for authorization, e.g.
+  the ``-A`` option. This allows to use an OIDC bearer token for authorization, e.g.
   `-A "Bearer <oidc_token>"`. In this case no username is required.
-
-.. code:: bash
-
-  $> uftp ls -A "Bearer <oidc_token>" ...
+  ::
+  
+    $> uftp ls -A "Bearer <oidc_token>" ...
 
 
 Usage
 -----
 
 In the following usage examples, the authentication service is located
-at `localhost:9000/rest/auth/` and the user name is 'username'.
+at `localhost:9000/rest/auth/` and the user name is `username`.
 Replace these values by the correct ones for your installation.
 
 
 Listing a directory: the `ls` command
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. code:: bash
+::
 
 	$> uftp ls https://localhost:9000/rest/auth/TEST:/home/demo/
-
 
 will list the `/home/demo` directory.
 
@@ -185,8 +166,8 @@ will list the `/home/demo` directory.
 Copying data: the `cp` command
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The `cp` command is used to copy local data to a remote server or vice
-versa. Remote locations are indicated by the `https://` prefix, and you
+The ``cp`` command is used to copy local data to a remote server or vice
+versa. Remote locations are indicated by the ``https://`` prefix, and you
 need your user name, and the URL of the authentication server.
 
 It has a number of features, which will be shown in the following.
@@ -195,17 +176,15 @@ It has a number of features, which will be shown in the following.
 Basic usage
 +++++++++++
 
-Downloading a single file:
+Downloading a single file
+::
 
-.. code:: bash
-
-		$> uftp cp https://localhost:9000/rest/auth/TEST:/home/demo/test.data .
+	$> uftp cp https://localhost:9000/rest/auth/TEST:/home/demo/test.data .
 
 will download the `/home/demo/test.data` file to the current directory
 
-Download files using wildcards:
-
-.. code:: bash
+Download files using wildcards
+::
 
  $> uftp cp https://localhost:9000/rest/auth/TEST:/home/demo/data/* .
 
@@ -214,24 +193,22 @@ current directory
 
 Similar commands work for upload.
 
-Uploading files using wildcards:
-
-.. code:: bash
+Uploading files using wildcards::
 
  $> uftp cp "/data/*" https://localhost:9000/rest/auth/TEST:/home/demo/data/ .
 
-Note that wildcards should be escaped to avoid the shell doing the
-expansion, which will also work, but generally be slower.
+.. note:
 
+ The wildcards should be escaped to avoid the shell doing the expansion, which will also work, but generally be slower.
 
-The recurse flag, '`-r`', tells uftp to also copy subdirectories.
+The recurse flag, ``-r``, tells uftp to also copy subdirectories.
 
 
 Piping data
 +++++++++++
 
-The `cp` command can read/write from the console streams, which is
-great for integrating uftp into Unix pipes. The "`-`" is used as a
+The ``cp`` command can read/write from the console streams, which is
+great for integrating uftp into Unix pipes. The ``-`` is used as a
 special "file name" to indicate that data should be read/written using
 the console.
 
@@ -239,26 +216,19 @@ the console.
 Transferring with tar and zip
 +++++++++++++++++++++++++++++
 
-For example to tar the contents of a directory and upload the tar file
-using uftp:
-
-.. code:: bash
+For example to tar the contents of a directory and upload the tar file using uftp::
 
 	$> tar cz dir/* | uftp cp - https://localhost:9000/rest/auth/TEST:/archive.tgz 
 
-
 The UFTPD server can also unpack tar and zip streams, this is very
 useful to efficiently transfer many small files. To enable this, add
-the "`-a`" option, and DO NOT compress the tar stream.
-
-.. code:: bash
+the ``-a`` option, and DO NOT compress the tar stream.
+::
 
 	$> tar c dir/* | uftp cp -a - https://localhost:9000/rest/auth/TEST:/target_location/
 
-
-or, using zip
-
-.. code:: bash
+or, using ``zip``
+::
 
 	$> zip -r - dir/* | uftp cp -a - https://localhost:9000/rest/auth/TEST:/target_location/
 
@@ -266,16 +236,12 @@ or, using zip
 tar, depending on network bandwith and processing speed.
 
 
-Similarly, "`-`" can be used to write data to standard output.
-As an example, consider this:
-
-.. code:: bash
+Similarly, ``-`` can be used to write data to standard output.
+As an example, consider this::
 
 	$> uftp cp https://localhost:9000/rest/auth/TEST:/archive.tgz - | tar tz
 
-Or use uftp to cat a remote file:
-
-.. code:: bash
+Or use ``uftp`` to cat a remote file::
 
 	$> uftp cp https://localhost:9000/rest/auth/TEST:/foo.txt -
 
@@ -285,22 +251,20 @@ Using multiple FTP connections
 
 When transferring large files (or many files) over a high-performance network, performance
 can be vastly improved by using multiple FTP connections. (NOTE this is different from
-the multiple TCP streams as set via the "`-n`" option).
+the multiple TCP streams as set via the ``-n`` option).
 
-Use the "`-t`" option to set the desired number of streams. Note that the server may have
+Use the ``-t`` option to set the desired number of streams. Note that the server may have
 a limit on the allowed number of concurrent connections, if in doubt, ask your server
 administrator.
-
-.. code:: bash
+::
 
 	$> uftp cp -t 2 https://localhost:9000/rest/auth/TEST:/home/demo/* .
 
 
 Files larger than a certain size will be transferred concurrently
 using more than one stream. This threshold size is 512MB, but you can set it to a
-different value using the "`-T`" option. For example, to split files larger than 1MB
-
-.. code:: bash
+different value using the ``-T`` option. For example, to split files larger than 1MB
+::
 
 	$> uftp cp -t 2 -T 1M https://localhost:9000/rest/auth/TEST:/home/demo/* .
 
@@ -308,18 +272,16 @@ different value using the "`-T`" option. For example, to split files larger than
 Byte ranges
 +++++++++++
 
-To copy just part of a file, a byte range can be given with the "`-B`"
+To copy just part of a file, a byte range can be given with the ``-B``
 option. Counting starts at "zero". For example to download only the
 first 1024 bytes of file (i.e. the byte range 0 - 1023), you would do
-
-.. code:: bash
+::
 
 	$> uftp cp -B 0-1023 https://localhost:9000/rest/auth/TEST:/home/demo/test.data .
 
-As an additional feature, you can use the additional "`-p`" flag, which
+As an additional feature, you can use the additional ``-p`` flag, which
 will write also only the given range. For example
-
-.. code:: bash
+::
 
 	$> uftp cp -B 1024-2047-p https://localhost:9000/rest/auth/TEST:/home/demo/test.data .
 
@@ -333,12 +295,9 @@ Number of bytes to transfer
 +++++++++++++++++++++++++++
 
 A simplified version of the byte range specification is to just give
-the amount of data to transfer (implying the start of the range is at
-byte **0**)
+the amount of data to transfer (implying the start of the range is at byte **0**)
 
-This is handy for quick performance tests:
-
-.. code:: bash
+This is handy for quick performance tests::
 
 	$> uftp cp -B 10G https://localhost:9000/rest/auth/TEST:/dev/zero /dev/null
 
@@ -346,7 +305,7 @@ This is handy for quick performance tests:
 Encryption and compression
 ++++++++++++++++++++++++++
 
-The cp command supports the "`-E`" and "`-C`" options, which enable data
+The cp command supports the ``-E`` and ``-C`` options, which enable data
 encryption and compression (during transfer) respectively. 
 
 Data encryption uses a symmetric algorithm, which nonetheless
@@ -361,19 +320,17 @@ Resuming a failed transfer
 ++++++++++++++++++++++++++
 
 If a copy command was terminated prematurely, it can be resumed using
-the "`-R`" option.  If the "-R" option is present, the UFTP client will
+the ``-R`` option.  If the "-R" option is present, the UFTP client will
 check if the target file exists, and will append only the missing
 data.
 
 So if your inital copy operation
-
-.. code:: bash
+::
 
 	$> uftp cp -u username https://localhost:9000/rest/auth/TEST:/home/demo/test.data .
 
 did not finish correctly, you can resume it with
-
-.. code:: bash
+::
 
 	$> uftp cp -R https://localhost:9000/rest/auth/TEST:/home/demo/test.data .
 
@@ -381,18 +338,15 @@ did not finish correctly, you can resume it with
 Performance testing
 +++++++++++++++++++
 
-For performance testing, you can use `/dev/zero` and `/dev/null` as data source `/` sink.
-For example to transfer 10 gigabytes of zeros from the remote server:
+For performance testing, you can use ``/dev/zero`` and ``/dev/null`` as data source ``/`` sink.
 
-.. code:: bash
+For example to transfer 10 gigabytes of zeros from the remote server::
 
 	$> uftp cp -B 0-10G https://localhost:9000/rest/auth/TEST:/dev/zero /dev/null
 
 
-This can also be combined with the multi-connection option "`-t`". To use two connections
-each transferring 5 gigabytes
-
-.. code:: bash
+This can also be combined with the multi-connection option ``-t``. To use two connections each transferring 5 gigabytes
+::
 
 	$> uftp cp -B 0-10G -t 2 https://localhost:9000/rest/auth/TEST:/dev/zero /dev/null
 
@@ -400,16 +354,14 @@ each transferring 5 gigabytes
 Computing checksums for remote files
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-To compute a checksum for a remote file, use the checksum command:
-
-.. code:: bash
+To compute a checksum for a remote file, use the ``checksum`` command:
+::
 
 	$> uftp checksum https://localhost:9000/rest/auth/TEST:/data/*.dat
 
 A number of different hashing algorithms are available, which can be selected
-using the "`-a`" option (MD5, SHA-1, SHA-256, SHA-256). For example
-
-.. code:: bash
+using the ``-a``` option (MD5, SHA-1, SHA-256, SHA-256). For example
+::
 
 	$> uftp checksum -a SHA-256 https://localhost:9000/rest/auth/TEST:/data/*.dat
 
@@ -417,22 +369,17 @@ using the "`-a`" option (MD5, SHA-1, SHA-256, SHA-256). For example
 Synchronizing a file: the "sync" command
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Currently, sync only supports single files, i.e. no directories or wildcards!
+Currently, ``sync`` only supports single files, i.e. no directories or wildcards!
 The syntax is
-
-.. code:: bash
+::
 
 	$> uftp sync <master> <slave>
 
-For example, to synchronize a local file with a remote "master" file:
-
-.. code:: bash
+For example, to synchronize a local file with a remote "master" file::
 
 	$> uftp sync https://localhost:9000/rest/auth/TEST:/master.file local.file
 
-To synchronize a remote file with a local "master" file:
-
-.. code:: bash
+To synchronize a remote file with a local "master" file::
 
 	$> uftp sync master.file https://localhost:9000/rest/auth/TEST:/remote.file
 
@@ -451,7 +398,7 @@ Data sharing works as follows:
 
 By default, files will be shared for *anonymous* access. This will
 allow anyone who knows the sharing link to access the file using
-normal HTTP tools like `wget` or `curl`.
+normal HTTP tools like ``wget`` or ``curl``.
 
 Shares can also be limited to certain users.
 
@@ -467,10 +414,9 @@ Shares can be deleted by their owner, i.e. the user who created them.
 Server URL
 ++++++++++
 
-If not given via the `--server` argument, the URL of the Auth server will be taken from
-the environment variable `UFTP_SHARE_URL`
-
-.. code:: bash
+If not given via the ``--server`` argument, the URL of the Auth server will be taken from
+the environment variable ``UFTP_SHARE_URL``
+::
 
 	$> export UFTP_SHARE_URL=https://localhost:9000/rest/share/TEST
 	$> uftp share --list
@@ -479,7 +425,7 @@ the environment variable `UFTP_SHARE_URL`
 Listing shares
 ++++++++++++++
 
-.. code:: bash
+::
 
 	$> uftp share --list --server https://localhost:9000/rest/share/TEST
 
@@ -494,16 +440,14 @@ A share consists of a server-side path, (optional) write permissions
 and (optional) target user.
 
 To share a file,
-
-.. code:: bash
+::
 
 	$> uftp share  \
 		--server https://localhost:9000/rest/share/TEST  \
 		/data/public/somefile.pdf
 
-If you use a relative path, `uftp` will make it absolute.
-
-.. code:: bash
+If you use a relative path, ``uftp`` will make it absolute.
+::
 
 	$> pwd
 	/data/public/
@@ -520,8 +464,7 @@ You can use the following options to modify the defaults:
 
 
 For example to share "/data/public/somefile.pdf" with the user "CN=User"
-
-.. code:: bash
+::
 
 	$> uftp share  \
 		--server https://localhost:9000/rest/share/TEST  \
@@ -532,10 +475,8 @@ For example to share "/data/public/somefile.pdf" with the user "CN=User"
 Deleting shares
 +++++++++++++++
 
-To delete you need the path and the target user, which you can get via the
-`uftp share --list` command.
-
-.. code:: bash
+To delete you need the path and the target user, which you can get via the ``uftp share --list`` command.
+::
 
 	$> uftp share  \
 		--delete  \
@@ -548,16 +489,14 @@ Anonymous (http) access
 +++++++++++++++++++++++
 
 For anonymous access via HTTP you need to use the correct URL. If you create (or list) shares,
-the 'uftp' client will show the required links. You can download the file e.g. using `wget`.
+the 'uftp' client will show the required links. You can download the file e.g. using ``wget``.
 
 
 Downloading/uploading using the UFTP protocol
 +++++++++++++++++++++++++++++++++++++++++++++
 
-To download a file that is shared with you, use the `get-share`
-command and the correct URL
-
-.. code:: bash
+To download a file that is shared with you, use the ``get-share`` command and the correct URL
+::
 
 	$> uftp get-share https://localhost:9000/rest/share/TEST/auth:/data/public/somefile.pdf
 
@@ -565,14 +504,13 @@ Currently this command does not support wildcards.
 
 
 To upload a file to a location (file or directory) that has been
-shared with you, use the `put-share` command
-
-.. code:: bash
+shared with you, use the ``put-share`` command
+::
 
 	$> uftp put-share data/*.pdf https://localhost:9000/rest/share/TEST/auth:/data/public/
 
 
-Using a proxy server (*EXPERIMENTAL*)
+Using a proxy server (EXPERIMENTAL)
 -------------------------------------
 
 The uftp client has support for some types of FTP and HTTPs proxies. 
@@ -581,15 +519,13 @@ This is configured via enviroment settings. I.e. in your shell you can define
 
 
 FTP proxy
-
-.. code:: bash
+::
 
 	export UFTP_PROXY=proxy.yourorg.edu
 	export UFTP_PROXY_PORT=21
 
 HTTP proxy
-
-.. code:: bash
+::
 
 	export UFTP_HTTP_PROXY=proxy.yourorg.edu
 	export UFTP_HTTP_PROXY_PORT=80
@@ -606,18 +542,18 @@ email.
 Troubleshooting
 ---------------
 
-* **How can I get more detailed logging?**
+|:man_shrugging:| **How can I get more detailed logging?** 
 
-	In the client\'s `conf` directory you\'ll find a `logging.properties` file that allows you to increase the log levels.
+	|:point_right:| In the client\'s `conf` directory you\'ll find a `logging.properties` file that allows you to increase the log levels.
 
-* **I get "Invalid server response 500" and "Exception.... Authentication failure"**
+|:man_shrugging:| **I get "Invalid server response 500" and "Exception.... Authentication failure"**
 
-	Probably you gave a wrong username or password. Contact your site administrator if in doubt! If using a password, make sure you give the "`-P`" flag.
+	|:point_right:| Probably you gave a wrong username or password. Contact your site administrator if in doubt! If using a password, make sure you give the "`-P`" flag.
 
 
-* **I get "Invalid server response 405 Unable to connect to server for listing"**
+|:man_shrugging:| **I get "Invalid server response 405 Unable to connect to server for listing"**
 
-	Check the remote URL that you use. Maybe you have a typo in the `/rest/auth/<servername>` part.
+	|:point_right:| Check the remote URL that you use. Maybe you have a typo in the `/rest/auth/<servername>` part.
 
 
 Getting support

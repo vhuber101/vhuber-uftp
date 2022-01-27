@@ -7,6 +7,7 @@
   <title>PyUFTPD User Manual &mdash; UNICORE UFTP</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -19,7 +20,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Changelog" href="CHANGES.html" />
-    <link rel="prev" title="PyUFTPD" href="pyuftpd-main.html" /> 
+    <link rel="prev" title="PyUFTPD" href="pyuftpd.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -31,7 +32,7 @@
             <img src="../_static/logo-unicore.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                1.0.0
+                2.x
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -43,7 +44,7 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">UFTP Documentation</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../uftpd/uftpd-main.html">UFTPD server</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="../uftpd/uftpd.html">UFTPD server</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../uftpd/README-building.html">Building</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../uftpd/README-building.html#updating-the-native-library">Updating the native library</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../uftpd/README-building.html#creating-distribution-packages">Creating distribution packages</a><ul>
@@ -115,7 +116,7 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1 current"><a class="reference internal" href="pyuftpd-main.html">PyUFTPD</a><ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="pyuftpd.html">PyUFTPD</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="#">PyUFTPD User Manual</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#unicore-uftp">UNICORE UFTP</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#uftp-features">UFTP features</a></li>
@@ -148,7 +149,7 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../authserver/authserver-main.html">Auth Server</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="../authserver/authserver.html">Auth Server</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../authserver/README-UPGRADE.html">Update procedure</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../authserver/README-building.html">Building packages</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../authserver/README-building.html#creating-distribution-packages">Creating distribution packages</a><ul>
@@ -201,7 +202,7 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../uftp-client/uftp-client-main.html">UFTP standalone client</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="../uftp-client/uftp-client.html">UFTP standalone client</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../uftp-client/README-building.html">Building packages for the ‘uftp’ client</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../uftp-client/README-building.html#creating-distribution-packages">Creating distribution packages</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../uftp-client/README-building.html#tgz">tgz</a></li>
@@ -224,7 +225,7 @@
 <li class="toctree-l4"><a class="reference internal" href="../uftp-client/uftp-client-manual.html#data-sharing">Data sharing</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../uftp-client/uftp-client-manual.html#using-a-proxy-server-experimental">Using a proxy server (<em>EXPERIMENTAL</em>)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../uftp-client/uftp-client-manual.html#using-a-proxy-server-experimental">Using a proxy server (EXPERIMENTAL)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../uftp-client/uftp-client-manual.html#troubleshooting">Troubleshooting</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../uftp-client/uftp-client-manual.html#getting-support">Getting support</a></li>
 </ul>
@@ -254,10 +255,10 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../datashare/datashare-main.html">Datashare</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../datashare/datashare.html">Datashare</a></li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../LICENSE.html">License</a></li>
 </ul>
 
         </div>
@@ -274,7 +275,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="pyuftpd-main.html">PyUFTPD</a> &raquo;</li>
+          <li><a href="pyuftpd.html">PyUFTPD</a> &raquo;</li>
       <li>PyUFTPD User Manual</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/pyuftpd/pyuftpd-manual.rst.txt" rel="nofollow"> View page source</a>
@@ -289,8 +290,8 @@
 <span id="pyuftpd-manual"></span><h1>PyUFTPD User Manual<a class="headerlink" href="#pyuftpd-user-manual" title="Permalink to this headline"></a></h1>
 <p>UNICORE Team &lt;<a class="reference external" href="mailto:unicore-support&#37;&#52;&#48;lists&#46;sourceforge&#46;net">unicore-support<span>&#64;</span>lists<span>&#46;</span>sourceforge<span>&#46;</span>net</a>&gt;</p>
 <dl class="field-list simple">
-<dt class="field-odd">Version</dt>
-<dd class="field-odd"><p>1.0.0</p>
+<dt class="field-odd">version</dt>
+<dd class="field-odd"><p>3.1.2</p>
 </dd>
 </dl>
 <p>This is the UFTPD user manual providing information on running and
@@ -311,7 +312,7 @@ compliance.</p>
 <p>It can be also integrated into UNICORE, allowing to transfer data from
 client to server (and vice versa), as well as providing data staging
 and third-party transfer between UFTP-enabled UNICORE sites.</p>
-<p>A full UFTP server installation consists of two parts</p>
+<p>A full UFTP server installation consists of two parts:</p>
 <blockquote>
 <div><ul class="simple">
 <li><p>the “uftpd” file server</p></li>
@@ -328,7 +329,7 @@ written in Python.</p>
 <li><p>dynamic firewall port opening using passive FTP. UFTPD requires only
 a single open port</p></li>
 <li><p>standalone command line client available</p></li>
-<li><p>supports third-party FTP clients such as ‘curl’ or ‘ftp’,
+<li><p>supports third-party FTP clients such as <code class="docutils literal notranslate"><span class="pre">curl</span></code> or <code class="docutils literal notranslate"><span class="pre">ftp</span></code>,
 after getting a one-time password via the Auth server (RESTful API)
 or a UNICORE/X storage endpoint</p></li>
 <li><p>integrated into UNICORE clients for fast file upload and download</p></li>
@@ -409,16 +410,16 @@ Make sure to read and understand the section below on protecting the command soc
 <li><p>the server’s “listen” port needs to be accessible through your firewalls,
 declaring it an “FTP” port (FTP connection tracking). Alternatively a fixed
 range of open ports can be configured and used</p></li>
-<li><p>the server's command port needs to be accessible from the Auth server(s)</p></li>
+<li><p>the server’s command port needs to be accessible from the Auth server(s)</p></li>
 <li><p>the UFTPD server needs access to the target file systems</p></li>
-<li><p>a server certificate for the UFTPD server is a MUST for production use
+<li><p>a server certificate for the UFTPD server is a <strong>MUST</strong> for production use
 in a multi-user environment (see the section on SSL below)</p></li>
 </ul>
 </div></blockquote>
 <p>A functional UFTP installation requires either an Auth server or a full UNICORE/X server.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>NOTE ON PATHS</p>
+<p><strong>NOTE ON PATHS</strong></p>
 <p>The UNICORE UFTPD server is distributed either as a platform independent and portable tar.gz or zip bundle, or as an installable, platform dependent package such as RPM.</p>
 <p>Depending on the installation package, the paths to various files are different.</p>
 </div>
@@ -439,21 +440,21 @@ under a single directory. Path prefixes are as follows, where <cite>INST</cite> 
 <p>These variables (<cite>CONF</cite>, <cite>BIN</cite> and <cite>LOG</cite>) are used throughout the rest of this manual.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Note that after installation UFTPD is NOT automatically enabled as a systemd service, since you will need to edit the configuration and provide a server certificate.</p>
+<p>Note that after installation UFTPD is <strong>NOT</strong> automatically enabled as a systemd service, since you will need to edit the configuration and provide a server certificate.</p>
 </div>
 </section>
 <section id="starting-and-stopping-the-uftpd-server">
 <h3>Starting and stopping the UFTPD server<a class="headerlink" href="#starting-and-stopping-the-uftpd-server" title="Permalink to this headline"></a></h3>
 <p>If using the Linux packages, uftpd is integrated as a service via systemd, and
-you can stop/start it via <cite>systemctl</cite>. Also, logging is (by default) done via
-systemd, and you can look at the logs via <cite>journalctl</cite></p>
+you can stop/start it via <code class="docutils literal notranslate"><span class="pre">systemctl</span></code>. Also, logging is (by default) done via
+systemd, and you can look at the logs via <code class="docutils literal notranslate"><span class="pre">journalctl</span></code></p>
 <p>To do things manually, you can use the start/stop and status scripts that are
 provided in the BIN directory.</p>
 <blockquote>
 <div><ul class="simple">
-<li><p><cite>unicore-uftpd-start.sh</cite> starts the server</p></li>
-<li><p><cite>unicore-uftpd-stop.sh</cite> stops the server</p></li>
-<li><p><cite>unicore-uftpd-status.sh</cite> checks the server status</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">unicore-uftpd-start.sh</span></code> starts the server</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">unicore-uftpd-stop.sh</span></code> stops the server</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">unicore-uftpd-status.sh</span></code> checks the server status</p></li>
 </ul>
 </div></blockquote>
 <p>The parameters such as server host/port, control host/port, and others are
@@ -462,14 +463,14 @@ configured in the <cite>CONF/uftpd.conf</cite> file</p>
 needs to be started as root. This is necessary to be able to
 access files as the correct user/group and set correct file permissions.</p>
 <p>To enable UFTPD as a systemd service (after configuring and adding a server
-certificate), you can use <cite>systemctl</cite> :</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo systemctl add-wants multi-user.target unicore-uftpd
+certificate), you can use <code class="docutils literal notranslate"><span class="pre">systemctl</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">systemctl</span> <span class="n">add</span><span class="o">-</span><span class="n">wants</span> <span class="n">multi</span><span class="o">-</span><span class="n">user</span><span class="o">.</span><span class="n">target</span> <span class="n">unicore</span><span class="o">-</span><span class="n">uftpd</span>
 </pre></div>
 </div>
 </section>
 <section id="configuration-parameters">
 <h3>Configuration parameters<a class="headerlink" href="#configuration-parameters" title="Permalink to this headline"></a></h3>
-<p>The following variables can be defined in the configuration file (<cite>uftpd.conf</cite>):</p>
+<p>The following variables can be defined in the configuration file (<code class="docutils literal notranslate"><span class="pre">uftpd.conf</span></code>):</p>
 <dl class="field-list simple">
 <dt class="field-odd">CMD_HOST</dt>
 <dd class="field-odd"><p>the interface where the server listens for control commands</p>
@@ -483,43 +484,45 @@ certificate), you can use <cite>systemctl</cite> :</p>
 <dt class="field-even">SERVER_PORT</dt>
 <dd class="field-even"><p>the port where the server listens for client data connections</p>
 </dd>
+<dt class="field-odd">ADVERTISE_HOST</dt>
+<dd class="field-odd"><p>(optional) (<em>Only used in the PASV implementation</em>) Advertise this server as having the following IPv4 address in the control connection. This is useful if the server is behind a NAT firewall and the public address is different from the address(es) the server has bound to</p>
+</dd>
+<dt class="field-even">SSL_CONF</dt>
+<dd class="field-even"><p>File containing SSL settings for the command port</p>
+</dd>
+<dt class="field-odd">ACL</dt>
+<dd class="field-odd"><p>File containing the list of server DNs that are allowed access to the command port</p>
+</dd>
+<dt class="field-even">MAX_CONNECTIONS</dt>
+<dd class="field-even"><p>the maximum number of concurrent control connections per user (default: <cite>16</cite>)</p>
+</dd>
+<dt class="field-odd">MAX_STREAMS</dt>
+<dd class="field-odd"><p>the maximum number of parallel TCP streams per FTP session (default: <cite>4</cite>)</p>
+</dd>
+<dt class="field-even">PORT_RANGE</dt>
+<dd class="field-even"><p>(optional) server-side port range in the form 'lower:upper' that will be used to accept data connections. By default, any free ports will be used. <em>Example</em>: set to '50000:50050' to limit the port range</p>
+</dd>
+<dt class="field-odd">DISABLE_IP_CHECK</dt>
+<dd class="field-odd"><p>(optional) in some situations, the client IP can be different from the one that was sent to the UFTPD server by the Auth server. This will lead to rejected transfers. Setting this variable to <cite>true</cite> will disable the IP check. Only the one-time password will be checked.</p>
+</dd>
+<dt class="field-even">UFTP_KEYFILES</dt>
+<dd class="field-even"><p>(optional) list of files (relative to current user’s $HOME) where uftpd will read public keys for authentication. List is separated by “:”. This defaults to <cite>.ssh/authorized_keys</cite>.</p>
+</dd>
+<dt class="field-odd">UFTP_NO_WRITE</dt>
+<dd class="field-odd"><p>(optional) “:”-separated list of file name patters that uftpd should not write to.</p>
+</dd>
+<dt class="field-even">LOG_VERBOSE</dt>
+<dd class="field-even"><p>set to <cite>true</cite> to get (much) more detailed logging</p>
+</dd>
+<dt class="field-odd">LOG_SYSLOG</dt>
+<dd class="field-odd"><p>set to <cite>false</cite> to print logging output to stdout</p>
+</dd>
 </dl>
-<p>:ADVERTISE_HOST:(optional) (Only used in the PASV implementation)Advertise this server as having the following IPv4 address in the control connection. This is useful if the server is behind a NAT firewall and the public address is different from the address(es) the server has bound to</p>
-<dl class="field-list simple">
-<dt class="field-odd">SSL_CONF</dt>
-<dd class="field-odd"><p>File containing SSL settings for the command port</p>
-</dd>
-<dt class="field-even">ACL</dt>
-<dd class="field-even"><p>File containing the list of server DNs that are allowed access to the command port</p>
-</dd>
-<dt class="field-odd">MAX_CONNECTIONS</dt>
-<dd class="field-odd"><p>the maximum number of concurrent control connections per user (default: <cite>16</cite>)</p>
-</dd>
-<dt class="field-even">MAX_STREAMS</dt>
-<dd class="field-even"><p>the maximum number of parallel TCP streams per FTP session (default: <cite>4</cite>)</p>
-</dd>
-<dt class="field-odd">PORT_RANGE</dt>
-<dd class="field-odd"><p>(optional) server-side port range in the form 'lower:upper' that will be used to accept data connections. By default, any free ports will be used. <em>Example</em>: set to '50000:50050' to limit the port range</p>
-</dd>
-<dt class="field-even">DISABLE_IP_CHECK</dt>
-<dd class="field-even"><p>(optional) in some situations, the client IP can be different from the one that was sent to the UFTPD server by the Auth server. This will lead to rejected transfers. Setting this variable to <cite>true</cite> will disable the IP check. Only the one-time password will be checked.</p>
-</dd>
-<dt class="field-odd">UFTP_KEYFILES</dt>
-<dd class="field-odd"><p>(optional) list of files (relative to current user’s $HOME) where uftpd will read public keys for authentication. List is separated by “:”. This defaults to <cite>.ssh/authorized_keys</cite>.</p>
-</dd>
-<dt class="field-even">UFTP_NO_WRITE</dt>
-<dd class="field-even"><p>(optional) “:”-separated list of file name patters that uftpd should not write to.</p>
-</dd>
-<dt class="field-odd">LOG_VERBOSE</dt>
-<dd class="field-odd"><p>set to <cite>true</cite> to get (much) more detailed logging</p>
-</dd>
-</dl>
-<p>: LOG_SYSLOG: set to <cite>false</cite> to print logging output to stdout</p>
 <p>As usual if you set the SERVER_HOST to be <cite>0.0.0.0</cite>, the server will bind to all the available
 network interfaces.</p>
 <p>If possible, use an “internal” interface for the Command socket. If that
 is not possible, make sure the Command socket is protected by a firewall!</p>
-<p>We <strong>VERY STRONGLY</strong> recommend enabling SSL for the Command socket.
+<p>👉 We <strong>VERY STRONGLY</strong> recommend enabling SSL for the Command socket.
 Please refer to the next section.</p>
 </section>
 <section id="protecting-the-command-socket">
@@ -538,8 +541,7 @@ machine, <strong>SSL MUST</strong> be enabled to prevent unauthorized data acces
 <section id="ssl-setup">
 <h4>SSL setup<a class="headerlink" href="#ssl-setup" title="Permalink to this headline"></a></h4>
 <p>To setup SSL, you need a PEM file containing the UFTPD server’s
-credential, and a PEM file containing certificate authorities that
-should be trusted.</p>
+credential, and a PEM file containing certificate authorities that should be trusted.</p>
 <p>The following properties can be set in the <cite>CONF/uftpd-ssl.conf</cite> file.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">credential</span><span class="o">.</span><span class="n">path</span><span class="o">=</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">keyfile</span><span class="o">.</span><span class="n">pem</span>
 <span class="n">credential</span><span class="o">.</span><span class="n">password</span><span class="o">=...</span>
@@ -555,19 +557,19 @@ should be trusted.</p>
 <span class="n">truststore</span><span class="o">=</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">ca</span><span class="o">-</span><span class="n">cert</span><span class="o">-</span><span class="n">file</span><span class="o">.</span><span class="n">pem</span>
 </pre></div>
 </div>
-<p>The credential.password is only needed and used if the key is encrypted.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">credential.password</span></code> is only needed and used if the key is encrypted.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p><strong>Backwards (in)compatibility to previous versions</strong></p>
 <p>UFTPD 2.x SSL config is <strong>NOT supported</strong></p>
-<p>If you already have a p12 keystore for UFTPD 2.x, you can use <code class="docutils literal notranslate"><span class="pre">openssl</span></code> to convert it to <cite>PEM</cite> format</p>
+<p>💡 If you already have a p12 keystore for UFTPD 2.x, you can use <code class="docutils literal notranslate"><span class="pre">openssl</span></code> to convert it to <cite>PEM</cite> format</p>
 </div>
 </section>
 <section id="acl-setup">
 <h4>ACL setup<a class="headerlink" href="#acl-setup" title="Permalink to this headline"></a></h4>
 <p>The access control list contains the distinguished names of those certificates that
 should be allowed access.</p>
-<p>The “ACL” setting in <cite>CONF/uftpd.conf</cite> is used to specify the location of the ACL file</p>
+<p>The “ACL” setting in <cite>CONF/uftpd.conf</cite> is used to specify the location of the ACL file:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">export</span> <span class="n">ACL</span><span class="o">=</span><span class="n">conf</span><span class="o">/</span><span class="n">uftpd</span><span class="o">.</span><span class="n">acl</span>
 </pre></div>
 </div>
@@ -575,8 +577,8 @@ should be allowed access.</p>
 core server bundle. In production, you need to replace this by the actual DNs of
 your UNICORE/X server(s) and UFTP Authentication server(s).</p>
 <p>The ACL entries are expected in <strong>RFC2253</strong> format. To get the name
-from a certificate in the correct format using <cite>openssl</cite>, you can use the following OpenSSL command:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>openssl x509 -in your_server.pem -noout -subject -nameopt RFC2253
+from a certificate in the correct format using <code class="docutils literal notranslate"><span class="pre">openssl</span></code>, you can use the following OpenSSL command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">openssl</span> <span class="n">x509</span> <span class="o">-</span><span class="ow">in</span> <span class="n">your_server</span><span class="o">.</span><span class="n">pem</span> <span class="o">-</span><span class="n">noout</span> <span class="o">-</span><span class="n">subject</span> <span class="o">-</span><span class="n">nameopt</span> <span class="n">RFC2253</span>
 </pre></div>
 </div>
 <p>The ACL file can be updated at runtime.</p>
@@ -598,27 +600,27 @@ you can use a dedicated port range and permanently open those in the firewall.</
 <p>Please consult the firewall documentation on how to enable an “FTP” service on your firewall (or operating system).</p>
 </div>
 <p>With Linux iptables, you may use rules similar to the following:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>iptables -A INPUT -p tcp -m tcp --dport <span class="nv">$SERVER_PORT</span> -j ACCEPT
-iptables -A INPUT -p tcp -m helper --helper ftp-<span class="nv">$SERVER_PORT</span> -j ACCEPT
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>iptables -A INPUT -p tcp -m tcp --dport $SERVER_PORT -j ACCEPT
+iptables -A INPUT -p tcp -m helper --helper ftp-$SERVER_PORT -j ACCEPT
 </pre></div>
 </div>
-<p>where <cite>$SERVER_PORT</cite> is the SERVER_PORT defined in <cite>uftpd.conf</cite>. The first
-rule allows anyone to access port <cite>$SERVER_PORT</cite>. The second rule
+<p>where <code class="docutils literal notranslate"><span class="pre">$SERVER_PORT</span></code> is the SERVER_PORT defined in <code class="docutils literal notranslate"><span class="pre">uftpd.conf</span></code>. The first
+rule allows anyone to access port $SERVER_PORT. The second rule
 activates the iptables connection tracking FTP module on port $SERVER_PORT.</p>
 <p>On some operating systems it may be required to load additional kernel modules to
 enable connection tracking, for example on CentOS:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>modprobe nf_conntrack_ipv4
-modprobe nf_conntrack_ftp <span class="nv">ports</span><span class="o">=</span><span class="nv">$SERVER_PORT</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>modprobe nf_conntrack_ipv4
+modprobe nf_conntrack_ftp ports=$SERVER_PORT
 </pre></div>
 </div>
 <p>If you cannot use connection tracking, you will need to open a port range, and configure
 UFTPD accordingly.</p>
-<p>For example, in <cite>uftpd.conf</cite>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span> <span class="nv">PORT_RANGE</span><span class="o">=</span><span class="m">21000</span>:21010
+<p>For example, in <code class="docutils literal notranslate"><span class="pre">uftpd.conf</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">export</span> <span class="n">PORT_RANGE</span><span class="o">=</span><span class="mi">21000</span><span class="p">:</span><span class="mi">21010</span>
 </pre></div>
 </div>
 <p>and the iptables rule</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>iptables -A INPUT -p tcp -m tcp --dport <span class="m">21000</span>:21010 -j ACCEPT
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">iptables</span> <span class="o">-</span><span class="n">A</span> <span class="n">INPUT</span> <span class="o">-</span><span class="n">p</span> <span class="n">tcp</span> <span class="o">-</span><span class="n">m</span> <span class="n">tcp</span> <span class="o">--</span><span class="n">dport</span> <span class="mi">21000</span><span class="p">:</span><span class="mi">21010</span> <span class="o">-</span><span class="n">j</span> <span class="n">ACCEPT</span>
 </pre></div>
 </div>
 <p>would allow incoming data connections on ports 21000 to 21010.</p>
@@ -626,8 +628,8 @@ UFTPD accordingly.</p>
 </section>
 <section id="logging">
 <h3>Logging<a class="headerlink" href="#logging" title="Permalink to this headline"></a></h3>
-<p>By default, UFTPD writes to syslog, and you can use <cite>journalctl</cite> to read log messages.</p>
-<p>To print logging output to stdout, set <cite>export LOG_SYSLOG=false</cite> in the <cite>uftpd.conf</cite> file.</p>
+<p>By default, UFTPD writes to syslog, and you can use <code class="docutils literal notranslate"><span class="pre">journalctl</span></code> to read log messages.</p>
+<p>To print logging output to stdout, set <code class="docutils literal notranslate"><span class="pre">export</span> <span class="pre">LOG_SYSLOG=false</span></code> in the <code class="docutils literal notranslate"><span class="pre">uftpd.conf</span></code> file.</p>
 </section>
 </section>
 <section id="unicore-integration">
@@ -637,9 +639,9 @@ UFTP based data access and data transfer.</p>
 </section>
 <section id="testing-the-uftpd-server">
 <h2>Testing the UFTPD server<a class="headerlink" href="#testing-the-uftpd-server" title="Permalink to this headline"></a></h2>
-<p>You should use the <cite>uftp</cite> client to run tests, which contains
+<p>You should use the <code class="docutils literal notranslate"><span class="pre">uftp</span></code> client to run tests, which contains
 many options such as the number of concurrent FTP connections, and can
-use <cite>/dev/null</cite> and <cite>/dev/zero</cite> as data source/sink.</p>
+use <code class="docutils literal notranslate"><span class="pre">/dev/null</span></code> and <code class="docutils literal notranslate"><span class="pre">/dev/zero</span></code> as data source/sink.</p>
 </section>
 </section>
 
@@ -647,7 +649,7 @@ use <cite>/dev/null</cite> and <cite>/dev/zero</cite> as data source/sink.</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="pyuftpd-main.html" class="btn btn-neutral float-left" title="PyUFTPD" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="pyuftpd.html" class="btn btn-neutral float-left" title="PyUFTPD" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="CHANGES.html" class="btn btn-neutral float-right" title="Changelog" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

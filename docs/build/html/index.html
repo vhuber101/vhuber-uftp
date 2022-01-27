@@ -7,6 +7,7 @@
   <title>UNICORE File Transfer (UFTP) &mdash; UNICORE UFTP</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -18,7 +19,7 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="UFTPD server" href="uftpd/uftpd-main.html" /> 
+    <link rel="next" title="UFTPD server" href="uftpd/uftpd.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -30,7 +31,7 @@
             <img src="_static/logo-unicore.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                1.0.0
+                2.x
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -42,7 +43,7 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">UFTP Documentation</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="uftpd/uftpd-main.html">UFTPD server</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="uftpd/uftpd.html">UFTPD server</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="uftpd/README-building.html">Building</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="uftpd/README-building.html#updating-the-native-library">Updating the native library</a></li>
 <li class="toctree-l3"><a class="reference internal" href="uftpd/README-building.html#creating-distribution-packages">Creating distribution packages</a><ul>
@@ -114,7 +115,7 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="pyuftpd/pyuftpd-main.html">PyUFTPD</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="pyuftpd/pyuftpd.html">PyUFTPD</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="pyuftpd/pyuftpd-manual.html">PyUFTPD User Manual</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="pyuftpd/pyuftpd-manual.html#unicore-uftp">UNICORE UFTP</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="pyuftpd/pyuftpd-manual.html#uftp-features">UFTP features</a></li>
@@ -147,7 +148,7 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="authserver/authserver-main.html">Auth Server</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="authserver/authserver.html">Auth Server</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="authserver/README-UPGRADE.html">Update procedure</a></li>
 <li class="toctree-l2"><a class="reference internal" href="authserver/README-building.html">Building packages</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="authserver/README-building.html#creating-distribution-packages">Creating distribution packages</a><ul>
@@ -200,7 +201,7 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="uftp-client/uftp-client-main.html">UFTP standalone client</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="uftp-client/uftp-client.html">UFTP standalone client</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="uftp-client/README-building.html">Building packages for the ‘uftp’ client</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="uftp-client/README-building.html#creating-distribution-packages">Creating distribution packages</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="uftp-client/README-building.html#tgz">tgz</a></li>
@@ -223,7 +224,7 @@
 <li class="toctree-l4"><a class="reference internal" href="uftp-client/uftp-client-manual.html#data-sharing">Data sharing</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="uftp-client/uftp-client-manual.html#using-a-proxy-server-experimental">Using a proxy server (<em>EXPERIMENTAL</em>)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="uftp-client/uftp-client-manual.html#using-a-proxy-server-experimental">Using a proxy server (EXPERIMENTAL)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="uftp-client/uftp-client-manual.html#troubleshooting">Troubleshooting</a></li>
 <li class="toctree-l3"><a class="reference internal" href="uftp-client/uftp-client-manual.html#getting-support">Getting support</a></li>
 </ul>
@@ -253,10 +254,10 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="datashare/datashare-main.html">Datashare</a></li>
+<li class="toctree-l1"><a class="reference internal" href="datashare/datashare.html">Datashare</a></li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="LICENSE.html">License</a></li>
 </ul>
 
         </div>
@@ -285,47 +286,48 @@
              
   <section id="unicore-file-transfer-uftp">
 <span id="uftp"></span><h1>UNICORE File Transfer (UFTP)<a class="headerlink" href="#unicore-file-transfer-uftp" title="Permalink to this headline"></a></h1>
+<p>Last change: Jan 27, 2022</p>
 <p>The UFTP contains server and client components for the <a class="reference external" href="https://www.unicore.eu">UNICORE</a> high-performance file transfer toolkit:</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="uftpd/uftpd-main.html#uftpd"><span class="std std-ref">UFTPD server</span></a> - contains the core Java libraries as well as a reference implementation of the ‘uftpd’ server</p></li>
-<li><p><a class="reference internal" href="pyuftpd/pyuftpd-main.html#pyuftpd"><span class="std std-ref">PyUFTPD</span></a> - contains the production version of the ‘uftpd’ server, written in Python</p></li>
-<li><p><a class="reference internal" href="authserver/authserver-main.html#authserver"><span class="std std-ref">Auth Server</span></a> - a set of services providing authentication for UFTP as well as data sharing features</p></li>
-<li><p><a class="reference internal" href="uftp-client/uftp-client-main.html#uftp-client"><span class="std std-ref">UFTP standalone client</span></a> - the standalone “uftp” client application</p></li>
-<li><p><a class="reference internal" href="datashare/datashare-main.html#datashare"><span class="std std-ref">Datashare</span></a>- library containing support code for the data sharing feature</p></li>
+<li><p><a class="reference internal" href="uftpd/uftpd.html#uftpd"><span class="std std-ref">UFTPD server</span></a> - contains the core Java libraries as well as a reference implementation of the ‘uftpd’ server</p></li>
+<li><p><a class="reference internal" href="pyuftpd/pyuftpd.html#pyuftpd"><span class="std std-ref">PyUFTPD</span></a> - contains the production version of the ‘uftpd’ server, written in Python</p></li>
+<li><p><a class="reference internal" href="authserver/authserver.html#authserver"><span class="std std-ref">Auth Server</span></a> - a set of services providing authentication for UFTP as well as data sharing features</p></li>
+<li><p><a class="reference internal" href="uftp-client/uftp-client.html#uftp-client"><span class="std std-ref">UFTP standalone client</span></a> - the standalone “uftp” client application</p></li>
+<li><p><a class="reference internal" href="datashare/datashare.html#datashare"><span class="std std-ref">Datashare</span></a>- library containing support code for the data sharing feature</p></li>
 </ul>
 <div class="toctree-wrapper compound">
 <p class="caption" role="heading"><span class="caption-text">UFTP Documentation</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="uftpd/uftpd-main.html">UFTPD server</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="uftpd/uftpd.html">UFTPD server</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="uftpd/README-building.html">Building</a></li>
 <li class="toctree-l2"><a class="reference internal" href="uftpd/uftpd-manual.html">UFTPD User Manual</a></li>
 <li class="toctree-l2"><a class="reference internal" href="uftpd/CHANGES.html">Changelog</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="pyuftpd/pyuftpd-main.html">PyUFTPD</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="pyuftpd/pyuftpd.html">PyUFTPD</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="pyuftpd/pyuftpd-manual.html">PyUFTPD User Manual</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pyuftpd/CHANGES.html">Changelog</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="authserver/authserver-main.html">Auth Server</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="authserver/authserver.html">Auth Server</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="authserver/README-UPGRADE.html">Update procedure</a></li>
 <li class="toctree-l2"><a class="reference internal" href="authserver/README-building.html">Building packages</a></li>
 <li class="toctree-l2"><a class="reference internal" href="authserver/authserver-manual.html">Auth Server User Manual</a></li>
 <li class="toctree-l2"><a class="reference internal" href="authserver/CHANGES.html">Changelog</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="uftp-client/uftp-client-main.html">UFTP standalone client</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="uftp-client/uftp-client.html">UFTP standalone client</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="uftp-client/README-building.html">Building packages for the ‘uftp’ client</a></li>
 <li class="toctree-l2"><a class="reference internal" href="uftp-client/uftp-client-manual.html">UFTP Client User Manual</a></li>
 <li class="toctree-l2"><a class="reference internal" href="uftp-client/CHANGES.html">Changelog</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="datashare/datashare-main.html">Datashare</a></li>
+<li class="toctree-l1"><a class="reference internal" href="datashare/datashare.html">Datashare</a></li>
 </ul>
 </div>
 <hr><div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="LICENSE.html">License</a></li>
 </ul>
 </div>
 <section id="indices-and-tables">
@@ -342,7 +344,7 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="uftpd/uftpd-main.html" class="btn btn-neutral float-right" title="UFTPD server" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="uftpd/uftpd.html" class="btn btn-neutral float-right" title="UFTPD server" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
