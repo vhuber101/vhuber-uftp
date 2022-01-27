@@ -1,3 +1,5 @@
+.. _uftpd-manual:
+
 UFTPD User Manual
 =================
 

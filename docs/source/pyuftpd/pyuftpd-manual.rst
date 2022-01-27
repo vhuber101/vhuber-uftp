@@ -1,5 +1,8 @@
-UFTPD User Manual
------------------
+.. _pyuftpd-manual:
+
+
+PyUFTPD User Manual
+===================
 
 UNICORE Team <unicore-support@lists.sourceforge.net>
 
@@ -20,7 +23,8 @@ UFTP issue tracker: https://sourceforge.net/p/unicore/uftp-issues
 Source code repo: https://github.com/UNICORE-EU/uftp
 
 
-### UNICORE UFTP
+UNICORE UFTP
+------------
 
 UFTP is a data streaming library and file transfer tool. 
 
@@ -44,8 +48,8 @@ This manual covers the UFTP file server "uftpd" version 3.0 and higher,
 written in Python.
 
 
-#### UFTP features
-
+UFTP features
+~~~~~~~~~~~~~
 
  - dynamic firewall port opening using passive FTP. UFTPD requires only 
    a single open port
@@ -77,7 +81,8 @@ written in Python.
  - command port protected by SSL
 
 
-#### How does UFTP work
+How does UFTP work
+~~~~~~~~~~~~~~~~~~
 
 The UFTP file server, called 'uftpd', listens on two ports (which may be on
 two different network interfaces):
@@ -127,10 +132,11 @@ The sequence for a UFTP file transfer is as follows:
 	Make sure to read and understand the section below on protecting the command socket.  Otherwise, users logged on to the UFTPD machine can possibly read and write other user\'s files.
 
 
-### Installation and operation
+Installation and operation
+--------------------------
 
-
-#### Prerequisites
+Prerequisites
+~~~~~~~~~~~~~
 
   - Python 3.4.0 or later
 
@@ -157,27 +163,29 @@ A functional UFTP installation requires either an Auth server or a full UNICORE/
 
 If installing using distribution-specific package 
 the following paths are used:
-```
-  CONF=/etc/unicore/uftpd
-  BIN=/usr/share/unicore/uftpd/bin
-  LIB=/usr/share/unicore/uftpd/lib
-```
+::
+
+	CONF=/etc/unicore/uftpd
+	BIN=/usr/share/unicore/uftpd/bin
+	LIB=/usr/share/unicore/uftpd/lib
+
 If installing using the portable bundle, all UFTPD files are installed
 under a single directory. Path prefixes are as follows, where `INST` is the directory where UFTPD was installed:
-```
-  CONF=INST/conf
-  BIN=INST/bin
-  LIB=INST/lib
-```
-These variables (`CONF`, `BIN` and `LOG`) are used throughout the rest of 
-this manual.
+::
+
+	CONF=INST/conf
+	BIN=INST/bin
+	LIB=INST/lib
+
+These variables (`CONF`, `BIN` and `LOG`) are used throughout the rest of this manual.
 
 
 .. note:: 
 	Note that after installation UFTPD is NOT automatically enabled as a systemd service, since you will need to edit the configuration and provide a server certificate.
 
 
-#### Starting and stopping the UFTPD server
+Starting and stopping the UFTPD server
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  
 If using the Linux packages, uftpd is integrated as a service via systemd, and
 you can stop/start it via `systemctl`. Also, logging is (by default) done via 
@@ -201,63 +209,46 @@ access files as the correct user/group and set correct file permissions.
 To enable UFTPD as a systemd service (after configuring and adding a server 
 certificate), you can use `systemctl` :
 
-```
-sudo systemctl add-wants multi-user.target unicore-uftpd
-```
+.. code:: bash
 
-#### Configuration parameters
+	sudo systemctl add-wants multi-user.target unicore-uftpd
 
+
+Configuration parameters
+~~~~~~~~~~~~~~~~~~~~~~~~
 
 The following variables can be defined in the configuration file (`uftpd.conf`):
 
 
-CMD_HOST
-	the interface where the server listens for control commands
+:CMD_HOST: the interface where the server listens for control commands
 
-CMD_PORT
-	the port where the server listens for control commands
+:CMD_PORT: the port where the server listens for control commands
 
-SERVER_HOST
-	the interface where the server listens for client data connections
+:SERVER_HOST: the interface where the server listens for client data connections
 
-SERVER_PORT
-	the port where the server listens for client data connections
+:SERVER_PORT: the port where the server listens for client data connections
                     
-ADVERTISE_HOST
-	(optional) (Only used in the PASV implementation)
-	Advertise this server as having the following IPv4 address in the control connection. This is useful if the server is behind a NAT firewall and the public address is different from the address(es) the server has bound to
+:ADVERTISE_HOST:(optional) (Only used in the PASV implementation)Advertise this server as having the following IPv4 address in the control connection. This is useful if the server is behind a NAT firewall and the public address is different from the address(es) the server has bound to
 
-SSL_CONF
-	File containing SSL settings for the command port
+:SSL_CONF: File containing SSL settings for the command port
 
-ACL
-	File containing the list of server DNs that are allowed access to the command port 
+:ACL: File containing the list of server DNs that are allowed access to the command port 
 
-MAX_CONNECTIONS
-	the maximum number of concurrent control connections per user (default: `16`)
+:MAX_CONNECTIONS: the maximum number of concurrent control connections per user (default: `16`)
 
-MAX_STREAMS
-	the maximum number of parallel TCP streams per FTP session (default: `4`)
+:MAX_STREAMS: the maximum number of parallel TCP streams per FTP session (default: `4`)
 
-PORT_RANGE
-	(optional) server-side port range in the form \'lower:upper\' that will be used to accept data connections. By default, any free ports will be used.
-	*Example*: set to \'50000:50050\' to limit the port range
+:PORT_RANGE: (optional) server-side port range in the form \'lower:upper\' that will be used to accept data connections. By default, any free ports will be used. *Example*: set to \'50000:50050\' to limit the port range
 
-DISABLE_IP_CHECK
-	(optional) in some situations, the client IP can be different from the one that was sent to the UFTPD server by the Auth server. 
-	This will lead to rejected transfers. Setting this variable to `true` will disable the IP check. Only the one-time password will be checked.
+:DISABLE_IP_CHECK: (optional) in some situations, the client IP can be different from the one that was sent to the UFTPD server by the Auth server. This will lead to rejected transfers. Setting this variable to `true` will disable the IP check. Only the one-time password will be checked.
 
-UFTP_KEYFILES
-	(optional) list of files (relative to current user's $HOME) where uftpd will read public keys for authentication. List is separated by ":". This defaults to `.ssh/authorized_keys`.
+:UFTP_KEYFILES: (optional) list of files (relative to current user's $HOME) where uftpd will read public keys for authentication. List is separated by ":". This defaults to `.ssh/authorized_keys`.
 
-UFTP_NO_WRITE
-	(optional) ":"-separated list of file name patters that uftpd should not write to.
+:UFTP_NO_WRITE: (optional) ":"-separated list of file name patters that uftpd should not write to.
 
-LOG_VERBOSE
-	set to `true` to get (much) more detailed logging
+:LOG_VERBOSE: set to `true` to get (much) more detailed logging
 
-LOG_SYSLOG
-	set to `false` to print logging output to stdout
+: LOG_SYSLOG: set to `false` to print logging output to stdout
 
 As usual if you set the SERVER_HOST to be `0.0.0.0`, the server will bind to all the available 
 network interfaces.
@@ -269,8 +260,8 @@ We **VERY STRONGLY** recommend enabling SSL for the Command socket.
 Please refer to the next section.
 
 
-#### Protecting the Command socket
-
+Protecting the Command socket
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Using SSL for the Command port ensures that only trusted parties
 (i.e. trusted Auth and/or UNICORE/X servers) can issue commands to the 
@@ -286,31 +277,29 @@ machine, **SSL MUST** be enabled to prevent unauthorized data access!
 	Without SSL enabled, users logged in to the UFTPD server can easily create exploits to read or write files with arbitrary user privileges (except `root`).
 
 
-#### SSL setup
+SSL setup
+^^^^^^^^^
 
 To setup SSL, you need a PEM file containing the UFTPD server's
 credential, and a PEM file containing certificate authorities that
 should be trusted.
 
 The following properties can be set in the `CONF/uftpd-ssl.conf` file.
+::
 
-```
-credential.path=path/to/keyfile.pem
-credential.password=...
-
-truststore=path/to/ca-cert-file.pem
-```
-
+	credential.path=path/to/keyfile.pem
+	credential.password=...
+	
+	truststore=path/to/ca-cert-file.pem
 
 You can also use separate PEM files for key and certificate:
+::
 
-```
-credential.key=path/to/key.pem
-credential.password=...
-credential.certificate=path/to/certificate.pem
-
-truststore=path/to/ca-cert-file.pem
-```
+	credential.key=path/to/key.pem
+	credential.password=...
+	credential.certificate=path/to/certificate.pem
+	
+	truststore=path/to/ca-cert-file.pem
 
 The credential.password is only needed and used if the key is encrypted.
 
@@ -324,17 +313,16 @@ The credential.password is only needed and used if the key is encrypted.
 
 
 
-#### ACL setup
-
+ACL setup
+^^^^^^^^^
 
 The access control list contains the distinguished names of those certificates that
 should be allowed access.
 
 The "ACL" setting in `CONF/uftpd.conf` is used to specify the location of the ACL file
+::
 
-```
-export ACL=conf/uftpd.acl
-```
+	export ACL=conf/uftpd.acl
 
 The default ACL contains the certificate DN of the UNICORE/X server from the UNICORE 
 core server bundle. In production, you need to replace this by the actual DNs of 
@@ -342,15 +330,16 @@ your UNICORE/X server(s) and UFTP Authentication server(s).
 
 The ACL entries are expected in **RFC2253** format. To get the name 
 from a certificate in the correct format using `openssl`, you can use the following OpenSSL command:
-```
-openssl x509 -in your_server.pem -noout -subject -nameopt RFC2253
-```
+
+.. code:: bash
+
+	openssl x509 -in your_server.pem -noout -subject -nameopt RFC2253
 
 The ACL file can be updated at runtime.
 
 
-#### Firewall configuration
-
+Firewall configuration
+~~~~~~~~~~~~~~~~~~~~~~
 
 UFTPD requires
  * an open TCP port for accepting FTP connections
@@ -362,13 +351,12 @@ you can use a dedicated port range and permanently open those in the firewall.
 .. note::
 	Please consult the firewall documentation on how to enable an "FTP" service on your firewall (or operating system).
 
-
 With Linux iptables, you may use rules similar to the following:
 
-```
-iptables -A INPUT -p tcp -m tcp --dport $SERVER_PORT -j ACCEPT
-iptables -A INPUT -p tcp -m helper --helper ftp-$SERVER_PORT -j ACCEPT
-```
+.. code:: bash
+
+	iptables -A INPUT -p tcp -m tcp --dport $SERVER_PORT -j ACCEPT
+	iptables -A INPUT -p tcp -m helper --helper ftp-$SERVER_PORT -j ACCEPT
 
 where `$SERVER_PORT` is the SERVER_PORT defined in `uftpd.conf`. The first
 rule allows anyone to access port `$SERVER_PORT`. The second rule
@@ -376,10 +364,11 @@ activates the iptables connection tracking FTP module on port $SERVER_PORT.
 
 On some operating systems it may be required to load additional kernel modules to
 enable connection tracking, for example on CentOS:
-```
-modprobe nf_conntrack_ipv4
-modprobe nf_conntrack_ftp ports=$SERVER_PORT
-```
+
+.. code:: bash
+
+	modprobe nf_conntrack_ipv4
+	modprobe nf_conntrack_ftp ports=$SERVER_PORT
 
 
 If you cannot use connection tracking, you will need to open a port range, and configure
@@ -387,36 +376,39 @@ UFTPD accordingly.
 
 For example, in `uftpd.conf`:
 
-```
-export PORT_RANGE=21000:21010
-```
+.. code:: bash
+
+	export PORT_RANGE=21000:21010
 
 and the iptables rule
 
-```
-iptables -A INPUT -p tcp -m tcp --dport 21000:21010 -j ACCEPT
-```
+.. code:: bash
+
+	iptables -A INPUT -p tcp -m tcp --dport 21000:21010 -j ACCEPT
+
 
 would allow incoming data connections on ports 21000 to 21010. 
 
 A fairly small range (e.g. 10 ports) is usually enough, since these are server ports.
 
 
-#### Logging
+Logging
+~~~~~~~
 
 By default, UFTPD writes to syslog, and you can use `journalctl` to read log messages.
 
 To print logging output to stdout, set `export LOG_SYSLOG=false` in the `uftpd.conf` file.
 
 
-### UNICORE integration
-
+UNICORE integration
+-------------------
 
 Please refer to the UNICORE/X manual for detailed information on how to configure 
 UFTP based data access and data transfer.
 
 
-### Testing the UFTPD server
+Testing the UFTPD server
+------------------------
 
 You should use the `uftp` client to run tests, which contains
 many options such as the number of concurrent FTP connections, and can

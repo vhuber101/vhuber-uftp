@@ -7,7 +7,7 @@ You need Java 8 and Apache Maven.
 
 The java code is then built and tested using
 
-..code:: bash
+.. code:: bash
 
 	mvn install
 

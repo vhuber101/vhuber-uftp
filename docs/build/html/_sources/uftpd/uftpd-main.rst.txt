@@ -1,4 +1,4 @@
-.. _uftpd-main:
+.. _uftpd:
 
 .. include:: README.rst
 

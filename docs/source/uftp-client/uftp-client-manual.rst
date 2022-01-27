@@ -620,7 +620,8 @@ Troubleshooting
 	Check the remote URL that you use. Maybe you have a typo in the `/rest/auth/<servername>` part.
 
 
-### Getting support
+Getting support
+---------------
 
 UNICORE Website: https://www.unicore.eu
 

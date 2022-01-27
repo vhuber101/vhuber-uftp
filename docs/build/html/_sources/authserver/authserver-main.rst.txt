@@ -12,6 +12,7 @@ Auth Server
 
    	README-UPGRADE
 	README-building
+	authserver-manual
 
 .. toctree::
 	:maxdepth: 1
