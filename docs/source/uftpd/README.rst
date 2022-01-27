@@ -1,5 +1,5 @@
 UFTPD server
-============
+************
 
 UFTP (UNICORE File Transfer Protocol) is a high-performance data
 transfer library based on passive FTP. This package contains

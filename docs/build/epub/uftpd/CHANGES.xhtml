@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Changelog</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/epub.css" /> 
+  </head><body>
+
+    <div class="document">
+      <div class="documentwrapper">
+          <div class="body" role="main">
+            
+  <section id="changelog">
+<h1>Changelog</h1>
+<p>The UFTP issue tracker is at
+<a class="reference external" href="https://sourceforge.net/p/unicore/uftp-issues">https://sourceforge.net/p/unicore/uftp-issues</a></p>
+<section id="uftp-2-12-0">
+<h2>UFTP 2.12.0</h2>
+<blockquote>
+<div><ul class="simple">
+<li><p>new feature: HASH command (#70)</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="uftp-2-11-0">
+<h2>UFTP 2.11.0</h2>
+<blockquote>
+<div><ul class="simple">
+<li><p>update to log4j/2, logging config update recommended</p></li>
+<li><p>update to securityLibrary 5.3.1</p></li>
+<li><p>new feature: implement restart command (“REST”)</p></li>
+<li><p>fix: persistent sessions were removed even
+when still active</p></li>
+<li><p>fix: handling of absolute vs relative directories, allow
+creating sessions with a fixed base directory</p></li>
+<li><p>fix: wrong format string for MFMT</p></li>
+</ul>
+</div></blockquote>
+<p>Starting with UFTPD 3.0, we release the file server uftpd only in the
+Python implementation. This project is still used for
+providing the Java implementation of the base library used for
+clients and in the Java servers.</p>
+</section>
+<section id="uftp-2-9-2-released-nov-16-2020">
+<h2>UFTP 2.9.2 (released Nov 16 2020)</h2>
+<blockquote>
+<div><ul class="simple">
+<li><p>fix: debian package now depends on “default-jre-headless”</p></li>
+<li><p>fix: tgz bundle was was missing uftp.sh script</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="uftp-2-9-1-released-oct-16-2020">
+<h2>UFTP 2.9.1 (released Oct 16 2020)</h2>
+<blockquote>
+<div><ul class="simple">
+<li><p>fix: FTP session starting directory was not correct in
+some cases</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="uftp-2-9-0-released-sep-21-2020">
+<h2>UFTP 2.9.0 (released Sep 21 2020)</h2>
+<blockquote>
+<div><ul class="simple">
+<li><p>new feature: support for FTP proxies (DeleGate and Frox)</p></li>
+<li><p>new feature: “persistent” sessions to allow mounting via
+‘curlftpfs’ where the login secret is re-used
+several times</p></li>
+<li><p>simplify login handshake handling to better support
+login from non-UFTP clients</p></li>
+<li><p>fix: stat’ing the “/” directory returned empty filename
+and thus listing “/” did not work</p></li>
+<li><p>fix: client sent extra empty lines over the control
+channel</p></li>
+<li><p>fix: less harsh timeouts for control socket communications</p></li>
+<li><p>fix: use setresuid() for UID switching to fix problems
+with root-squash mouted file systems</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="uftp-2-8-0-released-jul-06-2020">
+<h2>UFTP 2.8.0 (released Jul 06 2020)</h2>
+<blockquote>
+<div><ul class="simple">
+<li><p>new feature: session features can be limited
+by authserver (e.g. to readonly access)</p></li>
+<li><p>new feature: read public keys from configurable
+list of files (defaults to ~/.ssh/authorized_keys) (#61)</p></li>
+<li><p>new feature: allow to blacklist writing to certain
+files (#62)</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="uftp-2-7-1-released-nov-4-2019">
+<h2>UFTP 2.7.1 (released Nov 4 2019)</h2>
+<blockquote>
+<div><ul class="simple">
+<li><p>fix: files were not closed when receiving archive
+stream data, leading to a “too many open files” error</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="uftp-2-7-0-released-sept-25-2019">
+<h2>UFTP 2.7.0 (released Sept 25 2019)</h2>
+<blockquote>
+<div><ul class="simple">
+<li><p>new feature: support direct unpacking of tar/zip streams
+(#53)</p></li>
+<li><p>fix: keep data connections open in session mode</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="uftp-2-6-2-released-aug-27-2019">
+<h2>UFTP 2.6.2 (released Aug 27 2019)</h2>
+<blockquote>
+<div><ul class="simple">
+<li><p>fix some packaging and documentation issues</p></li>
+<li><p>update libs</p></li>
+<li><p>remove support for the old (pre uftp 2.4.0) connection protocol</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="uftp-2-6-1-released-sep-14-2018">
+<h2>UFTP 2.6.1 (released Sep 14 2018)</h2>
+<blockquote>
+<div><ul class="simple">
+<li><p>fix: backwards compatibility with old authentication
+protocol version</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="uftp-2-6-0-released-jul-11-2018">
+<h2>UFTP 2.6.0 (released Jul 11 2018)</h2>
+<blockquote>
+<div><ul class="simple">
+<li><p>new feature: use CANL for SSL, i.e. greatly improved
+credential and truststore setup (#39)</p></li>
+<li><p>new feature: allow to disable client-IP checking</p></li>
+<li><p>allow to retrieve user info (incl. ssh public keys)
+via command port (#47)</p></li>
+<li><p>update version of commons-codec and commons-io</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="uftp-2-5-2-released-jan-8-2018">
+<h2>UFTP 2.5.2 (released Jan 8 2018)</h2>
+<blockquote>
+<div><ul class="simple">
+<li><p>fix: close parallel reader threads after each data
+transfer (#45)</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="uftp-2-5-1-released-nov-8-2017">
+<h2>UFTP 2.5.1 (released Nov 8 2017)</h2>
+<blockquote>
+<div><ul class="simple">
+<li><p>systemd support</p></li>
+<li><p>fix packaged version of ‘uftp.sh’ (#40)</p></li>
+<li><p>client (uftp.sh): print proper error message to stderr (#41)</p></li>
+<li><p>fix: append flag not honored for single-file upload (#42)</p></li>
+<li><p>implement “APPE” (append) command (#44)</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="uftp-2-5-0-released-june-12-2017">
+<h2>UFTP 2.5.0 (released June 12 2017)</h2>
+<blockquote>
+<div><ul class="simple">
+<li><p>new feature: multiple allowed client IPs per transfer (#26)</p></li>
+<li><p>new feature: tunneling / traffic forwarding via UFTPD (#36)</p></li>
+<li><p>fix: NullPointerException when group is null (#34)</p></li>
+<li><p>fix: return Unix file permissions (rwx for owner) in MLST
+reply (#35)</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="uftp-2-4-1-released-dec-7-2016">
+<h2>UFTP 2.4.1 (released Dec 7 2016)</h2>
+<blockquote>
+<div><ul class="simple">
+<li><p>fix: IllegalArgumentException when requested Unix group is null
+(<a class="reference external" href="https://sourceforge.net/p/unicore/uftp-issues/34">https://sourceforge.net/p/unicore/uftp-issues/34</a>)</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="uftp-2-4-0-released-nov-23-2016">
+<h2>UFTP 2.4.0 (released Nov 23 2016)</h2>
+<blockquote>
+<div><ul class="simple">
+<li><p>fix: set effective group correctly to requested one, instead of
+default group (<a class="reference external" href="https://sourceforge.net/p/unicore/uftp-issues/32">https://sourceforge.net/p/unicore/uftp-issues/32</a>)</p></li>
+<li><p>fix: when using port range for data connections,
+ports were not freed, leading to unusable UFTPD
+(<a class="reference external" href="https://sourceforge.net/p/unicore/uftp-issues/17">https://sourceforge.net/p/unicore/uftp-issues/17</a>)</p></li>
+<li><p>fix: session mode ‘mkdir’ reports errors
+(<a class="reference external" href="https://sourceforge.net/p/unicore/uftp-issues/27">https://sourceforge.net/p/unicore/uftp-issues/27</a>)</p></li>
+<li><p>fix: session mode ‘mkdir’ creates all required parent dirs</p></li>
+<li><p>new feature: implement MFMT command to set file modification time
+(<a class="reference external" href="https://sourceforge.net/p/unicore/uftp-issues/28">https://sourceforge.net/p/unicore/uftp-issues/28</a>)</p></li>
+<li><p>fix: more flexible and RFC-compliant implementation of the
+FTP protocol (connection establish, authentication, retrieval, …)
+Compliance tested with Unix ‘ftp’ and ‘curl’ tools
+(<a class="reference external" href="https://sourceforge.net/p/unicore/uftp-issues/12">https://sourceforge.net/p/unicore/uftp-issues/12</a>)</p></li>
+<li><p>new feature: support EPSV in addition to PASV (and thus support IPv6)
+(<a class="reference external" href="https://sourceforge.net/p/unicore/uftp-issues/29">https://sourceforge.net/p/unicore/uftp-issues/29</a>)</p></li>
+<li><p>new feature: support MLST and MLSD commands
+(<a class="reference external" href="https://sourceforge.net/p/unicore/uftp-issues/30">https://sourceforge.net/p/unicore/uftp-issues/30</a>)</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="uftp-2-3-2-released-sep-15-2015">
+<h2>UFTP 2.3.2 (released Sep 15 2015)</h2>
+<blockquote>
+<div><ul class="simple">
+<li><p>new feature: rename files in session mode
+(<a class="reference external" href="https://sourceforge.net/p/unicore/uftp-issues/13">https://sourceforge.net/p/unicore/uftp-issues/13</a>)</p></li>
+<li><p>new feature: allow to get single file/directory info in session mode</p></li>
+<li><p>new feature: UFTPD logs usage (transferred bytes, transfer rate, client IP)
+at info level (<a class="reference external" href="https://sourceforge.net/p/unicore/uftp-issues/16">https://sourceforge.net/p/unicore/uftp-issues/16</a>)</p></li>
+<li><p>new feature: session mode allows to upload data in streaming mode
+(<a class="reference external" href="https://sourceforge.net/p/unicore/uftp-issues/14">https://sourceforge.net/p/unicore/uftp-issues/14</a>)</p></li>
+<li><p>fix: typo in unicore-uftp-start.sh scripts
+(<a class="reference external" href="https://sourceforge.net/p/unicore/uftp-issues/10">https://sourceforge.net/p/unicore/uftp-issues/10</a>)</p></li>
+<li><p>fix: when synching a local master with a remote slave
+on a filesystem mounted with root squash, the rsync tmp
+file (remote) was not deleted and the target file was not
+updated (<a class="reference external" href="https://sourceforge.net/p/unicore/uftp-issues/11">https://sourceforge.net/p/unicore/uftp-issues/11</a>)</p></li>
+<li><p>improvement: simpler logging config (see manual)</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="uftp-2-3-1-released-feb-11-2015">
+<h2>UFTP 2.3.1 (released Feb 11 2015)</h2>
+<blockquote>
+<div><ul class="simple">
+<li><p>fix: cannot get file info on file systems mounted with root-squash
+(<a class="reference external" href="http://sourceforge.net/p/unicore/uftp-issues/6">http://sourceforge.net/p/unicore/uftp-issues/6</a>)</p></li>
+<li><p>fix: allow to “stat” also a single file</p></li>
+<li><p>fix: remove stacktrace printout to stdout in parallel reader</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="uftp-2-3-0-released-jan-26-2015">
+<h2>UFTP 2.3.0 (released Jan 26 2015)</h2>
+<blockquote>
+<div><ul class="simple">
+<li><p>new feature: allow to specify a port range for the
+data connections (<a class="reference external" href="http://sourceforge.net/p/unicore/uftp-issues/2/">http://sourceforge.net/p/unicore/uftp-issues/2/</a>)</p></li>
+<li><p>fix: cannot get file info on file systems mounted with root-squash
+(<a class="reference external" href="http://sourceforge.net/p/unicore/uftp-issues/6">http://sourceforge.net/p/unicore/uftp-issues/6</a>)</p></li>
+<li><p>fix: NPE when include/exclude patterns are used</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="uftp-2-2-0-released-nov-3-2014">
+<h2>UFTP 2.2.0 (released Nov 3 2014)</h2>
+<blockquote>
+<div><ul class="simple">
+<li><p>new feature: allow to pass in allowed/forbidden file patterns
+when creating a new session (SF feature #340)</p></li>
+<li><p>improvement: add possibility to ‘ping’ UFTPD via the control
+channel</p></li>
+<li><p>fix: user’s home is used as inital session base directory</p></li>
+<li><p>fix: fail startup when running as root without setuid</p></li>
+<li><p>fix: compress/encrypt in session mode did not work</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="uftp-2-1-2-released-oct-2-2014">
+<h2>UFTP 2.1.2 (released Oct 2 2014)</h2>
+<blockquote>
+<div><ul class="simple">
+<li><p>new feature: support NATs by adding an ADVERTISE_HOST variable for
+setting the public IP address of the server in case this is different
+from the actual SERVER_HOST</p></li>
+<li><p>improvement: allow to write part of a file in Session mode. This enables
+both restarting a failed transfer, and parallel writes to a file using
+multiple server instances.</p></li>
+<li><p>fix: better error reporting in case of faulty transfer requests</p></li>
+<li><p>fix: sync of very small files did not work</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="uftp-2-1-0-released-july-25-2014">
+<h2>UFTP 2.1.0 (released July 25 2014)</h2>
+<blockquote>
+<div><ul>
+<li><p>improvement: allow to configure limit on control connections per client IP. <strong>NOTE:</strong> please read the manual since option names have changed:</p>
+<blockquote>
+<div><dl class="field-list simple">
+<dt class="field-odd">MAX_CONNECTIONS</dt>
+<dd class="field-odd"><p>maximum connections per client IP (default: 32)</p>
+</dd>
+<dt class="field-even">MAX_STREAMS</dt>
+<dd class="field-even"><p>maximum number of parallel data streams per connection (default: 8)</p>
+</dd>
+</dl>
+</div></blockquote>
+</li>
+<li><p>fix: make sure to close client connection in case of protocol or authorisation errors</p></li>
+<li><p>fix: when UFTPD writes an rsync’ed file, the ownership was changed to root (SF bug #742)</p></li>
+<li><p>fix: access control when listing directory</p></li>
+<li><p>fix: in session mode, client connection counter was not decremented on session close</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="uftp-2-0-0-released-10-dec-2013">
+<h2>UFTP 2.0.0 (released 10 Dec 2013)</h2>
+<blockquote>
+<div><ul class="simple">
+<li><p>new feature: introduced session mode for reading multiple files over a single UFTP connection (SF feature #271)</p></li>
+<li><p>new feature: a transfer rate limit can be specified per transfer request (SF improvements #3577575)</p></li>
+<li><p>new feature: optional data compression</p></li>
+<li><p>improvement: encryption scheme changed, removed dependency on BouncyCastle library</p></li>
+<li><p>improvement: improved connection setup (SF feature #282)</p></li>
+<li><p>improvement: new Demo CA certificates, using a p12 for keystore, jks for truststore</p></li>
+<li><p>fix: do not accept transfer request if requested user does not exist, and send back an error message</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="uftp-1-2-1-released-may-7-2012">
+<h2>UFTP 1.2.1 (released May 7 2012)</h2>
+<blockquote>
+<div><ul class="simple">
+<li><p>better error reporting in client if all server addresses are unreachable</p></li>
+<li><p>improvement: special handling of “/dev/..” filenames for
+performance measurements</p></li>
+<li><p>fix: multiple interface support was broken (SF bug #3500430)</p></li>
+<li><p>improve client side error message if connection was refused by the
+server</p></li>
+<li><p>client reads feature list from server (prepare future UFTP extensions)</p></li>
+<li><p>fix: add missing init script on Debian</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="uftp-1-2-0-released-15-dec-2011">
+<h2>UFTP 1.2.0 (released 15 Dec 2011)</h2>
+<blockquote>
+<div><ul class="simple">
+<li><p>improvement: UFTPD sets also supplementary groups
+(SF feature #3439861)</p></li>
+<li><p>fix: effective group ID was always “0” (SF bug #3439859)</p></li>
+<li><p>fix: LD_LIBRARY_PATH was not setup correctly</p></li>
+<li><p>improvement: attempt to load native lib directly at startup
+instead of waiting for first data transfer</p></li>
+<li><p>improvement: better error reporting to client</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="uftp-1-1-0-released-7-oct-2011">
+<h2>UFTP 1.1.0 (released 7 Oct 2011)</h2>
+<blockquote>
+<div><ul class="simple">
+<li><p>improvement: support multiple alternative server IP addresses (SF improvement #3389004)</p></li>
+<li><p>improvement: add support for monitoring filetransfer progress</p></li>
+<li><p>fix: configured value of maximum streams per connection was ignored</p></li>
+<li><p>improvement: allow to configure the internal buffer size for file
+read/write</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="uftp-1-0-0-released-5-jul-2011">
+<h2>UFTP 1.0.0 (released 5 Jul 2011)</h2>
+<blockquote>
+<div><ul class="simple">
+<li><p>first release</p></li>
+</ul>
+</div></blockquote>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  </body>
+</html>

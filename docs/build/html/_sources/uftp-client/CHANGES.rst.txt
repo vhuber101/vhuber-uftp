@@ -55,7 +55,7 @@ UFTP Client 1.3.1 (released Jul 21, 2020)
    when ssh-agent is present
 
 UFTP Client 1.3.0 (released Jun 17, 2020)
- -----------------------------------------
+-----------------------------------------
  - SSH: support for ed25519 keys
  - SSH: improved ssh-agent support when multiple keys
    are available

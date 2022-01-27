@@ -1,7 +1,7 @@
 .. _uftpd-building:
 
 Building
---------
+========
 
 You need Java 8 and Apache Maven.
 
@@ -14,7 +14,7 @@ The java code is then built and tested using
 
 
 Updating the native library
-***************************
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The UFTPD server uses a native library, which is expected in the
 ```src/main/package/distributions/Default/src/usr/share/unicore/uftpd/lib```
@@ -29,7 +29,7 @@ above and committed to SVN.
 
 
 Creating distribution packages
-******************************
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The following commands create the distribution packages
 in tgz, deb and rpm formats

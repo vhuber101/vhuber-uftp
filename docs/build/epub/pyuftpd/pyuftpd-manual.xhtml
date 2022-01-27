@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>PyUFTPD User Manual</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/epub.css" /> 
+  </head><body>
+
+    <div class="document">
+      <div class="documentwrapper">
+          <div class="body" role="main">
+            
+  <section id="pyuftpd-user-manual">
+<span id="pyuftpd-manual"></span><h1>PyUFTPD User Manual</h1>
+<p>UNICORE Team &lt;<a class="reference external" href="mailto:unicore-support&#37;&#52;&#48;lists&#46;sourceforge&#46;net">unicore-support<span>&#64;</span>lists<span>&#46;</span>sourceforge<span>&#46;</span>net</a>&gt;</p>
+<dl class="field-list simple">
+<dt class="field-odd">Version</dt>
+<dd class="field-odd"><p>1.0.0</p>
+</dd>
+</dl>
+<p>This is the UFTPD user manual providing information on running and
+using the UNICORE UFTP server ‘uftpd’. Please note also the
+following places for getting more information:</p>
+<p>UNICORE Website: <a class="reference external" href="https://www.unicore.eu">https://www.unicore.eu</a></p>
+<p>Support list: <a class="reference external" href="mailto:unicore-support&#37;&#52;&#48;lists&#46;sf&#46;net">unicore-support<span>&#64;</span>lists<span>&#46;</span>sf<span>&#46;</span>net</a></p>
+<p>Developer’s list: <a class="reference external" href="mailto:unicore-devel&#37;&#52;&#48;lists&#46;sf&#46;net">unicore-devel<span>&#64;</span>lists<span>&#46;</span>sf<span>&#46;</span>net</a></p>
+<p>UFTP issue tracker: <a class="reference external" href="https://sourceforge.net/p/unicore/uftp-issues">https://sourceforge.net/p/unicore/uftp-issues</a></p>
+<p>Source code repo: <a class="reference external" href="https://github.com/UNICORE-EU/uftp">https://github.com/UNICORE-EU/uftp</a></p>
+<section id="unicore-uftp">
+<h2>UNICORE UFTP</h2>
+<p>UFTP is a data streaming library and file transfer tool.</p>
+<p>UFTP is best used using the ‘uftp’ client-side application (available
+from <a class="reference external" href="https://sourceforge.net/projects/unicore/files/Clients/UFTP-Client">https://sourceforge.net/projects/unicore/files/Clients/UFTP-Client</a>),
+but is easily integrated into custom applications due to its FTP
+compliance.</p>
+<p>It can be also integrated into UNICORE, allowing to transfer data from
+client to server (and vice versa), as well as providing data staging
+and third-party transfer between UFTP-enabled UNICORE sites.</p>
+<p>A full UFTP server installation consists of two parts</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>the “uftpd” file server</p></li>
+<li><p>either a UNICORE/X server, or a standalone authentication
+service.</p></li>
+</ul>
+</div></blockquote>
+<p>This manual covers the UFTP file server “uftpd” version 3.0 and higher,
+written in Python.</p>
+<section id="uftp-features">
+<h3>UFTP features</h3>
+<blockquote>
+<div><ul class="simple">
+<li><p>dynamic firewall port opening using passive FTP. UFTPD requires only
+a single open port</p></li>
+<li><p>standalone command line client available</p></li>
+<li><p>supports third-party FTP clients such as ‘curl’ or ‘ftp’,
+after getting a one-time password via the Auth server (RESTful API)
+or a UNICORE/X storage endpoint</p></li>
+<li><p>integrated into UNICORE clients for fast file upload and download</p></li>
+<li><p>integrated with UNICORE servers for fast data staging and
+server-to-server file transfers</p></li>
+<li><p>optional encryption of the data streams using a  symmetric
+key algorithm</p></li>
+<li><p>optional compression of the data streams (using gzip)</p></li>
+<li><p>optional multiple TCP streams per data connection based on code from the JPARSS library (Copyright (c) 2001 Southeastern Universities Research Association, Thomas Jefferson National Accelerator Facility)</p></li>
+<li><p>partial reads/writes to a file. If supported by the filesystem,
+multiple UFTP processes can thus read/write a file in parallel
+(striping)</p></li>
+<li><p>support for getting file checksums with the HASH command</p></li>
+<li><p>command port protected by SSL</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="how-does-uftp-work">
+<h3>How does UFTP work</h3>
+<p>The UFTP file server, called ‘uftpd’, listens on two ports (which may be on
+two different network interfaces):</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>the command port receives control commands</p></li>
+<li><p>the listen port accepts data connections from clients.</p></li>
+</ul>
+</div></blockquote>
+<p>The uftpd server is “controlled” (by an Auth server or UNICORE/X) via the
+command port, and receives/sends data directly from/to a client
+machine (which can be an actual user client machine or another
+server). The client connnects to the “listen” port, which has to
+be accessible from external machines. The client opens additional data
+commection(s) via the passive FTP protocol.</p>
+<p>The sequence for a UFTP file transfer is as follows:</p>
+<blockquote>
+<div><ul>
+<li><p>the client (which can be an end-user client, or a service such as a UNICORE/X server)
+sends an authentication request to the Auth server (or another UNICORE/X server)</p></li>
+<li><p>the Auth server sends a request to the command port of UFTPD.
+This request notifies the UFTPD server about the upcoming transfer and
+contains the following information</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>a “secret”, i.e. a one-time password which the client will use to
+authenticate itself</p></li>
+<li><p>the user and group id which uftpd should use to access files</p></li>
+<li><p>an optional key to encrypt/decrypt the data</p></li>
+<li><p>the client’s IP address</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>the UFTPD server will now  accept an incoming client connection, provided the
+supplied “secret” (one-time password) matches the expectation.</p></li>
+<li><p>if everything is OK, an FTP session is created, and the client can use the FTP
+protocol to open data connections, list files, transfer data etc.
+Data connections are opened via “passive FTP”, which allows the firewall to dynamically
+open the requested ports (which can by any port, see below if you want to a
+fixed port range).</p></li>
+<li><p>for each UFTP session, UFTPD will fork a process which runs as the requested user
+(with the requested primary group)</p></li>
+</ul>
+</div></blockquote>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p><strong>IMPORTANT SECURITY NOTE</strong></p>
+<p>The UNICORE UFTPD server is running with <strong>elevated privileges</strong>, it can set its UID and GID to that of any user except root.
+Make sure to read and understand the section below on protecting the command socket.  Otherwise, users logged on to the UFTPD machine can possibly read and write other user's files.</p>
+</div>
+</section>
+</section>
+<section id="installation-and-operation">
+<h2>Installation and operation</h2>
+<section id="prerequisites">
+<h3>Prerequisites</h3>
+<blockquote>
+<div><ul class="simple">
+<li><p>Python 3.4.0 or later</p></li>
+<li><p>the server’s “listen” port needs to be accessible through your firewalls,
+declaring it an “FTP” port (FTP connection tracking). Alternatively a fixed
+range of open ports can be configured and used</p></li>
+<li><p>the server's command port needs to be accessible from the Auth server(s)</p></li>
+<li><p>the UFTPD server needs access to the target file systems</p></li>
+<li><p>a server certificate for the UFTPD server is a MUST for production use
+in a multi-user environment (see the section on SSL below)</p></li>
+</ul>
+</div></blockquote>
+<p>A functional UFTP installation requires either an Auth server or a full UNICORE/X server.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>NOTE ON PATHS</p>
+<p>The UNICORE UFTPD server is distributed either as a platform independent and portable tar.gz or zip bundle, or as an installable, platform dependent package such as RPM.</p>
+<p>Depending on the installation package, the paths to various files are different.</p>
+</div>
+<p>If installing using distribution-specific package
+the following paths are used:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CONF</span><span class="o">=/</span><span class="n">etc</span><span class="o">/</span><span class="n">unicore</span><span class="o">/</span><span class="n">uftpd</span>
+<span class="n">BIN</span><span class="o">=/</span><span class="n">usr</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="n">unicore</span><span class="o">/</span><span class="n">uftpd</span><span class="o">/</span><span class="nb">bin</span>
+<span class="n">LIB</span><span class="o">=/</span><span class="n">usr</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="n">unicore</span><span class="o">/</span><span class="n">uftpd</span><span class="o">/</span><span class="n">lib</span>
+</pre></div>
+</div>
+<p>If installing using the portable bundle, all UFTPD files are installed
+under a single directory. Path prefixes are as follows, where <cite>INST</cite> is the directory where UFTPD was installed:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CONF</span><span class="o">=</span><span class="n">INST</span><span class="o">/</span><span class="n">conf</span>
+<span class="n">BIN</span><span class="o">=</span><span class="n">INST</span><span class="o">/</span><span class="nb">bin</span>
+<span class="n">LIB</span><span class="o">=</span><span class="n">INST</span><span class="o">/</span><span class="n">lib</span>
+</pre></div>
+</div>
+<p>These variables (<cite>CONF</cite>, <cite>BIN</cite> and <cite>LOG</cite>) are used throughout the rest of this manual.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Note that after installation UFTPD is NOT automatically enabled as a systemd service, since you will need to edit the configuration and provide a server certificate.</p>
+</div>
+</section>
+<section id="starting-and-stopping-the-uftpd-server">
+<h3>Starting and stopping the UFTPD server</h3>
+<p>If using the Linux packages, uftpd is integrated as a service via systemd, and
+you can stop/start it via <cite>systemctl</cite>. Also, logging is (by default) done via
+systemd, and you can look at the logs via <cite>journalctl</cite></p>
+<p>To do things manually, you can use the start/stop and status scripts that are
+provided in the BIN directory.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><cite>unicore-uftpd-start.sh</cite> starts the server</p></li>
+<li><p><cite>unicore-uftpd-stop.sh</cite> stops the server</p></li>
+<li><p><cite>unicore-uftpd-status.sh</cite> checks the server status</p></li>
+</ul>
+</div></blockquote>
+<p>The parameters such as server host/port, control host/port, and others are
+configured in the <cite>CONF/uftpd.conf</cite> file</p>
+<p>In a production scenario with multiple users, the uftpd server
+needs to be started as root. This is necessary to be able to
+access files as the correct user/group and set correct file permissions.</p>
+<p>To enable UFTPD as a systemd service (after configuring and adding a server
+certificate), you can use <cite>systemctl</cite> :</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo systemctl add-wants multi-user.target unicore-uftpd
+</pre></div>
+</div>
+</section>
+<section id="configuration-parameters">
+<h3>Configuration parameters</h3>
+<p>The following variables can be defined in the configuration file (<cite>uftpd.conf</cite>):</p>
+<dl class="field-list simple">
+<dt class="field-odd">CMD_HOST</dt>
+<dd class="field-odd"><p>the interface where the server listens for control commands</p>
+</dd>
+<dt class="field-even">CMD_PORT</dt>
+<dd class="field-even"><p>the port where the server listens for control commands</p>
+</dd>
+<dt class="field-odd">SERVER_HOST</dt>
+<dd class="field-odd"><p>the interface where the server listens for client data connections</p>
+</dd>
+<dt class="field-even">SERVER_PORT</dt>
+<dd class="field-even"><p>the port where the server listens for client data connections</p>
+</dd>
+</dl>
+<p>:ADVERTISE_HOST:(optional) (Only used in the PASV implementation)Advertise this server as having the following IPv4 address in the control connection. This is useful if the server is behind a NAT firewall and the public address is different from the address(es) the server has bound to</p>
+<dl class="field-list simple">
+<dt class="field-odd">SSL_CONF</dt>
+<dd class="field-odd"><p>File containing SSL settings for the command port</p>
+</dd>
+<dt class="field-even">ACL</dt>
+<dd class="field-even"><p>File containing the list of server DNs that are allowed access to the command port</p>
+</dd>
+<dt class="field-odd">MAX_CONNECTIONS</dt>
+<dd class="field-odd"><p>the maximum number of concurrent control connections per user (default: <cite>16</cite>)</p>
+</dd>
+<dt class="field-even">MAX_STREAMS</dt>
+<dd class="field-even"><p>the maximum number of parallel TCP streams per FTP session (default: <cite>4</cite>)</p>
+</dd>
+<dt class="field-odd">PORT_RANGE</dt>
+<dd class="field-odd"><p>(optional) server-side port range in the form 'lower:upper' that will be used to accept data connections. By default, any free ports will be used. <em>Example</em>: set to '50000:50050' to limit the port range</p>
+</dd>
+<dt class="field-even">DISABLE_IP_CHECK</dt>
+<dd class="field-even"><p>(optional) in some situations, the client IP can be different from the one that was sent to the UFTPD server by the Auth server. This will lead to rejected transfers. Setting this variable to <cite>true</cite> will disable the IP check. Only the one-time password will be checked.</p>
+</dd>
+<dt class="field-odd">UFTP_KEYFILES</dt>
+<dd class="field-odd"><p>(optional) list of files (relative to current user’s $HOME) where uftpd will read public keys for authentication. List is separated by “:”. This defaults to <cite>.ssh/authorized_keys</cite>.</p>
+</dd>
+<dt class="field-even">UFTP_NO_WRITE</dt>
+<dd class="field-even"><p>(optional) “:”-separated list of file name patters that uftpd should not write to.</p>
+</dd>
+<dt class="field-odd">LOG_VERBOSE</dt>
+<dd class="field-odd"><p>set to <cite>true</cite> to get (much) more detailed logging</p>
+</dd>
+</dl>
+<p>: LOG_SYSLOG: set to <cite>false</cite> to print logging output to stdout</p>
+<p>As usual if you set the SERVER_HOST to be <cite>0.0.0.0</cite>, the server will bind to all the available
+network interfaces.</p>
+<p>If possible, use an “internal” interface for the Command socket. If that
+is not possible, make sure the Command socket is protected by a firewall!</p>
+<p>We <strong>VERY STRONGLY</strong> recommend enabling SSL for the Command socket.
+Please refer to the next section.</p>
+</section>
+<section id="protecting-the-command-socket">
+<h3>Protecting the Command socket</h3>
+<p>Using SSL for the Command port ensures that only trusted parties
+(i.e. trusted Auth and/or UNICORE/X servers) can issue commands to the
+UFTPD server. To further limit the set of trusted users, an access control
+list (<cite>ACL</cite>) file is used.</p>
+<p>In production settings where users can log in to the UFTPD server
+machine, <strong>SSL MUST</strong> be enabled to prevent unauthorized data access!</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p><strong>IMPORTANT SECURITY NOTE</strong></p>
+<p>Without SSL enabled, users logged in to the UFTPD server can easily create exploits to read or write files with arbitrary user privileges (except <cite>root</cite>).</p>
+</div>
+<section id="ssl-setup">
+<h4>SSL setup</h4>
+<p>To setup SSL, you need a PEM file containing the UFTPD server’s
+credential, and a PEM file containing certificate authorities that
+should be trusted.</p>
+<p>The following properties can be set in the <cite>CONF/uftpd-ssl.conf</cite> file.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">credential</span><span class="o">.</span><span class="n">path</span><span class="o">=</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">keyfile</span><span class="o">.</span><span class="n">pem</span>
+<span class="n">credential</span><span class="o">.</span><span class="n">password</span><span class="o">=...</span>
+
+<span class="n">truststore</span><span class="o">=</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">ca</span><span class="o">-</span><span class="n">cert</span><span class="o">-</span><span class="n">file</span><span class="o">.</span><span class="n">pem</span>
+</pre></div>
+</div>
+<p>You can also use separate PEM files for key and certificate:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">credential</span><span class="o">.</span><span class="n">key</span><span class="o">=</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">key</span><span class="o">.</span><span class="n">pem</span>
+<span class="n">credential</span><span class="o">.</span><span class="n">password</span><span class="o">=...</span>
+<span class="n">credential</span><span class="o">.</span><span class="n">certificate</span><span class="o">=</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">certificate</span><span class="o">.</span><span class="n">pem</span>
+
+<span class="n">truststore</span><span class="o">=</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">ca</span><span class="o">-</span><span class="n">cert</span><span class="o">-</span><span class="n">file</span><span class="o">.</span><span class="n">pem</span>
+</pre></div>
+</div>
+<p>The credential.password is only needed and used if the key is encrypted.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Backwards (in)compatibility to previous versions</strong></p>
+<p>UFTPD 2.x SSL config is <strong>NOT supported</strong></p>
+<p>If you already have a p12 keystore for UFTPD 2.x, you can use <code class="docutils literal notranslate"><span class="pre">openssl</span></code> to convert it to <cite>PEM</cite> format</p>
+</div>
+</section>
+<section id="acl-setup">
+<h4>ACL setup</h4>
+<p>The access control list contains the distinguished names of those certificates that
+should be allowed access.</p>
+<p>The “ACL” setting in <cite>CONF/uftpd.conf</cite> is used to specify the location of the ACL file</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">export</span> <span class="n">ACL</span><span class="o">=</span><span class="n">conf</span><span class="o">/</span><span class="n">uftpd</span><span class="o">.</span><span class="n">acl</span>
+</pre></div>
+</div>
+<p>The default ACL contains the certificate DN of the UNICORE/X server from the UNICORE
+core server bundle. In production, you need to replace this by the actual DNs of
+your UNICORE/X server(s) and UFTP Authentication server(s).</p>
+<p>The ACL entries are expected in <strong>RFC2253</strong> format. To get the name
+from a certificate in the correct format using <cite>openssl</cite>, you can use the following OpenSSL command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>openssl x509 -in your_server.pem -noout -subject -nameopt RFC2253
+</pre></div>
+</div>
+<p>The ACL file can be updated at runtime.</p>
+</section>
+</section>
+<section id="firewall-configuration">
+<h3>Firewall configuration</h3>
+<dl class="simple">
+<dt>UFTPD requires</dt><dd><ul class="simple">
+<li><p>an open TCP port for accepting FTP connections</p></li>
+<li><p>additional open TCP ports for accepting data connections</p></li>
+</ul>
+</dd>
+</dl>
+<p>The data connections can either be openend dynamically using “FTP connection tracking”, or
+you can use a dedicated port range and permanently open those in the firewall.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Please consult the firewall documentation on how to enable an “FTP” service on your firewall (or operating system).</p>
+</div>
+<p>With Linux iptables, you may use rules similar to the following:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>iptables -A INPUT -p tcp -m tcp --dport <span class="nv">$SERVER_PORT</span> -j ACCEPT
+iptables -A INPUT -p tcp -m helper --helper ftp-<span class="nv">$SERVER_PORT</span> -j ACCEPT
+</pre></div>
+</div>
+<p>where <cite>$SERVER_PORT</cite> is the SERVER_PORT defined in <cite>uftpd.conf</cite>. The first
+rule allows anyone to access port <cite>$SERVER_PORT</cite>. The second rule
+activates the iptables connection tracking FTP module on port $SERVER_PORT.</p>
+<p>On some operating systems it may be required to load additional kernel modules to
+enable connection tracking, for example on CentOS:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>modprobe nf_conntrack_ipv4
+modprobe nf_conntrack_ftp <span class="nv">ports</span><span class="o">=</span><span class="nv">$SERVER_PORT</span>
+</pre></div>
+</div>
+<p>If you cannot use connection tracking, you will need to open a port range, and configure
+UFTPD accordingly.</p>
+<p>For example, in <cite>uftpd.conf</cite>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span> <span class="nv">PORT_RANGE</span><span class="o">=</span><span class="m">21000</span>:21010
+</pre></div>
+</div>
+<p>and the iptables rule</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>iptables -A INPUT -p tcp -m tcp --dport <span class="m">21000</span>:21010 -j ACCEPT
+</pre></div>
+</div>
+<p>would allow incoming data connections on ports 21000 to 21010.</p>
+<p>A fairly small range (e.g. 10 ports) is usually enough, since these are server ports.</p>
+</section>
+<section id="logging">
+<h3>Logging</h3>
+<p>By default, UFTPD writes to syslog, and you can use <cite>journalctl</cite> to read log messages.</p>
+<p>To print logging output to stdout, set <cite>export LOG_SYSLOG=false</cite> in the <cite>uftpd.conf</cite> file.</p>
+</section>
+</section>
+<section id="unicore-integration">
+<h2>UNICORE integration</h2>
+<p>Please refer to the UNICORE/X manual for detailed information on how to configure
+UFTP based data access and data transfer.</p>
+</section>
+<section id="testing-the-uftpd-server">
+<h2>Testing the UFTPD server</h2>
+<p>You should use the <cite>uftp</cite> client to run tests, which contains
+many options such as the number of concurrent FTP connections, and can
+use <cite>/dev/null</cite> and <cite>/dev/zero</cite> as data source/sink.</p>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  </body>
+</html>

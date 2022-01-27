@@ -1,10 +1,6 @@
 .. _authserver:
 
-Auth Server 1
-=============
-
 .. include:: README.rst
-
 
 .. toctree::
 	:maxdepth: 2

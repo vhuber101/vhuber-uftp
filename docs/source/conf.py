@@ -20,6 +20,7 @@ sys.path.insert(0, os.path.abspath('.'))
 project = 'UNICORE UFTP'
 copyright = '2022, UNICORE'
 author = 'UNICORE'
+version = '1.0.0'
 
 
 # -- General configuration ---------------------------------------------------
