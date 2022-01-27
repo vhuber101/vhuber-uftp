@@ -23,7 +23,7 @@ If the existing version needs to be rebuilt for some reason,
 the Makefile and C code is provided in ``src/main/native`` folder.
 To use the Makefile, it is required to run ``mvn install`` first.
 Then the Makefile needs to be edited and the correct paths 
-need to be provided. Finally a ```make install``` will build the new
+need to be provided. Finally a ``make install`` will build the new
 version of the native lib. It should be placed into the directory 
 above and committed to SVN.
 
