@@ -56,7 +56,7 @@ UFTP features
  - standalone command line client available
 
  - supports third-party FTP clients such as ``curl`` or ``ftp``, 
-   after getting a one-time password via the Auth server (RESTful API)
+   after getting a one-time password via the :ref:`Auth server <authserver>` (RESTful API)
    or a UNICORE/X storage endpoint
 
  - integrated into UNICORE clients for fast file upload and download
@@ -90,7 +90,7 @@ two different network interfaces):
 
  - the listen port accepts data connections from clients.
 
-The uftpd server is "controlled" (by an Auth server or UNICORE/X) via the
+The uftpd server is "controlled" (by an :ref:`Auth server <authserver>` or UNICORE/X) via the
 command port, and receives/sends data directly from/to a client
 machine (which can be an actual user client machine or another
 server). The client connnects to the "listen" port, which has to
@@ -373,9 +373,7 @@ A fairly small range (e.g. 10 ports) is usually enough, since these are server p
 Logging
 ~~~~~~~
 
-By default, UFTPD writes to syslog, and you can use ``journalctl`` to read log messages.
-
-To print logging output to stdout, set ``export LOG_SYSLOG=false`` in the ``uftpd.conf`` file.
+By default, UFTPD writes to syslog, and you can use ``journalctl`` to read log messages. To print logging output to stdout, set ``export LOG_SYSLOG=false`` in the ``uftpd.conf`` file.
 
 
 UNICORE integration

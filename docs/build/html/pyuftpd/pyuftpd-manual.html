@@ -329,7 +329,7 @@ written in Python.</p>
 a single open port</p></li>
 <li><p>standalone command line client available</p></li>
 <li><p>supports third-party FTP clients such as <code class="docutils literal notranslate"><span class="pre">curl</span></code> or <code class="docutils literal notranslate"><span class="pre">ftp</span></code>,
-after getting a one-time password via the Auth server (RESTful API)
+after getting a one-time password via the <a class="reference internal" href="../authserver/authserver.html#authserver"><span class="std std-ref">Auth server</span></a> (RESTful API)
 or a UNICORE/X storage endpoint</p></li>
 <li><p>integrated into UNICORE clients for fast file upload and download</p></li>
 <li><p>integrated with UNICORE servers for fast data staging and
@@ -356,7 +356,7 @@ two different network interfaces):</p>
 <li><p>the listen port accepts data connections from clients.</p></li>
 </ul>
 </div></blockquote>
-<p>The uftpd server is “controlled” (by an Auth server or UNICORE/X) via the
+<p>The uftpd server is “controlled” (by an <a class="reference internal" href="../authserver/authserver.html#authserver"><span class="std std-ref">Auth server</span></a> or UNICORE/X) via the
 command port, and receives/sends data directly from/to a client
 machine (which can be an actual user client machine or another
 server). The client connnects to the “listen” port, which has to
@@ -627,8 +627,7 @@ UFTPD accordingly.</p>
 </section>
 <section id="logging">
 <h3>Logging<a class="headerlink" href="#logging" title="Permalink to this headline"></a></h3>
-<p>By default, UFTPD writes to syslog, and you can use <code class="docutils literal notranslate"><span class="pre">journalctl</span></code> to read log messages.</p>
-<p>To print logging output to stdout, set <code class="docutils literal notranslate"><span class="pre">export</span> <span class="pre">LOG_SYSLOG=false</span></code> in the <code class="docutils literal notranslate"><span class="pre">uftpd.conf</span></code> file.</p>
+<p>By default, UFTPD writes to syslog, and you can use <code class="docutils literal notranslate"><span class="pre">journalctl</span></code> to read log messages. To print logging output to stdout, set <code class="docutils literal notranslate"><span class="pre">export</span> <span class="pre">LOG_SYSLOG=false</span></code> in the <code class="docutils literal notranslate"><span class="pre">uftpd.conf</span></code> file.</p>
 </section>
 </section>
 <section id="unicore-integration">

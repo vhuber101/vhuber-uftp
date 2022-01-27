@@ -412,27 +412,26 @@ range of open ports can be configured and used</p></li>
 production use (see the section on SSL below)</p></li>
 </ul>
 </div></blockquote>
-<p>A functional UFTP installation requires either a full UNICORE/X server or the
-‘auth server’.</p>
+<p>A functional UFTP installation requires either a full UNICORE/X server or the <a class="reference internal" href="../authserver/authserver.html#authserver"><span class="std std-ref">Auth server</span></a>.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>The UNICORE UFTPD server is distributed either as a platform independent and portable tar.gz or zip bundle, or as an installable, platform dependent package such as RPM.
 Depending on the installation package, the paths to various files are different.</p>
 </div>
 <p>If installing using distribution-specific package the following paths are used:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">CONF</span><span class="o">=</span>/etc/unicore/uftpd
-<span class="nv">SBIN</span><span class="o">=</span>/usr/sbin
-<span class="nv">BIN</span><span class="o">=</span>/usr/bin
-<span class="nv">LOG</span><span class="o">=</span>/var/log/unicore/uftpd
-<span class="nv">LIB</span><span class="o">=</span>/usr/share/unicore/uftpd/lib
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CONF</span><span class="o">=/</span><span class="n">etc</span><span class="o">/</span><span class="n">unicore</span><span class="o">/</span><span class="n">uftpd</span>
+<span class="n">SBIN</span><span class="o">=/</span><span class="n">usr</span><span class="o">/</span><span class="n">sbin</span>
+<span class="n">BIN</span><span class="o">=/</span><span class="n">usr</span><span class="o">/</span><span class="nb">bin</span>
+<span class="n">LOG</span><span class="o">=/</span><span class="n">var</span><span class="o">/</span><span class="n">log</span><span class="o">/</span><span class="n">unicore</span><span class="o">/</span><span class="n">uftpd</span>
+<span class="n">LIB</span><span class="o">=/</span><span class="n">usr</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="n">unicore</span><span class="o">/</span><span class="n">uftpd</span><span class="o">/</span><span class="n">lib</span>
 </pre></div>
 </div>
 <p>If installing using the portable bundle, all UFTPD files are installed under a single directory. Path prefixes are as follows, where <cite>INST</cite> is the directory where UFTPD was installed:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">CONF</span><span class="o">=</span>INST/conf
-<span class="nv">SBIN</span><span class="o">=</span>INST/bin
-<span class="nv">BIN</span><span class="o">=</span>INST/bin
-<span class="nv">LOG</span><span class="o">=</span>INST/log
-<span class="nv">LIB</span><span class="o">=</span>INST/lib
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CONF</span><span class="o">=</span><span class="n">INST</span><span class="o">/</span><span class="n">conf</span>
+<span class="n">SBIN</span><span class="o">=</span><span class="n">INST</span><span class="o">/</span><span class="nb">bin</span>
+<span class="n">BIN</span><span class="o">=</span><span class="n">INST</span><span class="o">/</span><span class="nb">bin</span>
+<span class="n">LOG</span><span class="o">=</span><span class="n">INST</span><span class="o">/</span><span class="n">log</span>
+<span class="n">LIB</span><span class="o">=</span><span class="n">INST</span><span class="o">/</span><span class="n">lib</span>
 </pre></div>
 </div>
 <p>These variables (<cite>CONF</cite>, <cite>SBIN</cite>, <cite>BIN</cite> and <cite>LOG</cite>) are used throughout the rest of this manual.</p>
@@ -811,14 +810,13 @@ finished with these tests.</p>
 UFP functionality without using any external servers or
 clients. Making a data transfer involves two steps:</p>
 <blockquote>
-<div><ul class="simple">
-<li><p>invoke <cite>uftp-job.sh</cite> to “announce” an upcoming transfer to the UFTPD server</p></li>
-<li><p>invoke <cite>uftp.sh</cite> to initiate the actual transfer</p></li>
-</ul>
+<div><ol class="arabic simple">
+<li><p>invoke <code class="docutils literal notranslate"><span class="pre">uftp-job.sh</span></code> to “announce” an upcoming transfer to the UFTPD server</p></li>
+<li><p>invoke <code class="docutils literal notranslate"><span class="pre">uftp.sh</span></code> to initiate the actual transfer</p></li>
+</ol>
 </div></blockquote>
-<p>Note, in case you installed from an RPM or DEB package, these files are located in <cite>/usr/bin</cite>.</p>
-<p>The following shell commands “transfer” the file <cite>.bashrc</cite> to the /tmp directory.</p>
-<p>Assuming you installed from RPM/DEB:</p>
+<p><strong>Note</strong>, in case you installed from an RPM or DEB package, these files are located in <code class="docutils literal notranslate"><span class="pre">/usr/bin</span></code>.</p>
+<p>The following shell commands “transfer” the file <cite>.bashrc</cite> to the /tmp directory. Assuming you installed from RPM/DEB:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>. /etc/unicore/uftpd/uftpd.conf
 uftp-job.sh -c localhost -f ~/.bashrc -s true -x my_secret -n 2 -u unicore -g unicore
 uftp.sh -r -f /tmp/test -L $SERVER_PORT -l $SERVER_HOST -x my_secret -n 2
@@ -831,7 +829,7 @@ the UFTPD log file <cite>LOG/uftpd.log</cite> in case of errors.</p>
 </pre></div>
 </div>
 <p>gives the correct checksum for the newly created file.</p>
-<p>It is also possible to enable encryption “manually”, by appending “<cite>-E &lt;key&gt;</cite>”
+<p>It is also possible to enable encryption “manually”, by appending <code class="docutils literal notranslate"><span class="pre">-E</span> <span class="pre">&lt;key&gt;</span></code>
 to the commands above, where “<cite>key</cite>” is a sequence of 12
 characters (really a base64-encoded 64 bit key).</p>
 </section>

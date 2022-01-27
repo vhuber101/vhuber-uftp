@@ -145,17 +145,14 @@ Prerequisites
     production use (see the section on SSL below)
 
 
-A functional UFTP installation requires either a full UNICORE/X server or the
-'auth server'.
+A functional UFTP installation requires either a full UNICORE/X server or the :ref:`Auth server <authserver>`.
 
 
 .. note:: 
 	The UNICORE UFTPD server is distributed either as a platform independent and portable tar.gz or zip bundle, or as an installable, platform dependent package such as RPM.
 	Depending on the installation package, the paths to various files are different. 
 
-If installing using distribution-specific package the following paths are used:
-
-.. code:: bash
+If installing using distribution-specific package the following paths are used::
 
 	CONF=/etc/unicore/uftpd
 	SBIN=/usr/sbin
@@ -163,9 +160,7 @@ If installing using distribution-specific package the following paths are used:
 	LOG=/var/log/unicore/uftpd
 	LIB=/usr/share/unicore/uftpd/lib
 		
-If installing using the portable bundle, all UFTPD files are installed under a single directory. Path prefixes are as follows, where `INST` is the directory where UFTPD was installed:
-
-.. code:: bash
+If installing using the portable bundle, all UFTPD files are installed under a single directory. Path prefixes are as follows, where `INST` is the directory where UFTPD was installed::
 	
 	CONF=INST/conf
 	SBIN=INST/bin
@@ -543,14 +538,12 @@ The UFTPD distribution contains two scripts that allow you to test the
 UFP functionality without using any external servers or
 clients. Making a data transfer involves two steps:
 
- - invoke `uftp-job.sh` to "announce" an upcoming transfer to the UFTPD server
- - invoke `uftp.sh` to initiate the actual transfer
+ #. invoke ``uftp-job.sh`` to "announce" an upcoming transfer to the UFTPD server
+ #. invoke ``uftp.sh`` to initiate the actual transfer
 
-Note, in case you installed from an RPM or DEB package, these files are located in `/usr/bin`.
+**Note**, in case you installed from an RPM or DEB package, these files are located in ``/usr/bin``.
 
-The following shell commands "transfer" the file `.bashrc` to the /tmp directory.
-
-Assuming you installed from RPM/DEB::
+The following shell commands "transfer" the file `.bashrc` to the /tmp directory. Assuming you installed from RPM/DEB::
 
 	. /etc/unicore/uftpd/uftpd.conf
 	uftp-job.sh -c localhost -f ~/.bashrc -s true -x my_secret -n 2 -u unicore -g unicore
@@ -566,7 +559,7 @@ After the transfer finished, check that indeed
 
 gives the correct checksum for the newly created file.
 
-It is also possible to enable encryption "manually", by appending "`-E <key>`"
+It is also possible to enable encryption "manually", by appending ``-E <key>``
 to the commands above, where "`key`" is a sequence of 12
 characters (really a base64-encoded 64 bit key).
  

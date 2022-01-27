@@ -293,7 +293,7 @@
 service for authenticating users and initiating UFTP transfers. It
 is indended to be used with a standalone UFTP client and provides
 access to one or more UFTPD servers.</p>
-<p>Besides data transfer via UFTP and data management features like ‘ls’,
+<p>Besides data transfer via UFTP and data management features like <code class="docutils literal notranslate"><span class="pre">ls</span></code>,
 the Auth server also provides REST services for data sharing and
 accessing shared data sets.</p>
 <p>The Auth server is based on the UNICORE Services Environment, and all
@@ -303,7 +303,7 @@ a UNICORE Gateway, or it can be configured to use Unity for
 authenticating users.</p>
 <p>This manual focuses on the configuration items specific to the Auth
 server. If you need more in-depth information on general configuration
-issues, please refer to the UNICORE/X manual, available via unicore.eu</p>
+issues, please refer to the UNICORE/X manual, available via <a class="reference external" href="https://www.unicore.eu">https://www.unicore.eu</a></p>
 <section id="installation">
 <h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline"></a></h2>
 <section id="prerequisites">
@@ -332,7 +332,7 @@ directory of your choice.</p>
 <h3>Basic server configuration (memory etc)<a class="headerlink" href="#basic-server-configuration-memory-etc" title="Permalink to this headline"></a></h3>
 <p>The <cite>startup.properties</cite> configuration file contains basic settings
 such as the Java command, JVM memory etc. Please review it.</p>
-<p>The Auth server host and port are configured in the <cite>container.properties</cite>
+<p>The Auth server host and port are configured in the <code class="docutils literal notranslate"><span class="pre">container.properties</span></code>
 configuration file:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">container</span><span class="o">.</span><span class="n">host</span><span class="o">=</span><span class="n">uftp</span><span class="o">.</span><span class="n">yoursite</span><span class="o">.</span><span class="n">com</span>
 <span class="n">container</span><span class="o">.</span><span class="n">port</span><span class="o">=</span><span class="mi">9000</span>
@@ -343,13 +343,12 @@ configuration file:</p>
 <span class="n">container</span><span class="o">.</span><span class="n">baseurl</span><span class="o">=</span><span class="n">gateway</span><span class="o">.</span><span class="n">yoursite</span><span class="o">.</span><span class="n">com</span><span class="p">:</span><span class="mi">2222</span><span class="o">/</span><span class="n">AUTH</span><span class="o">/</span><span class="n">services</span>
 </pre></div>
 </div>
-<p>Also in the <cite>container.properties</cite> configuration file, the server’s X.509
+<p>Also in the <code class="docutils literal notranslate"><span class="pre">container.properties</span></code> configuration file, the server’s X.509
 private key and the truststore settings need to be configured.</p>
 </section>
 <section id="starting-and-stopping-the-service">
 <h3>Starting and stopping the service<a class="headerlink" href="#starting-and-stopping-the-service" title="Permalink to this headline"></a></h3>
-<p>Use the shell scripts in the <cite>bin</cite> folder to start or stop the
-service.</p>
+<p>Use the shell scripts in the <code class="docutils literal notranslate"><span class="pre">bin</span></code> folder to start or stop the service.</p>
 </section>
 </section>
 <section id="configuration">
@@ -385,30 +384,41 @@ users.</p></li>
 <h3>UFTPD server(s) configuration<a class="headerlink" href="#uftpd-server-s-configuration" title="Permalink to this headline"></a></h3>
 <p>For each UFTPD server that should be accessed, you’ll need
 to configure the relevant properties in the Auth service’s config file</p>
-<p>The <cite>authservice.servers</cite> property is a list of server names. These
+<p>The <code class="docutils literal notranslate"><span class="pre">authservice.servers</span></code> property is a list of server names. These
 should be meaningful, since users will need to use them, too.  The
 other properties are used to configure the UFTPD command address and
 the UFTPD listen address. Please refer to the UFTPD configuration and
-manual for details.</p>
+<a class="reference internal" href="../pyuftpd/pyuftpd-manual.html#pyuftpd-manual"><span class="std std-ref">manual</span></a> for details.</p>
 <blockquote>
-<div><ul class="simple">
-<li><p><cite>host</cite> the IP address of the UFTPD ‘listen’ socket</p></li>
-<li><p><cite>port</cite> the port of the UFTPD ‘listen’ socket</p></li>
-<li><p><cite>commandHost</cite> the IP address of the UFTPD ‘command’ socket</p></li>
-<li><p><cite>commandPort</cite>: the port of the UFTPD ‘command’ socket</p></li>
-<li><p><cite>ssl</cite>: whether SSL is used to connect to the command socket. This MUST be set to its default of ‘true’ in a production environment!</p></li>
-<li><p><cite>description</cite>: human-readable description of the UFTPD server</p></li>
-</ul>
+<div><dl class="field-list simple">
+<dt class="field-odd">host</dt>
+<dd class="field-odd"><p>the IP address of the UFTPD ‘listen’ socket</p>
+</dd>
+<dt class="field-even">port</dt>
+<dd class="field-even"><p>the port of the UFTPD ‘listen’ socket</p>
+</dd>
+<dt class="field-odd">commandHost</dt>
+<dd class="field-odd"><p>the IP address of the UFTPD ‘command’ socket</p>
+</dd>
+<dt class="field-even">commandPort</dt>
+<dd class="field-even"><p>the port of the UFTPD ‘command’ socket</p>
+</dd>
+<dt class="field-odd">ssl</dt>
+<dd class="field-odd"><p>whether SSL is used to connect to the command socket. This MUST be set to its default of <code class="docutils literal notranslate"><span class="pre">true</span></code> in a production environment!</p>
+</dd>
+<dt class="field-even">description</dt>
+<dd class="field-even"><p>human-readable description of the UFTPD server</p>
+</dd>
+</dl>
 </div></blockquote>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>The listen socket address will be communicated to clients, who will
 attempt to connect to that address. Therefore, this has         to be a public
 interface. For example, if you are running UFTPD behind a       NAT router,
-you have to use the IP configured as the ADVERTISE_HOST         in the UFTPD configuration.</p>
+you have to use the IP configured as the <code class="docutils literal notranslate"><span class="pre">ADVERTISE_HOST</span></code> in the UFTPD configuration.</p>
 </div>
-<p>For example, we want to configure two UFTPD servers named “CLUSTER”
-and “TEST”:</p>
+<p>For example, we want to configure two UFTPD servers named “CLUSTER” and “TEST”:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># configured UFTPD server(s)</span>
 <span class="n">authservice</span><span class="o">.</span><span class="n">servers</span><span class="o">=</span><span class="n">CLUSTER</span> <span class="n">TEST</span>
 
@@ -475,7 +485,7 @@ configuration details for a UNICORE/X server apply here as well.</p>
 <p>We summarise the most important details, please refer to the UNICORE/X
 manual if you want to learn about further options.</p>
 <p>The enabled authentication options and their order are configured
-in <cite>container.properties</cite>.</p>
+in <code class="docutils literal notranslate"><span class="pre">container.properties</span></code>.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">container</span><span class="o">.</span><span class="n">security</span><span class="o">.</span><span class="n">rest</span><span class="o">.</span><span class="n">authentication</span><span class="o">.</span><span class="n">order</span><span class="o">=</span><span class="n">PASSWORD</span> <span class="o">|</span> <span class="n">SSHKEY</span> <span class="o">|</span> <span class="n">UNITY</span>
 </pre></div>
 </div>
@@ -488,7 +498,7 @@ in <cite>container.properties</cite>.</p>
 <span class="n">container</span><span class="o">.</span><span class="n">security</span><span class="o">.</span><span class="n">rest</span><span class="o">.</span><span class="n">authentication</span><span class="o">.</span><span class="n">PASSWORD</span><span class="o">.</span><span class="n">file</span><span class="o">=</span><span class="n">conf</span><span class="o">/</span><span class="n">rest</span><span class="o">-</span><span class="n">users</span><span class="o">.</span><span class="n">txt</span>
 </pre></div>
 </div>
-<p>This configures to use the file <cite>conf/rest-users.txt</cite>. The file format is</p>
+<p>This configures to use the file <code class="docutils literal notranslate"><span class="pre">conf/rest-users.txt</span></code>. The file format is</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#</span>
 <span class="c1"># on each line:</span>
 <span class="c1"># username:hash:salt:DN</span>
@@ -498,11 +508,11 @@ in <cite>container.properties</cite>.</p>
 </div>
 <p>i.e. each line gives the username, the hashed password, the salt and
 the user’s DN, separated by colons. To generate entries, i.e. to hash the
-password correctly, the ‘md5sum’ utility can be used. For example,
+password correctly, the <code class="docutils literal notranslate"><span class="pre">md5sum</span></code> utility can be used. For example,
 if your intended password is ‘test123’, you could do</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$&gt; <span class="nv">SALT</span><span class="o">=</span><span class="k">$(</span>tr -dc <span class="s2">&quot;A-Za-z0-9_&quot;</span> &lt; /dev/urandom <span class="p">|</span> head -c <span class="m">16</span> <span class="p">|</span> xargs<span class="k">)</span>
-$&gt; /bin/echo <span class="s2">&quot;Salt is </span><span class="si">${</span><span class="nv">SALT</span><span class="si">}</span><span class="s2">&quot;</span>
-$&gt; /bin/echo -n <span class="s2">&quot;</span><span class="si">${</span><span class="nv">SALT</span><span class="si">}</span><span class="s2">test123&quot;</span> <span class="p">|</span> md5sum
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$&gt; SALT=$(tr -dc &quot;A-Za-z0-9_&quot; &lt; /dev/urandom | head -c 16 | xargs)
+$&gt; /bin/echo &quot;Salt is ${SALT}&quot;
+$&gt; /bin/echo -n &quot;${SALT}test123&quot; | md5sum
 </pre></div>
 </div>
 <p>which will output the salted and hashed password. Here we generate a
@@ -537,7 +547,7 @@ retrieving an authentication assertion.</p>
 the user’s public SSH key. The token will be checked, and if
 successful, the user will be assigned a distinguished name for later
 authorisation.</p>
-<p>SSH keys are read from the user’s <cite>~/.ssh/authorized_keys</cite> file, but
+<p>SSH keys are read from the user’s <code class="docutils literal notranslate"><span class="pre">~/.ssh/authorized_keys</span></code> file, but
 can also be managed manually in a dedicated ssh keys file.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -564,7 +574,7 @@ attribute source” (see below), authenticated users can be assigned the
 <section id="manual-ssh-key-mapping">
 <h5>Manual SSH key mapping<a class="headerlink" href="#manual-ssh-key-mapping" title="Permalink to this headline"></a></h5>
 <p>If you want to map ssh keys to DNs manually, a file is used. Entries in the file
-override the keys read from <cite>~/.ssh/authorized_keys</cite>.</p>
+override the keys read from <code class="docutils literal notranslate"><span class="pre">~/.ssh/authorized_keys</span></code>.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># configure SSH keys file</span>
 <span class="n">container</span><span class="o">.</span><span class="n">security</span><span class="o">.</span><span class="n">rest</span><span class="o">.</span><span class="n">authentication</span><span class="o">.</span><span class="n">SSHKEY</span><span class="o">.</span><span class="n">file</span><span class="o">=</span><span class="n">conf</span><span class="o">/</span><span class="n">ssh</span><span class="o">-</span><span class="n">users</span><span class="o">.</span><span class="n">txt</span>
 </pre></div>
@@ -578,7 +588,7 @@ override the keys read from <cite>~/.ssh/authorized_keys</cite>.</p>
 <span class="n">demouser</span><span class="p">:</span><span class="n">ssh</span><span class="o">-</span><span class="n">rsa</span> <span class="n">keydata_was_omitted</span> <span class="n">testkey</span><span class="p">:</span><span class="n">CN</span><span class="o">=</span><span class="n">Demo</span> <span class="n">User</span><span class="p">,</span> <span class="n">O</span><span class="o">=</span><span class="n">UNICORE</span><span class="p">,</span> <span class="n">C</span><span class="o">=</span><span class="n">EU</span>
 </pre></div>
 </div>
-<p>The SSH key is in the same one-line format used in the <cite>.ssh/authorized_keys</cite> file.</p>
+<p>The SSH key is in the same one-line format used in the <code class="docutils literal notranslate"><span class="pre">.ssh/authorized_keys</span></code> file.</p>
 <p>You can enter multiple lines per username, to accommodate the case that a user has different
 SSH keys available. For example</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Example SSH users file with multiple keys per user</span>
@@ -677,11 +687,11 @@ If not given, no files are explicitely excluded.</p></li>
 <section id="checking-the-installation">
 <h2>Checking the installation<a class="headerlink" href="#checking-the-installation" title="Permalink to this headline"></a></h2>
 <p>You can check that the server works using a simple HTTP client such
-as <cite>curl</cite> to access the Auth server’s base URL, provided you
+as <code class="docutils literal notranslate"><span class="pre">curl`</span></code> to access the Auth server’s base URL, provided you
 have configured username/password authentication.</p>
 <p>The command</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$&gt; curl -k https://&lt;host:port&gt;/rest/auth <span class="se">\</span>
-        -H <span class="s2">&quot;Accept: application/json&quot;</span> <span class="se">\</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$&gt; curl -k https://&lt;host:port&gt;/rest/auth \
+        -H &quot;Accept: application/json&quot; \
         -u username:password
 </pre></div>
 </div>
@@ -715,10 +725,10 @@ installation and want to allow your users the option of using the
 standalone UFTP client. This requires UNICORE/X version 8.0 or later!</p>
 <blockquote>
 <div><ul class="simple">
-<li><p>copy the <cite>authserver-*.jar</cite> file to the ‘lib’ directory of UNICORE/X</p></li>
-<li><p>copy the XACML policy file <cite>30uftpAuthService.xml</cite> to the
-‘conf/xacml2Policies’ directory</p></li>
-<li><p>edit <cite>container.properties</cite> (or <cite>uas.config</cite>) and setup UFTPD details
+<li><p>copy the <code class="docutils literal notranslate"><span class="pre">authserver-*.jar</span></code> file to the <code class="docutils literal notranslate"><span class="pre">lib</span></code> directory of UNICORE/X</p></li>
+<li><p>copy the XACML policy file <code class="docutils literal notranslate"><span class="pre">30uftpAuthService.xml</span></code> to the
+<code class="docutils literal notranslate"><span class="pre">conf/xacml2Policies</span></code> directory</p></li>
+<li><p>edit <code class="docutils literal notranslate"><span class="pre">container.properties</span></code> (or <code class="docutils literal notranslate"><span class="pre">uas.config</span></code>) and setup UFTPD details
 and, if necessary, RESTful user authentication as described above</p></li>
 </ul>
 </div></blockquote>
@@ -728,7 +738,7 @@ and, if necessary, RESTful user authentication as described above</p></li>
 <p>If you want to place the Auth server behind a UNICORE gateway for easy
 firewall transversal, you need to configure an entry in the Gateway
 connections config file, and set the container base URL property
-(‘’container.baseurl’’) in the Auth server’s <cite>container.properties</cite>. This
+(<code class="docutils literal notranslate"><span class="pre">container.baseurl</span></code>) in the Auth server’s <code class="docutils literal notranslate"><span class="pre">container.properties</span></code>. This
 option is also useful when the server’s listen address differs from
 the publicly accessible server address, such as when running the Auth
 server behind a NAT firewall.</p>

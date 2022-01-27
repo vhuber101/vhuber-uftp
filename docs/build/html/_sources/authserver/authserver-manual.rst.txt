@@ -10,7 +10,7 @@ service for authenticating users and initiating UFTP transfers. It
 is indended to be used with a standalone UFTP client and provides
 access to one or more UFTPD servers.
 
-Besides data transfer via UFTP and data management features like 'ls',
+Besides data transfer via UFTP and data management features like ``ls``,
 the Auth server also provides REST services for data sharing and
 accessing shared data sets.
 
@@ -22,7 +22,7 @@ authenticating users.
 
 This manual focuses on the configuration items specific to the Auth
 server. If you need more in-depth information on general configuration
-issues, please refer to the UNICORE/X manual, available via unicore.eu
+issues, please refer to the UNICORE/X manual, available via https://www.unicore.eu
 
 Installation
 ------------
@@ -48,7 +48,6 @@ to be run standalone. To install, unzip the downloaded package into a
 directory of your choice.
 
 .. note::
-
 	You can run the service in an existing UNICORE/X server (8.0.0 or later). Please see `Running the Auth server behind a UNICORE Gateway`_ below for details.
 
 
@@ -58,9 +57,8 @@ Basic server configuration (memory etc)
 The `startup.properties` configuration file contains basic settings
 such as the Java command, JVM memory etc. Please review it.
 
-The Auth server host and port are configured in the `container.properties`
-configuration file:
-::
+The Auth server host and port are configured in the ``container.properties``
+configuration file::
 
 	container.host=uftp.yoursite.com
 	container.port=9000
@@ -70,15 +68,14 @@ configuration file:
 	container.sitename=AUTH
 	container.baseurl=gateway.yoursite.com:2222/AUTH/services
 
-Also in the `container.properties` configuration file, the server's X.509
+Also in the ``container.properties`` configuration file, the server's X.509
 private key and the truststore settings need to be configured.
 
 
 Starting and stopping the service
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Use the shell scripts in the `bin` folder to start or stop the
-service.
+Use the shell scripts in the ``bin`` folder to start or stop the service.
 
 
 Configuration
@@ -118,34 +115,31 @@ UFTPD server(s) configuration
 For each UFTPD server that should be accessed, you'll need
 to configure the relevant properties in the Auth service's config file
 
-The `authservice.servers` property is a list of server names. These
+The ``authservice.servers`` property is a list of server names. These
 should be meaningful, since users will need to use them, too.  The
 other properties are used to configure the UFTPD command address and
 the UFTPD listen address. Please refer to the UFTPD configuration and
-manual for details.
+:ref:`manual <pyuftpd-manual>` for details.
 
- * `host` the IP address of the UFTPD 'listen' socket
+ :host: the IP address of the UFTPD 'listen' socket
 
- * `port` the port of the UFTPD 'listen' socket
+ :port: the port of the UFTPD 'listen' socket
 
- * `commandHost` the IP address of the UFTPD 'command' socket
+ :commandHost: the IP address of the UFTPD 'command' socket
  
- * `commandPort`: the port of the UFTPD 'command' socket
+ :commandPort: the port of the UFTPD 'command' socket
 
- * `ssl`: whether SSL is used to connect to the command socket. This MUST be set to its default of 'true' in a production environment!
+ :ssl: whether SSL is used to connect to the command socket. This MUST be set to its default of ``true`` in a production environment!
 
- * `description`: human-readable description of the UFTPD server
+ :description: human-readable description of the UFTPD server
 
 .. note::
-
 	The listen socket address will be communicated to clients, who will
 	attempt to connect to that address. Therefore, this has 	to be a public
 	interface. For example, if you are running UFTPD behind a 	NAT router,
-	you have to use the IP configured as the ADVERTISE_HOST 	in the UFTPD configuration.
+	you have to use the IP configured as the ``ADVERTISE_HOST`` in the UFTPD configuration.
 
-For example, we want to configure two UFTPD servers named "CLUSTER"
-and "TEST":
-::
+For example, we want to configure two UFTPD servers named "CLUSTER" and "TEST"::
 
 	# configured UFTPD server(s)
 	authservice.servers=CLUSTER TEST
@@ -187,8 +181,7 @@ blocks numbered "1", "2", ...
 
 Each block configures one physical server.
 
-For example:
-::
+For example::
 
 	# configuration for multiple UFTPD instances
 	# providing the logical 'CLUSTER' server
@@ -222,7 +215,7 @@ We summarise the most important details, please refer to the UNICORE/X
 manual if you want to learn about further options.
 
 The enabled authentication options and their order are configured 
-in `container.properties`.
+in ``container.properties``.
 ::
 
 	container.security.rest.authentication.order=PASSWORD | SSHKEY | UNITY
@@ -240,7 +233,7 @@ To use a file containing username, password and the DN,
 	container.security.rest.authentication.PASSWORD.class=eu.unicore.services.rest.security.FilebasedAuthenticator
 	container.security.rest.authentication.PASSWORD.file=conf/rest-users.txt
 
-This configures to use the file `conf/rest-users.txt`. The file format is
+This configures to use the file ``conf/rest-users.txt``. The file format is
 ::
 
 	#
@@ -251,10 +244,9 @@ This configures to use the file `conf/rest-users.txt`. The file format is
 
 i.e. each line gives the username, the hashed password, the salt and
 the user's DN, separated by colons. To generate entries, i.e. to hash the 
-password correctly, the 'md5sum' utility can be used. For example, 
+password correctly, the ``md5sum`` utility can be used. For example, 
 if your intended password is 'test123', you could do
-
-.. code:: bash
+::
 
 	$> SALT=$(tr -dc "A-Za-z0-9_" < /dev/urandom | head -c 16 | xargs)
 	$> /bin/echo "Salt is ${SALT}"
@@ -299,11 +291,10 @@ the user's public SSH key. The token will be checked, and if
 successful, the user will be assigned a distinguished name for later
 authorisation.
 
-SSH keys are read from the user's `~/.ssh/authorized_keys` file, but
+SSH keys are read from the user's ``~/.ssh/authorized_keys`` file, but
 can also be managed manually in a dedicated ssh keys file.
 
 .. note::
-
 	SSH key validation will not work for users on Windows, since the UFTP 
 	stand-alone client does not yet support SSH keys on Windows.
 	We recommand adding a username/password option for Windows users.
@@ -321,8 +312,7 @@ default, the DN is `CN=<username>, OU=ssh-local-users`. Using the "PAM
 attribute source" (see below), authenticated users can be assigned the
 "user" role automatically without further configuration.
 
-The user DN can be modified by configuring the DN template like this:
-::
+The user DN can be modified by configuring the DN template like this::
 
 	#DN template used for SSH key mapping. The %s is replaced by the username 
 	container.security.rest.authentication.SSHKEY.dnTemplate=CN=%s, OU=ssh-local-users
@@ -332,14 +322,13 @@ Manual SSH key mapping
 ++++++++++++++++++++++
 
 If you want to map ssh keys to DNs manually, a file is used. Entries in the file
-override the keys read from `~/.ssh/authorized_keys`.
+override the keys read from ``~/.ssh/authorized_keys``.
 ::
 
 	# configure SSH keys file 
 	container.security.rest.authentication.SSHKEY.file=conf/ssh-users.txt
 
-It contains the mappings and the ssh public keys in a simple format:
-::
+It contains the mappings and the ssh public keys in a simple format::
 
 	# Example SSH users file used with the SSHKEY authentication method
 	
@@ -348,7 +337,7 @@ It contains the mappings and the ssh public keys in a simple format:
 	#
 	demouser:ssh-rsa keydata_was_omitted testkey:CN=Demo User, O=UNICORE, C=EU
 
-The SSH key is in the same one-line format used in the `.ssh/authorized_keys` file.
+The SSH key is in the same one-line format used in the ``.ssh/authorized_keys`` file.
 
 You can enter multiple lines per username, to accommodate the case that a user has different
 SSH keys available. For example
@@ -461,12 +450,11 @@ Checking the installation
 -------------------------
 
 You can check that the server works using a simple HTTP client such
-as `curl` to access the Auth server's base URL, provided you
+as ``curl``` to access the Auth server's base URL, provided you
 have configured username/password authentication.
 
 The command
-
-.. code:: bash
+::
 
 	$> curl -k https://<host:port>/rest/auth \
 		-H "Accept: application/json" \
@@ -493,7 +481,6 @@ configured UFTPD servers and their status, such as
 
 
 .. note::
-
 	If you do not get any output, try adding the "-i" option to the curl
 	command, most probably the username/password is incorrect.
 
@@ -505,12 +492,12 @@ This option is interesting if you are already running a UNICORE
 installation and want to allow your users the option of using the
 standalone UFTP client. This requires UNICORE/X version 8.0 or later!
 
- * copy the `authserver-*.jar` file to the 'lib' directory of UNICORE/X
+ * copy the ``authserver-*.jar`` file to the ``lib`` directory of UNICORE/X
 
- * copy the XACML policy file `30uftpAuthService.xml` to the
-   'conf/xacml2Policies' directory
+ * copy the XACML policy file ``30uftpAuthService.xml`` to the
+   ``conf/xacml2Policies`` directory
 
- * edit `container.properties` (or `uas.config`) and setup UFTPD details
+ * edit ``container.properties`` (or ``uas.config``) and setup UFTPD details
    and, if necessary, RESTful user authentication as described above
 
 
@@ -520,7 +507,7 @@ Running the Auth server behind a UNICORE Gateway
 If you want to place the Auth server behind a UNICORE gateway for easy
 firewall transversal, you need to configure an entry in the Gateway
 connections config file, and set the container base URL property
-(''container.baseurl'') in the Auth server's `container.properties`. This
+(``container.baseurl``) in the Auth server's ``container.properties``. This
 option is also useful when the server's listen address differs from
 the publicly accessible server address, such as when running the Auth
 server behind a NAT firewall.
